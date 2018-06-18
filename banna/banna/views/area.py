@@ -3,14 +3,14 @@ from django.shortcuts import get_object_or_404, render, redirect
 from ..models.modalforms import AreaForm
 from ..models.models import Area
 
-#SHOW OVERVIEW CATEGORIES
+#SHOW OVERVIEW AREA
 def overview_areas(request, id=id):
     latest_area_list = Area.objects.all()
     context = {'latest_area_list': latest_area_list}
     return render(request, '/overview/areas.html', context)
 
 
-#ADD CATEGORY
+#ADD AREA
 def add_area(request):
     if request.method == "POST":
         form = AreaForm(request.POST)
@@ -22,7 +22,7 @@ def add_area(request):
         form = AreaForm()
     return render(request, '/add/area.html', {'area':form})
 
-#EDIT CATEGORY
+#EDIT AREA
 def edit_area(request, id=None):
     item = get_object_or_404(Area, id=id)
     form = AreaForm(request.POST or None, instance=item)
@@ -32,7 +32,7 @@ def edit_area(request, id=None):
     return render(request, '/edit/area.html', {'area':form})
 
 
-#DELETE CATEGORY
+#DELETE AREA
 def delete_area(request, id=id):
     area = Area.objects.get(pk=id) #get area which needed be deleted
     area.delete()
