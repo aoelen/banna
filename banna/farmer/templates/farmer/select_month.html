@@ -1,0 +1,86 @@
+{% extends 'farmer/layout.html' %}
+{% load static %}
+
+{% block content %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.select').on('click', function() {
+        var hidden = $(this).next().is(':hidden');
+        $('.open').hide();
+
+        if (hidden) {
+            $(this).next('.open').show();
+        }
+    });
+});
+</script>
+
+<header>Januari</header>
+
+<div class="p-select-month">
+    <div class="select">
+        <div class="name">Planted trees</div><div class="number">9000</div>
+    </div>
+    <div class="open">
+        <table>
+            <tr>
+                <td>Yield 1</td>
+                <td class="number-t">3000</td>
+            </tr>
+            <tr>
+                <td>Yield 2</td>
+                <td class="number-t">1500</td>
+            </tr>
+            <tr>
+                <td>Yield 3</td>
+                <td class="number-t">700</td>
+            </tr>
+            <tr>
+                <td>Yield 4</td>
+                <td class="number-t">500</td>
+            </tr>
+            <tr>
+                <td>Yield 5</td>
+                <td class="number-t">100</td>
+            </tr>
+        </table>
+    </div>
+    <div class="select">
+        <div class="name">Harvest KGs</div><div class="number">180</div>
+    </div>
+    <div class="open">
+        <table>
+            <tr>
+                <td>Yield 1</td>
+                <td class="number-t">3000</td>
+            </tr>
+            <tr>
+                <td>Yield 2</td>
+                <td class="number-t">1500</td>
+            </tr>
+            <tr>
+                <td>Yield 3</td>
+                <td class="number-t">700</td>
+            </tr>
+            <tr>
+                <td>Yield 4</td>
+                <td class="number-t">500</td>
+            </tr>
+            <tr>
+                <td>Yield 5</td>
+                <td class="number-t">100</td>
+            </tr>
+        </table>
+    </div>
+    <div class="select">
+        <div class="name">Fertilizer used</div><div class="number">Yes</div>
+    </div>
+</div>
+
+<div class="bottom-menu">
+    <a href="overview" class="back button">Go back</a>
+    <a href="form_planted" class="edit button">Edit</a>
+</div>
+
+
+{% endblock %}

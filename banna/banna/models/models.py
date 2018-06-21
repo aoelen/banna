@@ -65,8 +65,3 @@ class Remarks(models.Model):
     # voice_label = models.ManyToManyField(VoiceLabel, blank=True)
     # image_url = models.URLField(null=True)
     # description = models.TextField(default='', blank=True)
-
-
-
-
-

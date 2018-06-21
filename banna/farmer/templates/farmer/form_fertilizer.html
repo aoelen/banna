@@ -1,0 +1,37 @@
+{% extends 'farmer/layout.html' %}
+{% load static %}
+
+{% block content %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.buttons .button').on('click', function() {
+        $('.buttons .button').removeClass('selected');
+        $(this).addClass('selected');
+    });
+});
+</script>
+
+<header>Fertilizer</header>
+
+<div class="p-form-fertilizer">
+    <div class="label">Did you use a fertilizer this month?</div>
+    <div class="buttons">
+        <div class="yes button selected">Yes</div>
+        <div class="no button">No</div>
+    </div>
+
+    <div class="clear"></div>
+    <div class="label">How many fertilizer did you use? (optional)</div>
+
+    <div class="fertilizer-input">
+        <input type="number" />
+    </div>
+
+    <div class="bottom-menu">
+        <a href="form_harvest" class="back button">Go back</a>
+        <a href="select_month" class="edit button">Submit</a>
+    </div>
+</div>
+
+
+{% endblock %}

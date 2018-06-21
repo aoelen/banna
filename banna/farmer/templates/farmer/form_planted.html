@@ -1,0 +1,48 @@
+{% extends 'farmer/layout.html' %}
+{% load static %}
+
+{% block content %}
+<header>New planted trees</header>
+
+<div class="p-form-planted">
+
+    <table>
+        <thead>
+            <tr>
+                <td class="first">Yield</td>
+                <td class="second">Amount of planted trees</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="yield">1</td>
+                <td class="input"><input type="number" /></td>
+            </tr>
+            <tr>
+                <td class="yield">2</td>
+                <td class="input"><input type="number" /></td>
+            </tr>
+            <tr>
+                <td class="yield">3</td>
+                <td class="input"><input type="number" /></td>
+            </tr>
+            <tr>
+                <td class="yield">4</td>
+                <td class="input"><input type="number" /></td>
+            </tr>
+            <tr>
+                <td class="yield">5</td>
+                <td class="input"><input type="number" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div class="bottom-menu">
+        <a href="select_month" class="back button">Go back</a>
+        <a href="form_harvest" class="edit button">Next</a>
+    </div>
+</div>
+
+
+{% endblock %}

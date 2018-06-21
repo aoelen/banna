@@ -18,6 +18,8 @@ from django.contrib import admin
 
 from django.urls import include, path
 
+
+
 urlpatterns = [
     path('farmer/', include('farmer.urls')),
     path('dashboard/', include('dashboard.urls')),
