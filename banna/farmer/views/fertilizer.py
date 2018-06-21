@@ -1,13 +1,13 @@
 from django.shortcuts import get_object_or_404, render, redirect
 
-from ..models.modalforms import FertilizerForm
-from ..models.models import Fertilizer
+from farmer.models import FertilizerForm
+from farmer.models import Fertilizer
 
 #SHOW OVERVIEW FERTILIZER
-def overview_fertilizers(request, id=id):
+def overview_fertilizer(request, id=id):
     latest_fertilizer_list = Fertilizer.objects.all()
     context = {'latest_fertilizer_list': latest_fertilizer_list}
-    return render(request, '/overview/fertilizers.html', context)
+    return render(request, './overview/fertilizer.html', context)
 
 
 #ADD FERTILIZER
@@ -17,10 +17,10 @@ def add_fertilizer(request):
         if form.is_valid():
             fertilizer_item = form.save(commit=False)
             fertilizer_item.save()
-            return redirect('overview/fertilizers')
+            return redirect('/farmer/fertilizer')
     else:
         form = FertilizerForm()
-    return render(request, '/add/fertilizer.html', {'fertilizer':form})
+    return render(request, './add/fertilizer.html', {'fertilizer':form})
 
 #EDIT FERTILIZER
 def edit_fertilizer(request, id=None):
@@ -29,11 +29,11 @@ def edit_fertilizer(request, id=None):
     if form.is_valid():
         form.save()
         return redirect('/fertilizer/')
-    return render(request, '/edit/fertilizer.html', {'fertilizer':form})
+    return render(request, './edit/fertilizer.html', {'fertilizer':form})
 
 
 #DELETE FERTILIZER
 def delete_fertilizer(request, id=id):
     fertilizer = Fertilizer.objects.get(pk=id) #get fertilizer which needed be deleted
     fertilizer.delete()
-    return redirect('overview/fertilizers')
+    return redirect('/farmer/fertilizer')
