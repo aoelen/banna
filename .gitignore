@@ -3,3 +3,4 @@ banna/banna/__pycache__/
 db.sqlite3
 env/
 .idea/
+*.pyc
