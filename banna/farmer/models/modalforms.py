@@ -1,7 +1,8 @@
 from django.forms import ModelForm
 from django import forms
 
-from .models import Yield, Harvest, Fertilizer, Farm
+from .formsInfo import Harvest, Fertilizer
+from .userInfo import Yield, Farm
 
 class UserForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)

@@ -3,14 +3,16 @@ from django.shortcuts import get_object_or_404, render, redirect
 from farmer.models import HarvestForm
 from farmer.models import Harvest
 
-#SHOW OVERVIEW HARVEST
-def overview_harvest(request, id=id):
-    latest_harvest_list = Harvest.objects.all()
-    context = {'latest_harvest_list': latest_harvest_list}
-    return render(request, './overview/harvest.html', context)
+
+#SHOW OVERVIEW DATA MONTH
+def overview_month(request, id=id):
+    latest_month_list = Harvest.objects.all()
+    context = {'latest_month_list': latest_month_list}
+    return render(request, './overview.html', context)
 
 #ADD HARVEST
-def add_harvest(request):
+def add_harvest(request, id=id):
+    month = Harvest.objects.month()
     if request.method == "POST":
         form = Harvest(request.POST)
         if form.is_valid():
@@ -19,7 +21,7 @@ def add_harvest(request):
             return redirect('/farmer/harvest')
     else:
         form = HarvestForm()
-    return render(request, './add/harvest.html', {'harvest':form})
+    return render(request, 'form_harvest.html', {'harvest':form})
 
 #EDIT HARVEST
 def edit_harvest(request, id=None):
@@ -28,11 +30,4 @@ def edit_harvest(request, id=None):
     if form.is_valid():
         form.save()
         return redirect('/farmer/harvest/')
-    return render(request, './edit/harvest.html', {'harvest':form})
-
-
-#DELETE HARVEST
-def delete_harvest(request, id=id):
-    harvest = Harvest.objects.get(pk=id) #get harvest which needed be deleted
-    harvest.delete()
-    return redirect('/farmer/harvest')
+    return render(request, './form_harvest.html', {'harvest':form})

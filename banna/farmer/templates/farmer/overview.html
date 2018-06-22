@@ -6,10 +6,17 @@
 
 <div class="p-overview">
     <ul class="overview">
-        <li><a href="select_month"><span class="name">Januari 2018</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
-        <li><a href="select_month"><span class="name">Februari 2018</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
-        <li><a href="select_month"><span class="name">March 2018</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
-        <li><a href="select_month"><span class="name">April 2018</span><span class="status error"><i class="fas fa-exclamation-circle"></i></span></a></li>
+        {for month in months)
+
+            {{month}}
+
+        <li><a href="/farmer/select_month/"><span class="name">Januari 2018</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
+
+        {end for}
+        <li><a href="/farmer/select_month/"><span class="name">Januari 2018</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
+        <li><a href="/farmer/select_month"><span class="name">Februari 2018</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
+        <li><a href="/farmer/select_month"><span class="name">March 2018</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
+        <li><a href="/farmer/select_month"><span class="name">April 2018</span><span class="status error"><i class="fas fa-exclamation-circle"></i></span></a></li>
     </ul>
 </div>
 
