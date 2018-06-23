@@ -1,9 +1,10 @@
 venv/
-banna/banna/__pycache__/
+banna/banna/__pycache__/*
 db.sqlite3
 env/
 .idea/
 *.pyc
-farmer/migrations
-banna/migrations
-dashboard/migrations
+banna/farmer/migrations/*
+banna/banna/migrations/*
+banna/dashboard/migrations/*
+banna/farmer/__pycache__/*
