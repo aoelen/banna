@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+from farmer.models import Month, Farm, Report
 
 def index(request):
     return HttpResponse("<h2>You are at the farmer page!</h2>")
@@ -14,8 +15,15 @@ def overview(request):
 
     return render(request, 'farmer/overview.html', context)
 
-def select_month(request):
+def select_month(request, farm_id, year, month):
+    farm_object = Farm.objects.filter(id=farm_id)
+    for farm in farm_object:
+        reports = Report.objects.filter(farm=farm)
+        for i in reports:
+            print (i.farm)
 
+    print(year)
+    print(month)
     context = {
 
     }
