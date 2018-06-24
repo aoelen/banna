@@ -32,15 +32,15 @@ $(document).ready(function() {
         <input type="hidden" name="fertilizer_used" value="{{report.used}}" >
 
         <div class="buttons">
-            <div class="yes button {% if report.used == 'yes' %}selected{% endif %}">Yes</div>
-            <div class="no button {% if report.used == 'no' %}selected{% endif %}">No</div>
+            <div class="yes button {% if report.fertilizer_used == 'yes' %}selected{% endif %}">Yes</div>
+            <div class="no button {% if report.fertilizer_used == 'no' %}selected{% endif %}">No</div>
         </div>
 
         <div class="clear"></div>
         <div class="label">How many fertilizer did you use? (optional)</div>
 
         <div class="fertilizer-input">
-            <input type="number" value="{{ report.amount }}" name="fertilizer_kgs" />
+            <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
         </div>
 
         <div class="bottom-menu">

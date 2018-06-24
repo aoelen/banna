@@ -103,7 +103,7 @@ def form_harvest(request, report_id):
 
 def form_fertilizer(request, report_id):
     if request.method == "POST":
-        Report.objects.filter(id=report_id).update(amount=request.POST.get('fertilizer_kgs', ''), used=request.POST.get('fertilizer_used', ''))
+        Report.objects.filter(id=report_id).update(fertilizer_amount=request.POST.get('fertilizer_kgs', ''), fertilizer_used=request.POST.get('fertilizer_used', ''))
 
         return redirect('/farmer/success/' + str(report_id))
 
