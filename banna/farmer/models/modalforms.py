@@ -2,12 +2,12 @@ from django.forms import ModelForm
 from django import forms
 
 from .formsInfo import Report
-from .userInfo import Farm
+from django.contrib.auth.models import User
 
 class UserForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
-        model = Farm
+        model = User
         fields = '__all__'
 
 class ReportForm(ModelForm):

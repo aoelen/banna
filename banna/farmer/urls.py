@@ -1,4 +1,6 @@
-from django.urls import path
+from django.conf.urls import url, include
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 from . import views
 
@@ -7,8 +9,6 @@ from . import views
 # ]
 
 
-from django.conf.urls import url, include
-
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^overview/$', views.overview_month, name='overview_month'),
@@ -16,7 +16,8 @@ urlpatterns = [
     url('form_planted/$', views.form_planted, name='form_planted'),
     url('form_harvest/$', views.form_harvest, name='form_harvest'),
     url('form_fertilizer/$', views.form_fertilizer, name='form_fertilizer'),
-    url('login/$', views.login, name='login'),
+    url('login/$', auth_views.login, {'template_name': 'farmer/registration/login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
 
     # # HARVEST URLS
     # url(r'^harvest/add/$', views.add_harvest, name='add_harvest'),

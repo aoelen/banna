@@ -1,0 +1,56 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Banna dashboard login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="{% static "farmer/css/login.css" %}?v=2" rel="stylesheet">
+
+
+  </head>
+
+
+  <body class="login text-center">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            </div>
+
+            <div class="col-lg-8">
+                <form role="form" class="form-signin form-horizontal" method="POST">
+                    {% csrf_token %}
+                    {% load widget_tweaks %}
+
+                    <div>
+                      {{ form.non_field_errors}}
+                    </div>
+                    <p class="mt-5 mb-3 text-muted">Banna</p>
+
+                    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                    <h1 class="h3 mb-3 font-weight-normal">Banna login</h1>
+
+                    <p>
+                        <input id="input_username" type="text" name="username" class="form-control" placeholder="Username" required autofocus>
+
+                    </p>
+                    <p>
+                        <input id="input_password" type="password" name="password" class="form-control" placeholder="Password" required>
+                    </p>
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+            </div>
+
+            <div class="col-lg-2"></div>
+            </div>
+        </div>
+
+  </body>
+</html>
