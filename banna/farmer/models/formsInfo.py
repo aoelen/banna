@@ -39,8 +39,11 @@ class Report(models.Model):
 class Reports_Yield(models.Model):
     report_id = models.ForeignKey("Report", on_delete=models.CASCADE)
     yield_number = models.IntegerField()
-    planted_amount_trees = models.IntegerField()
-    harvested_amount_kg_banana = models.IntegerField()
+    planted_amount_trees = models.IntegerField(null = 'True')
+    harvested_amount_kg_banana = models.IntegerField(null = 'True')
+
+    class Meta:
+        unique_together = ('report_id', 'yield_number',)
 
     def __str__(self):
         return str(self.report_id) + ": " + str(self.yield_number)

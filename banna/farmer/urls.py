@@ -15,8 +15,8 @@ urlpatterns = [
     url(r'^overview/$', views.overview_month, name='overview_month'),
     url(r'^select_month/$', views.select_month, name='select_month'),
     #url('form_planted/$', views.form_planted, name='form_planted'),
-    url('form_harvest/$', views.form_harvest, name='form_harvest'),
-    url('form_fertilizer/$', views.form_fertilizer, name='form_fertilizer'),
+    #url('form_harvest/$', views.form_harvest, name='form_harvest'),
+    #url('form_fertilizer/$', views.form_fertilizer, name='form_fertilizer'),
     url('login/$', auth_views.login, {'template_name': 'farmer/registration/login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
 
@@ -28,4 +28,7 @@ urlpatterns = [
     url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/$', views.select_month, name='select_month'),
 
     path('form_planted/<int:report_id>', views.form_planted, name='form_planted'),
+    path('form_harvest/<int:report_id>', views.form_harvest, name='form_harvest'),
+    path('form_fertilizer/<int:report_id>', views.form_fertilizer, name='form_fertilizer'),
+    path('success/<int:report_id>', views.success, name='success'),
 ]

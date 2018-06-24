@@ -186,3 +186,11 @@ header {
 .clear{
     clear:both;
 }
+.p-success {
+    text-align: center;
+}
+.p-success img{
+    width:150px;
+    margin-top: 70px;
+    display: inline-block;
+}
