@@ -19,6 +19,7 @@ html {
 body {
     background-image: url('img/login_background.png');
     background-size: 100%;
+
     color:#3e3e3e;
     font-family: 'Open Sans';
     font-weight: 600;
@@ -40,5 +41,4 @@ header {
 }
     font-size: 25px;
     margin-top:-7px
-
 

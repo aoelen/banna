@@ -16,7 +16,6 @@ class Tree(models.Model):
     harvested_amout_trees = models.IntegerField()
     farm = models.ForeignKey("Farm", on_delete=models.CASCADE)
 
-
     def __str__(self):
         return str(self.farm.name) + ": " + str(self.yield_id)
 

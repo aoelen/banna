@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 # Create your views here.
 from django.http import HttpResponse
-from farmer.models import Month, Farm, Report, UserForm
+from farmer.models import Month, Farm, Report, UserForm, Yield, Tree
 
 def index(request):
     return HttpResponse("<h2>You are at the farmer page!</h2>")
@@ -19,13 +19,20 @@ def select_month(request, farm_id, year, month):
     farm_object = Farm.objects.filter(id=farm_id)
     for farm in farm_object:
         reports = Report.objects.filter(farm=farm)
-        for i in reports:
-            print (i.farm)
+        for report in reports:
+            print (report.farm)
+            print (report.used)
+            print (report.amount)
 
-    print(year)
-    print(month)
+            for yield_number in Yield.objects.all():
+                tree_data = Tree.objects.filter(farm = farm, yield_id = yield_number)
+                print(tree_data)
+                for i in tree_data:
+                    print(i.yield_id.planti)
+
     context = {
-
+        'month' : month,
+        'year' : year
     }
 
     return render(request, 'farmer/select_month.html', context)
