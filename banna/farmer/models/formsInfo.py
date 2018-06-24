@@ -35,3 +35,12 @@ class Report(models.Model):
 
     def __str__(self):
         return str(self.farm.name) + " " + str(self.month.name) + " " + str(self.month.year)
+
+class Reports_Yield(models.Model):
+    report_id = models.ForeignKey("Report", on_delete=models.CASCADE)
+    yield_number = models.IntegerField()
+    planted_amount_trees = models.IntegerField()
+    harvested_amount_kg_banana = models.IntegerField()
+
+    def __str__(self):
+        return str(self.report_id) + ": " + str(self.yield_number)
