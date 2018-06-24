@@ -1,13 +1,10 @@
 venv/
 banna/banna/__pycache__/*
-db.sqlite3
+*db.sqlite3
 env/
 .idea/
 *.pyc
-banna/farmer/migrations/*
-banna/banna/migrations/*
-banna/dashboard/migrations/*
+*migrations*
 banna/farmer/__pycache__/*
-farmer/__pycache__/*
-farmer/models/__pycache__/*
-farmer/models/__pycache__/*
+*.py[cod]
+*$py.class
