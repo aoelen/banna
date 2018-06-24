@@ -8,3 +8,6 @@ banna/farmer/migrations/*
 banna/banna/migrations/*
 banna/dashboard/migrations/*
 banna/farmer/__pycache__/*
+farmer/__pycache__/*
+farmer/models/__pycache__/*
+farmer/models/__pycache__/*
