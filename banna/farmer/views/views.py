@@ -21,18 +21,22 @@ def select_month(request, farm_id, year, month):
         reports = Report.objects.filter(farm=farm)
         for report in reports:
             print (report.farm)
-            print (report.used)
-            print (report.amount)
+            print (report.fertilizer_used)
+            print (report.fertilizer_amount)
+            print (report.yields_id)
 
-            for yield_number in Yield.objects.all():
-                tree_data = Tree.objects.filter(farm = farm, yield_id = yield_number)
-                print(tree_data)
-                for i in tree_data:
-                    print(i.yield_id.planti)
+            for yield_number in Yield.objects.filter(report=farm):
+                trees_report = Tree.objects.filter(farm = farm, yield_id = yield_number)
+                print()
+                for tree_ in trees_report:
+                    print(tree_.planted_amount_trees)
+
 
     context = {
         'month' : month,
-        'year' : year
+        'year' : year,
+        'report': report,
+        # 'tree': trees_report
     }
 
     return render(request, 'farmer/select_month.html', context)
