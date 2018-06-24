@@ -18,7 +18,7 @@
   </head>
 
 
-  <body class="login text-center">
+  <body class="text-center">
         <div class="row">
             <div class="col-lg-2"></div>
             </div>
@@ -28,18 +28,18 @@
                     {% csrf_token %}
                     {% load widget_tweaks %}
 
-                    <div>
+                    <div class="error-message">
                       {{ form.non_field_errors}}
                     </div>
                     <p class="mt-5 mb-3 text-muted">Banna</p>
 
-                    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                    <img class="mb-4" href="img/Banna.png" alt="" width="72" height="72">
                     <h1 class="h3 mb-3 font-weight-normal">Banna login</h1>
 
                     <p>
                         <input id="input_username" type="text" name="username" class="form-control" placeholder="Username" required autofocus>
-
                     </p>
+
                     <p>
                         <input id="input_password" type="password" name="password" class="form-control" placeholder="Password" required>
                     </p>

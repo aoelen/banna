@@ -16,7 +16,6 @@ class Tree(models.Model):
     harvested_amout_trees = models.IntegerField()
     farm = models.ForeignKey("Farm", on_delete=models.CASCADE)
 
-
     def __str__(self):
         return str(self.farm.name) + ": " + str(self.yield_id)
 
@@ -26,8 +25,8 @@ class Report(models.Model):
         ('no', 'No'),
     )
 
-    used = models.CharField(max_length=30, choices=FERTILIZER_USED)
-    amount = models.IntegerField(null=True, blank = 'True')
+    fertilizer_used = models.CharField(max_length=30, choices=FERTILIZER_USED)
+    fertilizer_amount = models.IntegerField(null=True, blank = 'True')
 
     yields_id = models.ManyToManyField(Yield)
     month = models.ForeignKey("Month", on_delete=models.CASCADE, null = 'True')
