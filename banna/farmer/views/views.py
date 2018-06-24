@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render, redirect
 
 # Create your views here.
 from django.http import HttpResponse
+from farmer.models import Month, Farm, Report, UserForm
 
 def index(request):
     return HttpResponse("<h2>You are at the farmer page!</h2>")
@@ -14,8 +15,15 @@ def overview(request):
 
     return render(request, 'farmer/overview.html', context)
 
-def select_month(request):
+def select_month(request, farm_id, year, month):
+    farm_object = Farm.objects.filter(id=farm_id)
+    for farm in farm_object:
+        reports = Report.objects.filter(farm=farm)
+        for i in reports:
+            print (i.farm)
 
+    print(year)
+    print(month)
     context = {
 
     }
@@ -50,6 +58,15 @@ def form_fertilizer(request):
 
 
 def login(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            login_item = form.save(commit=False)
+            login_item.save()
+            return redirect('/farmer/overview/')
+    else:
+        form = UserForm()
+    return render(request, 'farmer/login.html', {'login': form})
 
     context = {
 

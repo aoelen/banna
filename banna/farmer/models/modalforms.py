@@ -1,26 +1,17 @@
 from django.forms import ModelForm
 from django import forms
 
-from .models import Yield, Harvest, Fertilizer, Farm
+from .formsInfo import Report
+from django.contrib.auth.models import User
 
 class UserForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
-        model = Farm
+        model = User
         fields = '__all__'
 
-class YieldForm(ModelForm):
+class ReportForm(ModelForm):
     class Meta:
-        model = Yield
-        fields = '__all__'
-
-class HarvestForm(ModelForm):
-    class Meta:
-        model = Harvest
-        fields = '__all__'
-
-class FertilizerForm(ModelForm):
-    class Meta:
-        model = Fertilizer
+        model = Report
         fields = '__all__'
 
