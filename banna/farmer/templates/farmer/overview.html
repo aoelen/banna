@@ -2,20 +2,30 @@
 {% load static %}
 
 {% block content %}
-<header>Overview</header>
+<header>Month Overview</header>
 
 <div class="p-overview">
-    <ul class="overview">
-        {% for report in reports %}
 
-        <li><a href="/farmer/{{ report.farm.id }}/{{ report.month.year}}/{{ report.month.name}}"><span class="name">{{report.month}}</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
+    {% if reports %}
 
-        {% endfor %}
 
-    </ul>
+        <ul class="overview">
+            {% for report in reports %}
+
+
+            <li><a href="/farmer/{{ report.farm.id }}/{{ report.month.year}}/{{ report.month.id}}/{{ report.month.name}}"><span class="name">{{report.month}}</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
 </div>
-<div class="background">
 
+<div class="bottom-menu">
+    <a href="/farmer/farms/" class="back button">Go back</a>
 </div>
 
 {% endblock %}

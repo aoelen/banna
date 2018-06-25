@@ -15,18 +15,18 @@ class Year(models.Model):
 
 class Month(models.Model):
     MONTHS = (
-        ('Januari', 'Januari'),
-        ('Februari', 'Februari'),
-        ('March', 'March'),
-        ('April', 'April'),
-        ('May', 'May'),
-        ('June', 'June'),
-        ('July', 'July'),
-        ('August', 'August'),
-        ('September', 'September'),
-        ('October', 'October'),
-        ('November', 'November'),
-        ('December', 'December'),
+        ('01', 'Januari'),
+        ('02', 'Februari'),
+        ('03', 'March'),
+        ('04', 'April'),
+        ('05', 'May'),
+        ('06', 'June'),
+        ('07', 'July'),
+        ('08', 'August'),
+        ('09', 'September'),
+        ('10', 'October'),
+        ('11', 'November'),
+        ('12', 'December'),
     )
 
     name = models.CharField(max_length=10, choices=MONTHS)

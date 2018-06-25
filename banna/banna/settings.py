@@ -88,7 +88,7 @@ DATABASES = {
 
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/farmer/overview'
+LOGIN_REDIRECT_URL = '/farmer/farms'
 LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 # Password validation
