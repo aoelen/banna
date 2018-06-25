@@ -18,12 +18,12 @@ def overview_months(request, farm_id):
     currentMonth = datetime.now().month
     # User.objects.filter(date_of_registration_field__lt=my_date)
 
+    user = User.objects.filter(id=request.user.id)
     reports = Report.objects.filter(farm=farm_id)
 
 
 
     return render(request, 'farmer/overview.html', {'reports': reports})
-
 
 #SHOW OVERVIEW REPORT
 def overview_report(request, farm_id, year, month_id , month):
