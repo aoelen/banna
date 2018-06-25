@@ -18,8 +18,7 @@ def overview_months(request, farm_id):
 
     reports = Report.objects.filter(farm=farm_id)
     return render(request, 'farmer/overview.html', {
-        'reports': reports,
-        'date_joined': user.date_joined
+        'reports': reports
     })
 
 
