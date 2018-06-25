@@ -132,13 +132,16 @@ header {
     left:0;
 }
 .bottom-menu .custom-btn {    
-    background-color: #1aa613;    
+    background-color: #1aa613;   
 }
 .bottom-menu .custom-btn:hover {    
     background-color: #127f0c;    
 }
 .bottom-menu .button.edit {
     background: #115c0d;
+}
+.bottom-menu .button.edit:hover {
+    background: #0a3807;
 }
 .p-form-planted table {
     width:100%;
