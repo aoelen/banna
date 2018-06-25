@@ -31,25 +31,20 @@ $(document).ready(function() {
         <div class="label">Did you use a fertilizer this month?</div>
         <input type="hidden" name="fertilizer_used" value="{{report.used}}" >
 
-<<<<<<< HEAD
-    <div class="clear"></div>
-    <div class="label">How much fertilizer did you use? (optional)</div>
-=======
         <div class="buttons">
             <div class="yes button {% if report.fertilizer_used == 'yes' %}selected{% endif %}">Yes</div>
             <div class="no button {% if report.fertilizer_used == 'no' %}selected{% endif %}">No</div>
         </div>
->>>>>>> 4c2ef3a0214a593d22649ed80be37efaeefce699
 
         <div class="clear"></div>
-        <div class="label">How many fertilizer did you use? (optional)</div>
+        <div class="label">How much fertilizer did you use? (optional)</div>
 
         <div class="fertilizer-input">
             <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
         </div>
 
         <div class="bottom-menu">
-            <a href="/farmer/form_harvest/" class="back button">Go back</a>
+            <a href="/farmer/form_harvest/{{ report_id }}" class="back button">Go back</a>
             <a href="#" class="edit button" id="submitForm">Submit</a>
         </div>
     </div>

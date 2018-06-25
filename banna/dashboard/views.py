@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
 
+from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
+
 @login_required
 def index(request):
 
@@ -18,8 +20,24 @@ def login(request):
 
 def dashboard(request):
 
+    report_yields = Reports_Yield.objects.all()
+    farms_amount = Farm.objects.count()
+
+    total_bananas_harvested = 0
+    total_trees_planted = 0
+
+    for report_yield in report_yields:
+        total_bananas_harvested = total_bananas_harvested + report_yield.harvested_amount_kg_banana
+        total_trees_planted = total_trees_planted + report_yield.planted_amount_trees
+
+    context = {
+        'total_bananas_harvested': total_bananas_harvested,
+        'total_trees_planted': total_trees_planted,
+        'farms_amount': farms_amount
+    }
+
     # Render the .html file
-    return render(request, 'dashboard/dashboard.html')
+    return render(request, 'dashboard/dashboard.html', context)
 
 def add_farmer(request):
 
