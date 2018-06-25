@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
+from farmer.models import Farm, Report, UserForm, Reports_Yield
 
 @login_required
 def index(request):
