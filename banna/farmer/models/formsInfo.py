@@ -1,6 +1,8 @@
 from django.db import models
 from .userInfo import Farm
 from .datesInfo import Date
+import datetime
+
 
 class Report(models.Model):
     FERTILIZER_USED = (
@@ -10,11 +12,14 @@ class Report(models.Model):
 
     fertilizer_used = models.CharField(max_length=30, choices=FERTILIZER_USED)
     fertilizer_amount = models.IntegerField(null=True, blank = 'True')
-    month = models.CharField(max_length=10, blank = 'True')
-    year = models.IntegerField(blank = 'True')
+    month = models.CharField(max_length=10, blank = 'True',null=True)
+    year = models.IntegerField(blank = 'True',null=True)
 
     # month = models.ForeignKey("Date", on_delete=models.CASCADE, null = 'True')
     farm = models.ForeignKey("Farm", on_delete=models.CASCADE)
+    month_numeric = models.IntegerField(null=True, blank = 'True')
+    report_date = models.DateField(default=datetime.date.today) #maybe useful for later?
+
 
     def __str__(self):
         return str(self.farm.name) + " " + str(self.month) + " " + str(self.year)
