@@ -84,7 +84,8 @@ def form_fertilizer(request, report_id):
         return redirect('/farmer/success/' + str(report_id))
 
     report = Report.objects.get(id=report_id)
-
+    report.fertilizer_used = report.fertilizer_used.lower()
+    
     context = {
         'report': report,
         'report_id': report_id

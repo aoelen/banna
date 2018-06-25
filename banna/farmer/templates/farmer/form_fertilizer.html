@@ -31,18 +31,13 @@ $(document).ready(function() {
         <div class="label">Did you use a fertilizer this month?</div>
         <input type="hidden" name="fertilizer_used" value="{{report.used}}" >
 
-<<<<<<< HEAD
-    <div class="clear"></div>
-    <div class="label">How much fertilizer did you use? (optional)</div>
-=======
         <div class="buttons">
             <div class="yes button {% if report.fertilizer_used == 'yes' %}selected{% endif %}">Yes</div>
             <div class="no button {% if report.fertilizer_used == 'no' %}selected{% endif %}">No</div>
         </div>
->>>>>>> 4c2ef3a0214a593d22649ed80be37efaeefce699
 
         <div class="clear"></div>
-        <div class="label">How many fertilizer did you use? (optional)</div>
+        <div class="label">How much fertilizer did you use? (optional)</div>
 
         <div class="fertilizer-input">
             <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
@@ -51,7 +46,7 @@ $(document).ready(function() {
         <div class="bottom-menu">
             <div class="row">
                 <div class="col-6">
-                    <button href="/farmer/form_harvest/" type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
+                    <button href="/farmer/form_harvest/{{ report_id }}" type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
                 </div>
                 <div class="col-6">
                     <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Submit</button>
