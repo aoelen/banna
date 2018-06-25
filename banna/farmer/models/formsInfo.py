@@ -1,6 +1,7 @@
 from django.db import models
 from .userInfo import Farm
 from .datesInfo import Month
+import datetime
 
 class Report(models.Model):
     FERTILIZER_USED = (
@@ -14,6 +15,10 @@ class Report(models.Model):
     # yields_id = models.ManyToManyField(Yield)
     month = models.ForeignKey("Month", on_delete=models.CASCADE, null = 'True')
     farm = models.ForeignKey("Farm", on_delete=models.CASCADE)
+    year = models.IntegerField(null=True, blank = 'True')
+    month_numeric = models.IntegerField(null=True, blank = 'True')
+    report_date = models.DateField(default=datetime.date.today) #maybe useful for later?
+
 
     def __str__(self):
         return str(self.farm.name) + " " + str(self.month.name) + " " + str(self.month.year)

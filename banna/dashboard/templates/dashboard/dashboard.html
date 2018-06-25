@@ -110,7 +110,7 @@
                           <div class="portlet-title">
                               <div class="caption">
                                   <i class="icon-cursor font-red"></i>
-                                  <span>Farm Updates Submitted by Farmers</span>
+                                  <span>Farm Updates Submitted by Farmers, for: {{current_month}}</span>
                               </div>
                           </div>
                           <div class="portlet-body">
@@ -135,7 +135,6 @@
               </div>
       </div>
   </div>
-
 <!-- Monthly Statistics Line Chart -->
 <script type="text/javascript">
        google.charts.load('current', {'packages':['corechart']});
@@ -173,19 +172,10 @@
 
            function drawChart() {
              var data = google.visualization.arrayToDataTable([
-               ['Month', 'KG' ],
-               ['Jan',  300],
-               ['Feb',  170],
-               ['Mar',  60],
-               ['Apr',  130],
-               ['May',  200],
-               ['June',  170],
-               ['July',  260],
-               ['Aug',  230],
-               ['Sep',  230],
-               ['Oct',  230],
-               ['Nov',  230],
-               ['Dec',  230]
+               ['Month', 'KG'],
+               {% for month, harvest in harvest_per_month.items %}
+               ['{{month}}', {{harvest}}],
+               {% endfor %}
              ]);
 
              var options = {
@@ -208,14 +198,9 @@
                  function drawChart() {
                    var data = google.visualization.arrayToDataTable([
                      ['Month', 'Trees' ],
-                     ['Jan',  1000],
-                     ['Feb',  1170],
-                     ['Mar',  660],
-                     ['Apr',  1030],
-                     ['May',  1000],
-                     ['June',  1170],
-                     ['July',  660],
-                     ['Aug',  1030]
+                     {% for month, planted in planted_per_month.items %}
+                     ['{{month}}', {{planted}}],
+                     {% endfor %}
                    ]);
 
 
@@ -239,8 +224,8 @@
                function drawChart() {
                  var data = google.visualization.arrayToDataTable([
                    ['Farmers', 'Updates for Month'],
-                   ['Update',     11],
-                   ['No-Update',      2]
+                   ['Update', {{farmers_update}}],
+                   ['No-Update', {{farmers_no_update}}]
                  ]);
 
                  var options = {
