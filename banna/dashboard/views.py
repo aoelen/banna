@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
 
 @login_required
 def index(request):
@@ -52,8 +53,15 @@ def factory(request):
 
 def farmers(request):
 
+    _farmers = Farm.objects
+    farmers = {}
+    context = farmers
+    print(context)
+
+
+
     # Render the .html file
-    return render(request, 'dashboard/farmers.html')
+    return render(request, 'dashboard/farmers.html', context)
 
 def harvests(request):
 
@@ -63,7 +71,7 @@ def harvests(request):
 def trees(request):
 
     # Render the .html file
-    return render(request, 'dashboard/trees.html')
+    return render(request, 'dashboard/trees.html', context)
 
 def users(request):
 
