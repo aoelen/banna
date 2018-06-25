@@ -20,16 +20,16 @@ $(document).ready(function() {
     {% endif %}
 
     <div class="p-select-month">
-        {% if planted.items %}
+        {% if trees.items %}
         <div class="select">
-            <div class="name">Planted trees</div><div class="number">{{planted.trees_total}}</div>
+            <div class="name">Planted trees</div><div class="number">{{trees.trees_total}}</div>
         </div>
         <div class="open">
             <table>
-                {% for yield in planted.trees_yield %}
+                {% for yield in trees.trees_yield %}
                     {% for key, value in yield.items %}
                     <tr>
-                        <td>{{ key }}</td>
+                        <td>Yield {{ key }}</td>
                         <td class="number-t">{{ value }}</td>
                     </tr>
                     {% endfor %}
@@ -47,7 +47,7 @@ $(document).ready(function() {
                 {% for yield in harvested.trees_yield %}
                     {% for key, value in yield.items %}
                     <tr>
-                        <td>{{ key }}</td>
+                        <td>Yield {{ key }}</td>
                         <td class="number-t">{{ value }}</td>
                     </tr>
                     {% endfor %}

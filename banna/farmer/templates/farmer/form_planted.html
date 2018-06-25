@@ -49,7 +49,7 @@ $(document).ready(function() {
 
 
         <div class="bottom-menu">
-            <a href="/farmer/select_month/" class="back button">Go back</a>
+            <a href="{{request.META.HTTP_REFERER}}" class="back button">Go back</a>
             <a href="/farmer/form_harvest/" class="edit button" id="submitForm">Next</a>
         </div>
     </form>
