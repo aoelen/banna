@@ -14,7 +14,7 @@
                           <div class="visual"></div>
                           <div class="details">
                               <div class="number">
-                                  <span id = "total_harvested">0</span>
+                                  <span id = "total_harvested">{{total_bananas_harvested}}</span>
                               </div>
                               <div> Bananas Harvested (KG) </div>
                           </div>
@@ -40,9 +40,9 @@
                           </div>
                           <div class="details">
                               <div class="number">
-                                  <span id = "total_trees" >0</span>
+                                  <span id = "total_trees" >{{total_trees_planted}}</span>
                               </div>
-                              <div> Total Trees (Month) </div>
+                              <div>Trees planted</div>
                           </div>
                       </a>
                   </div>
@@ -53,9 +53,9 @@
                           </div>
                           <div class="details">
                               <div class="number">
-                                  <span id = "total_farmers">0</span>
+                                  <span id = "total_farmers">{{farms_amount}}</span>
                               </div>
-                              <div> Total Farmers </div>
+                              <div> Total farms </div>
                           </div>
                       </a>
                   </div>
@@ -181,7 +181,11 @@
                ['May',  200],
                ['June',  170],
                ['July',  260],
-               ['Aug',  230]
+               ['Aug',  230],
+               ['Sep',  230],
+               ['Oct',  230],
+               ['Nov',  230],
+               ['Dec',  230]
              ]);
 
              var options = {
