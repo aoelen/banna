@@ -1,0 +1,280 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+
+{% block body %}
+  <h1>Dashboard <small>Welcome </small></h1>
+
+ <hr>
+
+  <div class="container-fluid">
+      <div class="page-content page-content-popup">
+              <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                      <a class="dashboard-stat dashboard-stat-v2 bg-primary" style = "color: white;"href="/dashboard/harvests">
+                          <div class="visual"></div>
+                          <div class="details">
+                              <div class="number">
+                                  <span id = "total_harvested">0</span>
+                              </div>
+                              <div> Bananas Harvested (KG) </div>
+                          </div>
+                      </a>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                      <a class="dashboard-stat dashboard-stat-v2 bg-danger" style = "color: white;" href="/dashboard/factory">
+                          <div class="visual">
+
+                          </div>
+                          <div class="details">
+                              <div class="number">
+                                  <span id = "total_trees" >0</span>
+                              </div>
+                              <div> Bananas Received (KG) </div>
+                          </div>
+                      </a>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                      <a class="dashboard-stat dashboard-stat-v2 bg-success" style = "color: white;" href="/dashboard/trees">
+                          <div class="visual">
+
+                          </div>
+                          <div class="details">
+                              <div class="number">
+                                  <span id = "total_trees" >0</span>
+                              </div>
+                              <div> Total Trees (Month) </div>
+                          </div>
+                      </a>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                      <a class="dashboard-stat dashboard-stat-v2 purple" style = "color: white;" href="/dashboard/farmers">
+                          <div class="visual">
+
+                          </div>
+                          <div class="details">
+                              <div class="number">
+                                  <span id = "total_farmers">0</span>
+                              </div>
+                              <div> Total Farmers </div>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="row">
+                  <div class="col-lg-12 col-xs-12 col-sm-12">
+                      <div class="portlet light ">
+                          <div class="portlet-title">
+                              <div class="caption">
+                                  <i class="icon-bar-chart font-red"></i>
+                                  <span>Monthly Statistics</span>
+                              </div>
+                          </div>
+                          <div class="portlet-body">
+                              <div id="monthly_stat" class="chart">  </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-xs-12 col-sm-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-yellow"></i>
+                                <span>Bananas Harvested</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div id="bananas" class="chart">  </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12 col-sm-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-yellow "></i>
+                                <span>Trees Planted</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div id="trees" class="chart">  </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-6 col-xs-12 col-sm-12">
+                      <div class="portlet light bordered">
+                          <div class="portlet-title">
+                              <div class="caption">
+                                  <i class="icon-cursor font-red"></i>
+                                  <span>Farm Updates Submitted by Farmers</span>
+                              </div>
+                          </div>
+                          <div class="portlet-body">
+                                <div id="farm_updates" class="chart">  </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-6 col-xs-12 col-sm-12">
+                      <!-- BEGIN REGIONAL STATS PORTLET-->
+                      <div class="portlet light bordered">
+                          <div class="portlet-title">
+                              <div class="caption">
+                                  <span>Zones</span>
+                              </div>
+                          </div>
+                          <div class="portlet-body">
+                                <div id="farm_zones" class="chart">  </div>
+                          </div>
+                      </div>
+                      <!-- END REGIONAL STATS PORTLET-->
+                  </div>
+              </div>
+      </div>
+  </div>
+
+<!-- Monthly Statistics Line Chart -->
+<script type="text/javascript">
+       google.charts.load('current', {'packages':['corechart']});
+             google.charts.setOnLoadCallback(drawChart);
+
+             function drawChart() {
+               var data = google.visualization.arrayToDataTable([
+                 ['Month', 'Factory Received', 'Harvests'],
+                 ['Jan',  300,      400],
+                 ['Feb',  170,      260],
+                 ['Mar',  260,       120],
+                 ['Apr',  130,      240],
+                 ['May',  200,      150],
+                 ['June',  170,      360],
+                 ['July',  260,       320],
+                 ['Aug',  230,      340]
+               ]);
+
+               var options = {
+                 curveType: 'function',
+                 legend: { position: 'bottom' },
+                 vAxis: { gridlines: { count: 6, color: 'white' } },
+                 colors: ['red','green']
+               };
+
+               var chart = new google.visualization.LineChart(document.getElementById('monthly_stat'));
+               chart.draw(data, options);
+             }
+        </script>
+
+<!-- Bananas Harvested Bar Chart -->
+<script type="text/javascript">
+     google.charts.load('current', {'packages':['corechart']});
+           google.charts.setOnLoadCallback(drawChart);
+
+           function drawChart() {
+             var data = google.visualization.arrayToDataTable([
+               ['Month', 'KG' ],
+               ['Jan',  300],
+               ['Feb',  170],
+               ['Mar',  60],
+               ['Apr',  130],
+               ['May',  200],
+               ['June',  170],
+               ['July',  260],
+               ['Aug',  230]
+             ]);
+
+             var options = {
+               curveType: 'none',
+               hAxis: { gridlines: { count: 6, color: 'white' } },
+               legend: { position: 'right' }
+             };
+
+             var chart = new google.visualization.BarChart(document.getElementById('bananas'));
+
+             chart.draw(data, options);
+           }
+      </script>
+
+<!-- Trees Planted Bar Chart -->
+<script type="text/javascript">
+           google.charts.load('current', {'packages':['corechart']});
+                 google.charts.setOnLoadCallback(drawChart);
+
+                 function drawChart() {
+                   var data = google.visualization.arrayToDataTable([
+                     ['Month', 'Trees' ],
+                     ['Jan',  1000],
+                     ['Feb',  1170],
+                     ['Mar',  660],
+                     ['Apr',  1030],
+                     ['May',  1000],
+                     ['June',  1170],
+                     ['July',  660],
+                     ['Aug',  1030]
+                   ]);
+
+
+                   var options = {
+                     curveType: 'none',
+                     legend: { position: 'right' },
+                     hAxis: { gridlines: { count: 6, color: 'white' } },
+                     colors: ['green']
+                   };
+
+                   var chart = new google.visualization.BarChart(document.getElementById('trees'));
+
+                   chart.draw(data, options);
+                 }
+            </script>
+
+<!-- Farm Updates Pie -->
+<script type="text/javascript">
+               google.charts.load("current", {packages:["corechart"]});
+               google.charts.setOnLoadCallback(drawChart);
+               function drawChart() {
+                 var data = google.visualization.arrayToDataTable([
+                   ['Farmers', 'Updates for Month'],
+                   ['Update',     11],
+                   ['No-Update',      2]
+                 ]);
+
+                 var options = {
+                   pieHole: 0.4,
+                 };
+
+                 var chart = new google.visualization.PieChart(document.getElementById('farm_updates'));
+                 chart.draw(data, options);
+               }
+             </script>
+
+<!-- Map for Zone -->
+<script type="text/javascript">
+                            google.charts.load('current', {
+                              'packages':['geochart'],
+                              // Note: you will need to get a mapsApiKey for your project.
+                              // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+                              'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+                            });
+                            google.charts.setOnLoadCallback(drawRegionsMap);
+
+                            function drawRegionsMap() {
+                              var data = google.visualization.arrayToDataTable([
+                                ['Country', 'Popularity'],
+                                ['Germany', 200],
+                                ['United States', 300],
+                                ['Brazil', 400],
+                                ['Canada', 500],
+                                ['France', 600],
+                                ['RU', 700]
+                              ]);
+
+                              var options = {};
+
+                              var chart = new google.visualization.GeoChart(document.getElementById('farm_zones'));
+
+                              chart.draw(data, options);
+                            }
+    </script>
+
+{% endblock %}

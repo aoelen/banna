@@ -17,9 +17,9 @@ html {
     position: relative;
 }
 body {
-    background-image: url('img/login_background.png');
+    /*background-image: url('img/login_background.png');*/
+    background-image: rgba(0, 0, 0, .5);
     background-size: 100%;
-
     color:#3e3e3e;
     font-family: 'Open Sans';
     font-weight: 600;
@@ -42,3 +42,20 @@ header {
     font-size: 25px;
     margin-top:-7px
 
+#login_background{z-index: 1;}
+#login_background:before{
+            content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url('img/login_background.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    opacity: 0.6;
+    filter:alpha(opacity=40);
+    height:100%;
+    width:100%;
+}
