@@ -5,10 +5,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('index', views.index, name='index'),
     #path('login', views.login, name='login'),
-<<<<<<< HEAD
-    #path('login', auth_views.login, {'template_name': 'dashboard/login.html'}, name='login'),
-    #path('logout', auth_views.logout, {'template_name': 'dashboard/logout.html'},  name='logout'),
-=======
+
     path('login', auth_views.login, {'template_name': 'dashboard/login.html'}, name='login'),
     path('logout', auth_views.logout, {'template_name': 'dashboard/logout.html'},  name='logout'),
     path('dashboard', views.dashboard, name='dashboard'),
@@ -22,5 +19,4 @@ urlpatterns = [
     path('harvests', views.harvests, name='harvests'),
     path('trees', views.trees, name='trees'),
     path('users', views.users, name='users'),
->>>>>>> 5921d1de319e7baf1893680be26a8e6d485b9b64
 ]
