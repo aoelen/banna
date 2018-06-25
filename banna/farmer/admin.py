@@ -6,6 +6,5 @@ from farmer.models import *
 admin.site.register(Farm)
 admin.site.register(Report)
 admin.site.register(Zone)
-admin.site.register(Month)
-admin.site.register(Year)
+admin.site.register(Date)
 admin.site.register(Reports_Yield)

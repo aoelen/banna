@@ -19,8 +19,8 @@ urlpatterns = [
     #overview sections
     url(r'^farms/$', login_required(views.overview_farm), name='overview_farm'),
     url(r'^(?P<farm_id>[\w\-]+)/$', login_required(views.overview_months), name='overview_months'),
-    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month_id>[\w\-]+)/(?P<month>[\w\-]+)/$', login_required(views.overview_report), name='overview_report'),
     url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/$', login_required(views.overview_report), name='overview_report'),
+    # url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/$', login_required(views.overview_report), name='overview_report'),
 
 
     #forms
