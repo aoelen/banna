@@ -29,7 +29,7 @@ $(document).ready(function() {
                 {% for yield in trees.trees_yield %}
                     {% for key, value in yield.items %}
                     <tr>
-                        <td>{{ key }}</td>
+                        <td>Yield {{ key }}</td>
                         <td class="number-t">{{ value }}</td>
                     </tr>
                     {% endfor %}
@@ -47,7 +47,7 @@ $(document).ready(function() {
                 {% for yield in harvested.trees_yield %}
                     {% for key, value in yield.items %}
                     <tr>
-                        <td>{{ key }}</td>
+                        <td>Yield {{ key }}</td>
                         <td class="number-t">{{ value }}</td>
                     </tr>
                     {% endfor %}
