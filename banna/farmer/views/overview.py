@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from farmer.models import Month, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
+import datetime
 
 
 #SHOW OVERVIEW FARMS
@@ -24,9 +25,8 @@ def overview_months(request, farm_id):
 
 #SHOW OVERVIEW REPORT
 def overview_report(request, farm_id, year, month_id , month):
-    planted_trees = []
-    harvested_bananas = []
-    fertilizer = []
+    list_planted_trees_yield = []
+    list_harvested_bananas_yield = []
     total_amount_planted_trees = 0
     total_amount_harvested_kg = 0
 
@@ -44,36 +44,48 @@ def overview_report(request, farm_id, year, month_id , month):
                 total_amount_planted_trees += yield_number.planted_amount_trees
                 total_amount_harvested_kg += yield_number.harvested_amount_kg_banana
 
-                planted_trees.append(
+                list_planted_trees_yield.append(
                     {
                     yield_number.yield_number: yield_number.planted_amount_trees
                     },
                 )
-                harvested_bananas.append(
+                list_harvested_bananas_yield.append(
                     {
                     yield_number.yield_number: yield_number.harvested_amount_kg_banana
                     }
                 )
+    print(report)
 
-
-    fertilizer.append(
-        {
-           'Fertilizer used': fertilizer_used,
-            'Fertilizer amoumt': fertilizer_amount
+    fertilizer = {
+           'used': fertilizer_used,
+            'amount': fertilizer_amount
         }
-    )
-    planted_trees.append(total_amount_planted_trees)
-    harvested_bananas.append(total_amount_harvested_kg)
+
+    planted = {
+        'trees_yield': list_planted_trees_yield,
+        'trees_total': total_amount_planted_trees
+
+    }
+
+    harvested = {
+        'trees_yield': list_harvested_bananas_yield,
+        'amount_total': total_amount_harvested_kg
+
+    }
+
+    date = {
+        'month_id': month_id,
+        'month': month,
+        'year': year
+    }
 
     context = {
-        'month' : month,
-        'month_id' : month_id,
-        'year' : year,
-        'planted_trees': planted_trees,
-        'harvested_bananas': harvested_bananas,
-        'fertilizer_used': fertilizer_used,
-        'fertilizer_amount': fertilizer_amount,
-        'farm' : farm_id
+        'date': date,
+        'planted': planted,
+        'harvested': harvested,
+        'fertilizer': fertilizer,
+        'report' : report,
+        'farm_id' : farm_id
 
     }
 
