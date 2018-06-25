@@ -1,6 +1,6 @@
 from django.db import models
 from .userInfo import Farm
-from .datesInfo import Month
+from .datesInfo import Date
 
 class Report(models.Model):
     FERTILIZER_USED = (
@@ -10,13 +10,14 @@ class Report(models.Model):
 
     fertilizer_used = models.CharField(max_length=30, choices=FERTILIZER_USED)
     fertilizer_amount = models.IntegerField(null=True, blank = 'True')
+    month = models.CharField(max_length=10, blank = 'True')
+    year = models.IntegerField(blank = 'True')
 
-    # yields_id = models.ManyToManyField(Yield)
-    month = models.ForeignKey("Month", on_delete=models.CASCADE, null = 'True')
+    # month = models.ForeignKey("Date", on_delete=models.CASCADE, null = 'True')
     farm = models.ForeignKey("Farm", on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.farm.name) + " " + str(self.month.name) + " " + str(self.month.year)
+        return str(self.farm.name) + " " + str(self.month) + " " + str(self.year)
 
 class Reports_Yield(models.Model):
     YIELDS = (
