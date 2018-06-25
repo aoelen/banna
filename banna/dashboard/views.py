@@ -3,9 +3,10 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
+from django.contrib.auth.models import User
 
 from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
+
 
 @login_required
 def index(request):
@@ -61,8 +62,16 @@ def factory_data(request):
 
 def factory_overview(request):
 
+    factory_input = Farm.objects.all()
+
+
+    context = {
+        'factory_input': factory_input
+    }
+    print(context)
+
     # Render the .html file
-    return render(request, 'dashboard/factory_overview.html')
+    return render(request, 'dashboard/factory_overview.html', context)
 
 def factory(request):
 
@@ -70,23 +79,58 @@ def factory(request):
     return render(request, 'dashboard/factory.html')
 
 def farmers(request):
+    farmers = Farm.objects.all()
 
-    _farmers = Farm.objects
-    farmers = {}
-    context = farmers
+    context = {
+        'farmers': farmers
+    }
     print(context)
-
-
-
     # Render the .html file
     return render(request, 'dashboard/farmers.html', context)
 
 def harvests(request):
 
+    harvests = Reports_Yield.objects.all()
+    count = 0
+    context = {
+        'harvests': harvests
+
+    }
+    print(context)
+
     # Render the .html file
-    return render(request, 'dashboard/harvests.html')
+    return render(request, 'dashboard/harvests.html', context)
 
 def trees(request):
+
+    trees = Reports_Yield.objects.all()
+    farms = Farm.objects.all()
+
+    data = []
+    for farm in farms:
+        data.append(
+            {
+                'farm name': farm.name,
+                'farmer': farm.farmer.first_name,
+                'pic': farm.person_in_charge.first_name,
+                'zone': farm.zone
+            }
+        )
+        print(data)
+
+        reports = Report.objects.filter(farm_id = farm)
+
+        for report in report:
+            yields = Reports_Yield.objects.filter(report_id = report)
+
+
+
+    count = 0
+    context = {
+        'trees': trees
+
+    }
+    print(context)
 
     # Render the .html file
     return render(request, 'dashboard/trees.html', context)
