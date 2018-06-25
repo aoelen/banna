@@ -17,10 +17,10 @@ html {
     position: relative;
 }
 body {
-    background-image: url('img/background.png');
+    background-image: url('/static/farmer/img/background.png');
     background-size: 100%;
     background-color: #1aa613;
-    color:#3e3e3e;
+    color:#fff;
     font-family: 'Open Sans';
     font-weight: 600;
     min-height:100%;
@@ -187,4 +187,12 @@ header {
 }
 .clear{
     clear:both;
+}
+.p-success {
+    text-align: center;
+}
+.p-success img{
+    width:150px;
+    margin-top: 70px;
+    display: inline-block;
 }
