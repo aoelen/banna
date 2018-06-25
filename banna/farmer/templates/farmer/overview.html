@@ -13,7 +13,7 @@
             {% for report in reports %}
 
 
-            <li><a href="/farmer/{{ report.farm.id }}/{{ report.month.year}}/{{ report.month.id}}/{{ report.month.name}}"><span class="name">{{report.month}}</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
+            <li><a href="/farmer/{{ report.farm.id }}/{{ report.year }}/{{ report.month }}"><span class="name">{{report.month}} {{report.year}}</span><span class="status success"><i class="fas fa-check-circle"></i></span></a></li>
 
             {% endfor %}
 
@@ -24,8 +24,14 @@
     {% endif %}
 </div>
 
+<!--
 <div class="bottom-menu">
     <a href="/farmer/farms/" class="back button">Go back</a>
+</div>
+-->
+
+<div class="bottom-menu">
+    <button type="button" class="btn btn-success custom-btn btn-lg btn-block" href="/farmer/farms/">Go back</button>
 </div>
 
 {% endblock %}

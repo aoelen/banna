@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 # Create your views here.
 from django.http import HttpResponse
 
-from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
+from farmer.models import Report, UserForm, Reports_Yield
 
 def index(request):
     return HttpResponse("<h2>You are at the farmer page!</h2>")

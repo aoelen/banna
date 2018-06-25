@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect
 
-from farmer.models import Month, Farm, Report, Reports_Yield
+from farmer.models import Date, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
-from datetime import datetime
+from datetime import datetime, date
+from time import strftime
+
 
 
 
@@ -15,17 +17,22 @@ def overview_farm(request):
 
 #SHOW OVERVIEW MONTH REPORTS
 def overview_months(request, farm_id):
-    currentMonth = datetime.now().month
-    # User.objects.filter(date_of_registration_field__lt=my_date)
+    currentdate =  datetime.now().date()
 
-    user = User.objects.filter(id=request.user.id)
+    #Transform number into month name
+    formated_month = datetime(int(currentdate.year), int(currentdate.month), int(currentdate.day))
+    selected_month = formated_month.strftime("%B")
+
+    #Create of get new month report
+    person, created = Report.objects.get_or_create(
+         month=selected_month, year=currentdate.year, farm_id=farm_id
+    )
+
     reports = Report.objects.filter(farm=farm_id)
-
-
     return render(request, 'farmer/overview.html', {'reports': reports})
 
 #SHOW OVERVIEW REPORT
-def overview_report(request, farm_id, year, month_id , month):
+def overview_report(request, farm_id, year , month):
     list_trees_yield = []
     list_harvested_bananas_yield = []
     total_amount_trees = 0
@@ -33,7 +40,7 @@ def overview_report(request, farm_id, year, month_id , month):
 
     farm_object = Farm.objects.filter(id=farm_id)
     for farm in farm_object:
-        reports = Report.objects.filter(farm=farm, month_id= month_id)
+        reports = Report.objects.filter(farm=farm, month= month)
 
         for report in reports:
             fertilizer_used = report.fertilizer_used
@@ -75,7 +82,6 @@ def overview_report(request, farm_id, year, month_id , month):
     }
 
     date = {
-        'month_id': month_id,
         'month': month,
         'year': year
     }
