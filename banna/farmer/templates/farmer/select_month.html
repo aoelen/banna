@@ -15,15 +15,18 @@ $(document).ready(function() {
 });
 </script>
 
-<header>{{month.title}} {{year.title}}</header>
+{% if date.items %}
+<header>{{date.month}} {{date.year}}</header>
+    {% endif %}
 
     <div class="p-select-month">
+        {% if planted.items %}
         <div class="select">
-            <div class="name">Planted trees</div><div class="number">9000</div>
+            <div class="name">Planted trees</div><div class="number">{{planted.trees_total}}</div>
         </div>
         <div class="open">
             <table>
-                {% for yield in planted_trees %}
+                {% for yield in planted.trees_yield %}
                     {% for key, value in yield.items %}
                     <tr>
                         <td>{{ key }}</td>
@@ -33,41 +36,49 @@ $(document).ready(function() {
                 {% endfor %}
             </table>
         </div>
-        <div class="select">
-            <div class="name">Harvest KGs</div><div class="number">180</div>
-        </div>
-        <div class="open">
-            <table>
-                {% for yield in harvested_bananas %}
-                    {% for key, value in yield.items %}
-                    <tr>
-                        <td>{{ key }}</td>
-                        <td class="number-t">{{ value }}</td>
-                    </tr>
-                    {% endfor %}
-                {% endfor %}
-            </table>
-        </div>
-        <div class="select">
-            <div class="name">Fertilizer used</div><div class="number">{{fertilizer_used}}</div>
-        </div>
+        {% endif %}
 
-            <div class="open">
+        {% if harvested.items %}
+        <div class="select">
+            <div class="name">Harvest KGs</div><div class="number">{{harvested.amount_total}}</div>
+        </div>
+        <div class="open">
+            <table>
+                {% for yield in harvested.trees_yield %}
+                    {% for key, value in yield.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td class="number-t">{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+
+        {% if fertilizer.items %}
+        <div class="select">
+            <div class="name"></div>Fertilizer used<div class="number">{{fertilizer.used}}</div>
+        </div>
+        <div class="open">
             <table>
                 <tr>
                     <td>Fertilizer amount</td>
-                    {% if fertilizer_amount %}
-                    <td class="number-t">{{fertilizer_amount}}</td>
+                    {% if fertilizer.amount %}
+                    <td class="number-t">{{fertilizer.amount}}</td>
                     {% else %}
                     <td class="number-t">No result</td>
                     {% endif %}
                 </tr>
             </table>
         </div>
+        {% endif %}
+
+
     </div>
 <div class="bottom-menu">
-    <a href="/farmer/{{farm}}/" class="back button">Go back</a>
-    <a href="/farmer/form_planted/" class="edit button">Edit</a>
+    <a href="/farmer/{{ farm_id }}/" class="back button">Go back</a>
+    <a href="/farmer/form_planted/{{ report.id}}" class="edit button">Edit</a>
 </div>
 
 
