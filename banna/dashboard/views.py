@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
-
+from farmer.models import Farm, Report, UserForm, Reports_Yield
+import pprint
 
 @login_required
 def index(request):
@@ -105,23 +105,56 @@ def trees(request):
 
     trees = Reports_Yield.objects.all()
     farms = Farm.objects.all()
+    list_farm_ids=[]
+    for farm in farms:
+        reports = Report.objects.filter(farm_id = farm)
+        for report in reports:
+            farm_id = report.farm
+            if farm_id not in list_farm_ids:
+                list_farm_ids.append(farm)
 
     data = []
-    for farm in farms:
+    # print(list_farm_ids)
+    for farm in list_farm_ids:
         data.append(
-            {
-                'farm name': farm.name,
-                'farmer': farm.farmer.first_name,
-                'pic': farm.person_in_charge.first_name,
-                'zone': farm.zone
+            {'userinfo':
+                {
+                    'farm name': farm.name,
+                    'farmer': farm.farmer.first_name,
+                    # 'pic': farm.person_in_charge.first_name,
+                    'zone': farm.zone
+                }
             }
         )
-        print(data)
 
         reports = Report.objects.filter(farm_id = farm)
+        for report in reports:
+            data.append(
+                {'report':
+                    {
+                        'id':report.id,
+                        'fertilizer':{
+                            'used':report.fertilizer_used,
+                            'amount': report.fertilizer_amount
+                        },
+                        'month':report.month,
+                        'year':report.year
+                    }
+                }
+            )
 
-        for report in report:
             yields = Reports_Yield.objects.filter(report_id = report)
+            for yield_id in yields:
+                data.append(
+                    {'yields': {
+                            'yield': yield_id.yield_number,
+                            'harvested_amount_kg_banana': yield_id.harvested_amount_kg_banana,
+                            'planted_amount_trees': yield_id.planted_amount_trees
+                        }
+                    }
+                )
+    pprint.pprint(data)
+
 
 
 
@@ -130,7 +163,7 @@ def trees(request):
         'trees': trees
 
     }
-    print(context)
+    #print(context)
 
     # Render the .html file
     return render(request, 'dashboard/trees.html', context)
