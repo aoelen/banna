@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 
 from farmer.models import Month, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
+import datetime
 
 
 #SHOW OVERVIEW FARMS
@@ -13,6 +14,11 @@ def overview_farm(request):
 
 #SHOW OVERVIEW MONTH REPORTS
 def overview_months(request, farm_id):
+    base = datetime.datetime.today()
+
+    print (base)
+
+
     reports = Report.objects.filter(farm=farm_id)
     return render(request, 'farmer/overview.html', {'reports': reports})
 
