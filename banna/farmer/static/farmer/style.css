@@ -131,15 +131,11 @@ header {
     position: absolute;
     left:0;
 }
-.bottom-menu .button {
-    width:calc(50%);
-    display: block;
-    background:#1aa613;
-    float:left;
-    height:45px;
-    text-align: center;
-    color:#fff;
-    padding-top:10px;
+.bottom-menu .custom-btn {    
+    background-color: #1aa613;    
+}
+.bottom-menu .custom-btn:hover {    
+    background-color: #127f0c;    
 }
 .bottom-menu .button.edit {
     background: #115c0d;
