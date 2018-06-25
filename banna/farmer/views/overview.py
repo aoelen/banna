@@ -22,7 +22,6 @@ def overview_months(request, farm_id):
     reports = Report.objects.filter(farm=farm_id)
 
 
-
     return render(request, 'farmer/overview.html', {'reports': reports})
 
 #SHOW OVERVIEW REPORT
@@ -43,12 +42,12 @@ def overview_report(request, farm_id, year, month_id , month):
             yield_reports = Reports_Yield.objects.filter(report_id=report).order_by('id')
             for yield_number in yield_reports:
 
-                total_amount_trees += yield_number.amount_trees
+                total_amount_trees += yield_number.planted_amount_trees
                 total_amount_harvested_kg += yield_number.harvested_amount_kg_banana
 
                 list_trees_yield.append(
                     {
-                    yield_number.yield_number: yield_number.amount_trees
+                    yield_number.yield_number: yield_number.planted_amount_trees
                     },
                 )
                 list_harvested_bananas_yield.append(

@@ -29,7 +29,7 @@ class Reports_Yield(models.Model):
     )
     report_id = models.ForeignKey("Report", on_delete=models.CASCADE)
     yield_number = models.CharField(max_length=7, choices=YIELDS)
-    amount_trees = models.IntegerField(null = 'True')
+    planted_amount_trees = models.IntegerField(null = 'True')
     harvested_amount_kg_banana = models.IntegerField(null = 'True')
 
     class Meta:

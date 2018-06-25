@@ -38,7 +38,7 @@ def form_planted(request, report_id):
     yields = {}
 
     for report in reports_yield:
-        yields[report.yield_number] = report.amount_trees
+        yields[report.yield_number] = report.planted_amount_trees
 
     context = {
         'yields': yields,
