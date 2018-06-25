@@ -12,8 +12,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^overview/$', views.overview_month, name='overview_month'),
-    url(r'^select_month/$', views.select_month, name='select_month'),
     url('login/$', auth_views.login, {'template_name': 'farmer/registration/login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
 
@@ -21,7 +19,7 @@ urlpatterns = [
     url(r'^farms/$', views.overview_farm, name='overview_farm'),
     url(r'^(?P<farm_id>[\w\-]+)/$', views.overview_months, name='overview_months'),
     url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month_id>[\w\-]+)/(?P<month>[\w\-]+)/$', views.overview_report, name='overview_report'),
-    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/$', views.select_month, name='select_month'),
+    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/$', views.overview_report, name='overview_report'),
 
 
     #forms
@@ -34,4 +32,3 @@ urlpatterns = [
     path('form_fertilizer/<int:report_id>', views.form_fertilizer, name='form_fertilizer'),
     path('success/<int:report_id>', views.success, name='success'),
 ]
-    

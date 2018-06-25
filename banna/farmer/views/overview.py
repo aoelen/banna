@@ -21,17 +21,20 @@ def overview_months(request, farm_id):
 def overview_report(request, farm_id, year, month_id , month):
     planted_trees = []
     harvested_bananas = []
+    fertilizer = []
     total_amount_planted_trees = 0
     total_amount_harvested_kg = 0
 
     farm_object = Farm.objects.filter(id=farm_id)
     for farm in farm_object:
         reports = Report.objects.filter(farm=farm, month_id= month_id)
+
         for report in reports:
+            fertilizer_used = report.fertilizer_used
+            fertilizer_amount = report.fertilizer_amount
+
             yield_reports = Reports_Yield.objects.filter(report_id=report).order_by('id')
             for yield_number in yield_reports:
-                fertilizer_used = report.fertilizer_used
-                fertilizer_amount = report.fertilizer_amount
 
                 total_amount_planted_trees += yield_number.planted_amount_trees
                 total_amount_harvested_kg += yield_number.harvested_amount_kg_banana
@@ -46,6 +49,16 @@ def overview_report(request, farm_id, year, month_id , month):
                     yield_number.yield_number: yield_number.harvested_amount_kg_banana
                     }
                 )
+
+
+    fertilizer.append(
+        {
+           'Fertilizer used': fertilizer_used,
+            'Fertilizer amoumt': fertilizer_amount
+        }
+    )
+    planted_trees.append(total_amount_planted_trees)
+    harvested_bananas.append(total_amount_harvested_kg)
 
     context = {
         'month' : month,

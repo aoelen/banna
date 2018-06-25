@@ -8,7 +8,7 @@ from .datesInfo import Month
 #
 #     def __str__(self):
 #         return "Yield " + str(self.yield_number)
-#
+# #
 # class Tree(models.Model):
 #     yield_id = models.ForeignKey("Yield", on_delete=models.CASCADE)
 #     planted_amount_trees = models.IntegerField()
