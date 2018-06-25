@@ -2,23 +2,6 @@ from django.db import models
 from .userInfo import Farm
 from .datesInfo import Month
 
-
-# class Yield(models.Model):
-#     yield_number = models.IntegerField()
-#
-#     def __str__(self):
-#         return "Yield " + str(self.yield_number)
-# #
-# class Tree(models.Model):
-#     yield_id = models.ForeignKey("Yield", on_delete=models.CASCADE)
-#     planted_amount_trees = models.IntegerField()
-#     harvested_amount_kg_banana = models.IntegerField()
-#     harvested_amount_trees = models.IntegerField()
-#     farm = models.ForeignKey("Farm", on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return str(self.farm.name) + ": " + str(self.yield_id)
-
 class Report(models.Model):
     FERTILIZER_USED = (
         ('Yes', 'Yes'),
@@ -46,7 +29,7 @@ class Reports_Yield(models.Model):
     )
     report_id = models.ForeignKey("Report", on_delete=models.CASCADE)
     yield_number = models.CharField(max_length=7, choices=YIELDS)
-    planted_amount_trees = models.IntegerField(null = 'True')
+    amount_trees = models.IntegerField(null = 'True')
     harvested_amount_kg_banana = models.IntegerField(null = 'True')
 
     class Meta:
