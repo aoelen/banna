@@ -1,0 +1,29 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container-fluid" style="margin-right: 200;	margin-left: 200px;">
+  <h1>Add User</h1>
+ <div class="row">
+   <div class="col-lg-8 col-xs-12 col-sm-12">
+    <form method= "POST" action="">
+      <div class="form-group">
+       <label>Name</label>
+       <input type="text" name= "name" class="form-control"
+       value="">
+      </div>
+
+    <div class="form-group">
+      <label>Role</label>
+      <input type="text" name= "pic" class="form-control"
+      value="">
+    </div>
+
+   <p><input type="submit" class="btn bg-success" style= "color: white;" value="Submit"></p>
+
+  </form>
+ </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+
+{% block body %}
+<h1>Factory Overview</h1>
+ <hr>
+ <div class="container-fluid">
+     <div class="page-content page-content-popup">
+           <div class="row">
+               <div class="col-lg-12 col-xs-12 col-sm-12">
+                   <div class="portlet light bordered">
+                       <div class="portlet-title">
+                           <div class="caption">
+                               <i class="icon-share font-red"></i>
+                               <span>Bananas Harvested vs Bananas Received</span>
+                           </div>
+                       </div>
+
+                       <div class="portlet-body" id = "received_harvested">
+                           <div class="scroller" style="height: 300px;">
+
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+            <div class="clearfix"></div>
+            <h2>Factory Data</h2>
+            <a class="btn bg-success" style = "color: white;" href="/dashboard/factory_data">Add New Data </a>
+
+           <div class="row">
+                 <div class="col-lg-12 col-xs-12 col-sm-12">
+                  <table class="table table-striped">
+                    <tr>
+                      <th>ID</th>
+                      <th>Quantity Received (KG)</th>
+                      <th>Total Price (RM)</th>
+                      <th>Date</th>
+                      <th>Actions</th>
+                    </tr>
+
+                      <tr>
+                          <td> 1 </td>
+                          <td> 300 </td>
+                          <td> 30,000 </td>
+                          <td> 25.06.2018 </td>
+                          <td><a href="#" class="btn btn-primary pullright">Edit </td>
+                          <td>
+                            <form >
+                               <input type="hidden" name="_method" value="DELETE">
+                               <input type ="submit" value ="Delete" class="btn btn-danger">
+                            </form>
+                          </td>
+                      </tr>
+                  </table>
+                 </div>
+             </div>
+     </div>
+ </div>
+
+ <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+              google.charts.setOnLoadCallback(drawChart);
+
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Month', 'Factory Received', 'Harvests'],
+                  ['Jan',  300,      400],
+                  ['Feb',  170,      260],
+                  ['Mar',  260,       120],
+                  ['Apr',  130,      240],
+                  ['May',  200,      150],
+                  ['June',  170,      360],
+                  ['July',  260,       320],
+                  ['Aug',  230,      340]
+                ]);
+
+                var options = {
+                  curveType: 'function',
+                  legend: { position: 'bottom' },
+                  vAxis: { gridlines: { count: 6, color: 'white' } },
+                  colors: ['red','green']
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('received_harvested'));
+                chart.draw(data, options);
+              }
+         </script>
+
+{% endblock %}
