@@ -19,9 +19,3 @@ class Farm(models.Model):
     def __str__(self):
         return str(self.name)
 
-
-class Yield(models.Model):
-    yield_number = models.IntegerField()
-
-    def __str__(self):
-        return "Yield: " + str(self.yield_number)

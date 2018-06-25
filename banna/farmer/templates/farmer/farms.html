@@ -1,0 +1,31 @@
+{% extends 'farmer/layout.html' %}
+{% load static %}
+
+{% block content %}
+<header>Overview Farms</header>
+
+<div class="p-overview">
+
+    {% if farms %}
+
+
+        <ul class="overview">
+            {% for farm in farms %}
+
+
+            <li><a href="/farmer/{{ farm.id }}/"><span class="name">{{farm.name}}</span></a></li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+</div>
+
+<div class="bottom-menu">
+    <a href="/farmer/farms/" class="back button">logout</a>
+</div>
+
+{% endblock %}
