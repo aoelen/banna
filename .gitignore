@@ -6,6 +6,7 @@ env/
 *.pyc
 *migrations*
 banna/farmer/__pycache__/*
+banna/dashboard/__pycache__/*
 *.py[cod]
 *$py.class
 *.log
