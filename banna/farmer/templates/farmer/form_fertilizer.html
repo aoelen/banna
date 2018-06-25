@@ -7,31 +7,47 @@ $(document).ready(function() {
     $('.buttons .button').on('click', function() {
         $('.buttons .button').removeClass('selected');
         $(this).addClass('selected');
+
+        if ($(this).hasClass('yes')) {
+            $('input[name="fertilizer_used"]').val('yes');
+        } else {
+            $('input[name="fertilizer_used"]').val('no');
+        }
+    });
+
+    $('#submitForm').on('click', function() {
+        $(this).parents('form').submit();
+
+        return false;
     });
 });
 </script>
 
 <header>Fertilizer</header>
 
-<div class="p-form-fertilizer">
-    <div class="label">Did you use a fertilizer this month?</div>
-    <div class="buttons">
-        <div class="yes button selected">Yes</div>
-        <div class="no button">No</div>
+<form action="/farmer/form_fertilizer/{{report_id}}" method="POST">
+    {% csrf_token %}
+    <div class="p-form-fertilizer">
+        <div class="label">Did you use a fertilizer this month?</div>
+        <input type="hidden" name="fertilizer_used" value="{{report.used}}" >
+
+        <div class="buttons">
+            <div class="yes button {% if report.fertilizer_used == 'yes' %}selected{% endif %}">Yes</div>
+            <div class="no button {% if report.fertilizer_used == 'no' %}selected{% endif %}">No</div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="label">How many fertilizer did you use? (optional)</div>
+
+        <div class="fertilizer-input">
+            <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
+        </div>
+
+        <div class="bottom-menu">
+            <a href="/farmer/form_harvest/" class="back button">Go back</a>
+            <a href="#" class="edit button" id="submitForm">Submit</a>
+        </div>
     </div>
-
-    <div class="clear"></div>
-    <div class="label">How many fertilizer did you use? (optional)</div>
-
-    <div class="fertilizer-input">
-        <input type="number" />
-    </div>
-
-    <div class="bottom-menu">
-        <a href="/farmer/form_harvest/" class="back button">Go back</a>
-        <a href="/farmer/select_month/" class="edit button">Submit</a>
-    </div>
-</div>
-
+</form>
 
 {% endblock %}
