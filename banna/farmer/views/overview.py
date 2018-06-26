@@ -4,14 +4,19 @@ from farmer.models import Date, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
 from datetime import datetime, date
 from time import strftime
-
+from django.contrib.auth.decorators import user_passes_test
+from farmer.views import auth_check
 
 
 
 #SHOW OVERVIEW FARMS
+#@user_passes_test(auth_check.is_farmer)
 def overview_farm(request):
     for loggedin_user in  User.objects.filter(id= request.user.id):
         farms = Farm.objects.filter(person_in_charge=loggedin_user)
+
+    #print(request.user.groups.filter(name='farmer').exists())
+
     return render(request, 'farmer/farms.html', {'farms': farms})
 
 

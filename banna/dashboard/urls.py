@@ -2,21 +2,23 @@ from django.urls import path
 
 from . import views
 from django.contrib.auth import views as auth_views
-urlpatterns = [
-    path('index', views.index, name='index'),
-    #path('login', views.login, name='login'),
+from django.contrib.auth.decorators import user_passes_test
 
-    path('login', auth_views.login, {'template_name': 'dashboard/login.html'}, name='login'),
+def has_dashboard_permission(user):
+    return user.groups.filter(name='factory').exists() or user.groups.filter(name='government').exists()
+
+urlpatterns = [
+    path('login', user_passes_test(has_dashboard_permission)(auth_views.login), {'template_name': 'dashboard/login.html'}, name='login'),
     path('logout', auth_views.logout, {'template_name': 'dashboard/logout.html'},  name='logout'),
-    path('dashboard', views.dashboard, name='dashboard'),
-    path('add_farmer', views.add_farmer, name='add_farmer'),
-    path('add_user', views.add_user, name='add_user'),
-    path('edit_farmer', views.edit_farmer, name='edit_farmer'),
-    path('factory_data', views.factory_data, name='factory_data'),
-    path('factory_overview', views.factory_overview, name='factory_overview'),
-    path('factory', views.factory, name='factory'),
-    path('farmers', views.farmers, name='farmers'),
-    path('harvests', views.harvests, name='harvests'),
-    path('trees', views.trees, name='trees'),
-    path('users', views.users, name='users'),
+    path('dashboard', user_passes_test(has_dashboard_permission)(views.dashboard), name='dashboard'),
+    path('add_farmer', user_passes_test(has_dashboard_permission)(views.add_farmer), name='add_farmer'),
+    path('add_user', user_passes_test(has_dashboard_permission)(views.add_user), name='add_user'),
+    path('edit_farmer', user_passes_test(has_dashboard_permission)(views.edit_farmer), name='edit_farmer'),
+    path('factory_data', user_passes_test(has_dashboard_permission)(views.factory_data), name='factory_data'),
+    path('factory_overview', user_passes_test(has_dashboard_permission)(views.factory_overview), name='factory_overview'),
+    path('factory', user_passes_test(has_dashboard_permission)(views.factory), name='factory'),
+    path('farmers', user_passes_test(has_dashboard_permission)(views.farmers), name='farmers'),
+    path('harvests', user_passes_test(has_dashboard_permission)(views.harvests), name='harvests'),
+    path('trees', user_passes_test(has_dashboard_permission)(views.trees), name='trees'),
+    path('users', user_passes_test(has_dashboard_permission)(views.users), name='users'),
 ]
