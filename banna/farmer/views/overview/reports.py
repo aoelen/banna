@@ -4,32 +4,8 @@ from farmer.models import Date, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
 from datetime import datetime, date
 from time import strftime
-
-
-
-
-#SHOW OVERVIEW FARMS
-def overview_farm(request):
-    for loggedin_user in  User.objects.filter(id= request.user.id):
-        farms = Farm.objects.filter(person_in_charge=loggedin_user)
-    return render(request, 'farmer/farms.html', {'farms': farms})
-
-
-#SHOW OVERVIEW MONTH REPORTS
-def overview_months(request, farm_id):
-    currentdate =  datetime.now().date()
-
-    #Transform number into month name
-    formated_month = datetime(int(currentdate.year), int(currentdate.month), int(currentdate.day))
-    selected_month = formated_month.strftime("%B")
-
-    #Create of get new month report
-    person, created = Report.objects.get_or_create(
-         month=selected_month, year=currentdate.year, farm_id=farm_id
-    )
-
-    reports = Report.objects.filter(farm=farm_id)
-    return render(request, 'farmer/overview.html', {'reports': reports})
+from django.contrib.auth.decorators import user_passes_test
+from farmer.views import auth_check
 
 #SHOW OVERVIEW REPORT
 def overview_report(request, farm_id, year , month):
@@ -62,7 +38,6 @@ def overview_report(request, farm_id, year , month):
                     yield_number.yield_number: yield_number.harvested_amount_kg_banana
                     }
                 )
-    print(report)
 
     fertilizer = {
            'used': fertilizer_used,
@@ -96,4 +71,4 @@ def overview_report(request, farm_id, year , month):
 
     }
 
-    return render(request, 'farmer/select_month.html', context)
+    return render(request, 'farmer/overview/reports.html', context)

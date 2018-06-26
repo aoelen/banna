@@ -8,7 +8,10 @@ from farmer.models import Farm, Report, UserForm, Reports_Yield
 import pprint
 import datetime
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> aebc93b00dc323d9fb0858272c7611f5170cb046
 @login_required
 def index(request):
 
