@@ -4,7 +4,8 @@ from farmer.models import Date, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
 from datetime import datetime, date
 from time import strftime
-
+from django.contrib.auth.decorators import user_passes_test
+from farmer.views import auth_check
 
 #SHOW OVERVIEW REPORT
 def overview_report(request, farm_id, year , month):

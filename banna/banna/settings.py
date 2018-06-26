@@ -87,9 +87,9 @@ DATABASES = {
 
 
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/farmer/farms'
-LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL
+LOGIN_URL = '/'
+LOGIN_REDIRECT_URL = '/farmer/login_redirect'
+LOGOUT_REDIRECT_URL = '/'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

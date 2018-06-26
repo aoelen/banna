@@ -3,14 +3,23 @@ from django.urls import path
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 
 from . import views
 
+# urlpatterns = [
+#     path('hallo',  views.select_month, name='select_month'),
+# ]
+
+
+def is_farmer(user):
+    return user.groups.filter(name='farmer').exists()
+
+
 urlpatterns = [
     #url(r'^$', views.index, name='index'),
-    url(r'^$', auth_views.login, {'template_name': 'farmer/registration/login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/farmer/'}, name='logout'),
-
+    #redirect
+    path('login_redirect', user_passes_test(is_farmer)(views.login_redirect), name='login_redirect'),
     #overview sections
     url(r'^farms/$', login_required(views.overview_farm), name='overview_farm'),
     url(r'^(?P<farm_id>[\w\-]+)/$', login_required(views.overview_months), name='overview_months'),
