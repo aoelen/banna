@@ -149,8 +149,10 @@ def harvests(request):
     return render(request, 'dashboard/harvests.html', context)
 
 def trees(request):
+    yields = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('id'); #.filter(report_id__year="2018").
 
-    trees = Reports_Yield.objects.all()
+    #print(yields)
+    '''trees = Reports_Yield.objects.all()
     farms = Farm.objects.all()
     list_farm_ids=[]
     for farm in farms:
@@ -200,14 +202,15 @@ def trees(request):
                         }
                     }
                 )
-    pprint.pprint(data)
+    pprint.pprint(data)'''
 
 
 
 
-    count = 0
+    #count = 0
     context = {
-        'trees': trees
+        #'trees': trees
+        'rows': yields
 
     }
     #print(context)

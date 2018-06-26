@@ -26,26 +26,24 @@
                    <div class="col-lg-12 col-xs-12 col-sm-12">
                     <table class="table table-striped">
                       <tr>
-                        <th>S/N</th>
-                        <th>Farm Name</th>
+                        <!--<th>S/N</th>-->
                         <th>Farmer Name</th>
-                        <th>Zone</th>
                         <th>Yield</th>
                         <th>Fertilizer Used</th>
                         <th>Number of Trees</th>
                         <th>Date</th>
                       </tr>
 
+                      {% for row in rows %}
                         <tr>
-                            <td> 1 </td>
-                            <td> Farm 1 </td>
-                            <td> Anna Bon </td>
-                            <td> Zone 1 </td>
-                            <td> 1 </td>
-                            <td> Yes </td>
-                            <td> 25 </td>
+                            <!--<td> 1 </td>-->
+                            <td> {{ row.report_id.farm.farmer.first_name }} {{ row.report_id.farm.farmer.last_name }} </td>
+                            <td> {{ row.yield_number }} </td>
+                            <td> {{ row.report_id.fertilizer_used}} </td>
+                            <td> {{ row.planted_amount_trees }} </td>
                             <td> 24.06.2018 </td>
                         </tr>
+                        {% endfor %}
                     </table>
                    </div>
                </div>
