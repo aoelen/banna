@@ -20,4 +20,10 @@ def overview_months(request, farm_id):
     )
 
     reports = Report.objects.filter(farm=farm_id)
-    return render(request, 'farmer/overview/months.html', {'reports': reports})
+
+    context = {
+        'reports': reports,
+        'farm_id': farm_id
+    }
+
+    return render(request, 'farmer/overview/months.html', context)

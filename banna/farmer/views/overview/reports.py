@@ -6,12 +6,13 @@ from datetime import datetime, date
 from time import strftime
 from django.contrib.auth.decorators import user_passes_test
 from farmer.views import auth_check
+import pprint
 
 #SHOW OVERVIEW REPORT
 def overview_report(request, farm_id, year , month):
-    list_trees_yield = []
-    list_harvested_bananas_yield = []
-    total_amount_trees = 0
+    data = {}
+    total_amount_planted_trees = 0
+    total_amount_harvested_trees = 0
     total_amount_harvested_kg = 0
 
     farm_object = Farm.objects.filter(id=farm_id)
@@ -19,56 +20,47 @@ def overview_report(request, farm_id, year , month):
         reports = Report.objects.filter(farm=farm, month= month)
 
         for report in reports:
-            fertilizer_used = report.fertilizer_used
-            fertilizer_amount = report.fertilizer_amount
+            data['fertilizer'] = {
+                'used': report.fertilizer_used,
+                'amount': report.fertilizer_amount
+            }
 
             yield_reports = Reports_Yield.objects.filter(report_id=report).order_by('id')
             for yield_number in yield_reports:
-
-                total_amount_trees += yield_number.planted_amount_trees
+                print(yield_number)
+                total_amount_planted_trees += yield_number.planted_amount_trees
+                total_amount_harvested_trees += yield_number.harvested_amount_trees
                 total_amount_harvested_kg += yield_number.harvested_amount_kg_banana
 
-                list_trees_yield.append(
-                    {
-                    yield_number.yield_number: yield_number.planted_amount_trees
+                data.setdefault('trees', []).append({
+                    'planted': {
+                        yield_number.yield_number:yield_number.planted_amount_trees,
                     },
-                )
-                list_harvested_bananas_yield.append(
-                    {
-                    yield_number.yield_number: yield_number.harvested_amount_kg_banana
-                    }
-                )
+                    'harvested': {
+                        yield_number.yield_number: yield_number.harvested_amount_trees,
+                    },
+                    'bananas': {
+                        yield_number.yield_number: yield_number.harvested_amount_kg_banana,
+                    },
+                })
 
-    fertilizer = {
-           'used': fertilizer_used,
-            'amount': fertilizer_amount
-        }
 
-    trees = {
-        'trees_yield': list_trees_yield,
-        'trees_total': total_amount_trees
+        data['total_planted'] = total_amount_planted_trees
+        data['total_harvested'] = total_amount_harvested_trees
+        data['total_bananas_kg'] = total_amount_harvested_kg
 
-    }
-
-    harvested = {
-        'trees_yield': list_harvested_bananas_yield,
-        'amount_total': total_amount_harvested_kg
-
-    }
-
-    date = {
+    data['date'] = {
         'month': month,
         'year': year
     }
 
     context = {
-        'date': date,
-        'trees': trees,
-        'harvested': harvested,
-        'fertilizer': fertilizer,
+        'data': data,
         'report' : report,
         'farm_id' : farm_id
 
     }
-
     return render(request, 'farmer/overview/reports.html', context)
+
+
+

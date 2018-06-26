@@ -32,9 +32,14 @@ urlpatterns = [
         login_required(views.form_planted),
         name='form_planted'),
 
-    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/harvestedform/$',
-        login_required(views.form_harvest),
-        name='form_harvest'),
+    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/harvestedtreesform/$',
+        login_required(views.form_harvest_trees),
+        name='form_harvest_trees'),
+
+    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/harvestedbananasform/$',
+        login_required(views.form_harvest_bananas),
+        name='form_harvest_bananas'),
+
 
     url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/fertilizerform/$',
         login_required(views.form_fertilizer),
@@ -43,6 +48,10 @@ urlpatterns = [
     url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/succes/$',
         login_required(views.success),
         name='success'),
+
+    url(r'^(?P<farm_id>[\w\-]+)/statistics/$',
+        login_required(views.statistics),
+        name='statistics'),
 
 
 
