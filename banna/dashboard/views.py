@@ -61,6 +61,27 @@ def dashboard(request):
         total_bananas_harvested = total_bananas_harvested + report_yield.harvested_amount_kg_banana
         total_trees_planted = total_trees_planted + report_yield.planted_amount_trees
 
+    ## Trees per yield per month
+    yields_trees = Reports_Yield.objects.filter(report_id__year="2018").select_related('report_id').order_by('report_id__month_numeric', '-id');
+
+    trees_yield_month = {}
+
+    for i in range(1,13):
+        trees_yield_month[i] = {}
+
+        for y in range(1,6):
+            trees_yield_month[i][y] = 0
+
+    for yields_tree in yields_trees:
+        yields_tree.yield_number = int(yields_tree.yield_number.replace('Yield ', ''))
+        if not yields_tree.report_id.month_numeric in trees_yield_month:
+            trees_yield_month[yields_tree.report_id.month_numeric] = {}
+
+        if not yields_tree.yield_number in trees_yield_month[yields_tree.report_id.month_numeric]:
+            trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] = 0;
+
+        trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] = trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] + yields_tree.planted_amount_trees
+
     ## Farmer monthly updates
     all_farms = Farm.objects.all()
 
@@ -82,7 +103,8 @@ def dashboard(request):
         'planted_per_month': planted_per_month,
         'current_month': month_numbers_convert[now.month],
         'farmers_update': farmers_update,
-        'farmers_no_update': farmers_no_update
+        'farmers_no_update': farmers_no_update,
+        'trees_yield_month': trees_yield_month
     }
 
     # Render the .html file
