@@ -3,16 +3,10 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
 from django.contrib.auth.models import User
-
 from farmer.models import Farm, Report, UserForm, Reports_Yield
 import pprint
-=======
 import datetime
-
-from farmer.models import Farm, Report, UserForm, Reports_Yield
->>>>>>> 93e334d77039b33bd9139512caa93310bdf232e1
 
 @login_required
 def index(request):
