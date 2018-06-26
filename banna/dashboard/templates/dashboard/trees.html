@@ -41,7 +41,7 @@
                             <td> {{ row.yield_number }} </td>
                             <td> {{ row.report_id.fertilizer_used}} </td>
                             <td> {{ row.planted_amount_trees }} </td>
-                            <td> 24.06.2018 </td>
+                            <td> {{ row.report_id.month }} {{ row.report_id.year }} </td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -57,14 +57,9 @@
            function drawChart() {
              var data = google.visualization.arrayToDataTable([
                ['Month', 'KG' ],
-               ['Jan',  300],
-               ['Feb',  170],
-               ['Mar',  60],
-               ['Apr',  130],
-               ['May',  200],
-               ['June',  170],
-               ['July',  260],
-               ['Aug',  230]
+               {% for month,amount in planted_per_month.items %}
+               ['{{ month }}', {{amount}}],
+               {% endfor %}
              ]);
 
              var options = {
