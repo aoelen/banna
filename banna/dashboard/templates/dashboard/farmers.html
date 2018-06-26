@@ -8,9 +8,8 @@
 
  <table class="table table-striped">
    <tr>
-     <th>Farm Name</th>
-     <th>Name</th>
-     <th>PIC</th>
+     <th>Farm ID</th>
+     <th>Farmer Name</th>
      <th>Zone</th>
      <th>Date Registered</th>
      <th>Actions</th>
@@ -21,11 +20,6 @@
      <tr>
          <td> {{farmer.id}} </td>
          <td> {{farmer.farmer.first_name}}</td>
-         <td>
-           {% for pic in farmer.person_in_charge.all %}
-               {{pic}}
-           {% endfor %}
-         </td>
          <td> {{farmer.zone}}</td>
          <td> {{farmer.farmer.date_joined}}</td>
          <td><a href="/farmer/overview" class="btn bg-success pullright" style = "color: white;">View </td>

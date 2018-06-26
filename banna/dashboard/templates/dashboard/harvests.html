@@ -35,10 +35,10 @@
                     <table class="table table-striped">
                       <tr>
                         <th>S/N</th>
-                        <th>Farm Name</th>
                         <th>Farmer Name</th>
                         <th>Yield</th>
-                        <th>Quantity Harvested (KG)</th>
+                        <th>Bananas Harvested (KG)</th>
+                        <th>Trees Harvested</th>
                         <th>Date</th>
                       </tr>
                       {% for harvest in harvests %}
@@ -50,7 +50,7 @@
                                      <td> {{harvest.harvested_amount_kg_banana}} </td>
                                      <td> 24.06.2018 </td>
                                  </tr>
-                         {% endfor %}
+                      {% endfor %}
                     </table>
                    </div>
                </div>

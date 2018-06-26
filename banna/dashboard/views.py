@@ -8,6 +8,7 @@ from farmer.models import Farm, Report, UserForm, Reports_Yield
 import pprint
 import datetime
 
+
 @login_required
 def index(request):
 
@@ -216,7 +217,7 @@ def trees(request):
     #print(context)
 
     # Render the .html file
-    return render(request, 'dashboard/trees.html', context)
+    return render(request, 'dashboard/trees.html')
 
 def users(request):
 
