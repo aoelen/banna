@@ -14,7 +14,7 @@ $(document).ready(function() {
 <header>New planted trees</header>
 
 <div class="p-form-planted">
-    <form action="/farmer/form_planted/{{report_id}}" method="POST">
+    <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/plantedform/" method="POST">
         {% csrf_token %}
         <table>
             <thead>
@@ -48,22 +48,11 @@ $(document).ready(function() {
         </table>
 
 
-        <!--
-        <div class="bottom-menu">
-            <a href="{{request.META.HTTP_REFERER}}" class="back button">Go back</a>
-            <a href="/farmer/form_harvest/" class="edit button" id="submitForm">Next</a>
-        </div>
-        -->
-
          <div class="bottom-menu">
-            <div class="row">
-                <div class="col-6">
-                    <button href="{{request.META.HTTP_REFERER}}" type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
-                </div>
-                <div class="col-6">
-                    <button href="/farmer/form_harvest/" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Next</button>
-                </div>    
-            </div>            
+             <a href="/farmer/{{farm_id}}/{{year}}/{{ month }}/" >
+                 <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
+             </a>
+                 <button type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Next</button>
         </div>
 
     </form>

@@ -130,12 +130,16 @@ header {
     bottom:0;
     position: absolute;
     left:0;
+    float: left;
 }
-.bottom-menu .custom-btn {    
-    background-color: #1aa613;   
+.bottom-menu button {
+float:left;width:50%;display:block;border-radius:0
 }
-.bottom-menu .custom-btn:hover {    
-    background-color: #127f0c;    
+.bottom-menu .custom-btn {
+    background-color: #1aa613;
+}
+.bottom-menu .custom-btn:hover {
+    background-color: #127f0c;
 }
 .bottom-menu .button.edit {
     background: #115c0d;
