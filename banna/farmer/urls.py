@@ -18,22 +18,35 @@ def is_farmer(user):
 
 urlpatterns = [
     #url(r'^$', views.index, name='index'),
-
-    #overview sections
-    url(r'^farms/$', user_passes_test(is_farmer)(views.overview_farm), name='overview_farm'),
-    url(r'^(?P<farm_id>[\w\-]+)/$', user_passes_test(is_farmer)(views.overview_months), name='overview_months'),
-    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/$', user_passes_test(is_farmer)(views.overview_report), name='overview_report'),
-    # url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/$', login_required(views.overview_report), name='overview_report'),
-
     #redirect
     path('login_redirect', user_passes_test(is_farmer)(views.login_redirect), name='login_redirect'),
-    #forms
-    url('form_planted/$', user_passes_test(is_farmer)(views.form_planted), name='form_planted'),
-    url('form_harvest/$', user_passes_test(is_farmer)(views.form_harvest), name='form_harvest'),
-    url('form_fertilizer/$', user_passes_test(is_farmer)(views.form_fertilizer), name='form_fertilizer'),
+    #overview sections
+    url(r'^farms/$', login_required(views.overview_farm), name='overview_farm'),
+    url(r'^(?P<farm_id>[\w\-]+)/$', login_required(views.overview_months), name='overview_months'),
+    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/$',
+        login_required(views.overview_report),
+        name='overview_report'),
 
-    path('form_planted/<int:report_id>', user_passes_test(is_farmer)(views.form_planted), name='form_planted'),
-    path('form_harvest/<int:report_id>', user_passes_test(is_farmer)(views.form_harvest), name='form_harvest'),
-    path('form_fertilizer/<int:report_id>', user_passes_test(is_farmer)(views.form_fertilizer), name='form_fertilizer'),
-    path('success/<int:report_id>', user_passes_test(is_farmer)(views.success), name='success'),
-]
+    #forms
+    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/plantedform/$',
+        login_required(views.form_planted),
+        name='form_planted'),
+
+    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/harvestedform/$',
+        login_required(views.form_harvest),
+        name='form_harvest'),
+
+    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/fertilizerform/$',
+        login_required(views.form_fertilizer),
+        name='form_fertilizer'),
+
+    url(r'^(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/succes/$',
+        login_required(views.success),
+        name='success'),
+
+
+
+#     url('/form_harvest/<int:report_id>', login_required(views.form_harvest), name='form_harvest'),
+#     path('(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/form_fertilizer/<int:report_id>', login_required(views.form_fertilizer), name='form_fertilizer'),
+#     path('(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/success/<int:report_id>', login_required(views.success), name='success'),
+ ]

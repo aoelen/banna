@@ -11,10 +11,11 @@
         <img src="{% static "farmer/img/success.png" %}">
     </a>
 
-    <!--<div class="bottom-menu">
-        <a href="/farmer/form_harvest/" class="back button">Go back</a>
-        <a href="#" class="edit button" id="submitForm">Submit</a>
-    </div>-->
+    <div>
+        <a href="/farmer/{{farm_id}}/{{year}}/{{month}}/" class="back button">
+            <button type="button" class="back button btn btn-success">Month Overview</button>
+        </a>
+    </div>
 </div>
 
 {% endblock %}
