@@ -16,9 +16,8 @@ def overview_months(request, farm_id):
 
     #Create of get new month report
     person, created = Report.objects.get_or_create(
-         month=selected_month, year=currentdate.year, farm_id=farm_id
+         month=selected_month, year=currentdate.year, farm_id=farm_id, month_numeric=currentdate.month
     )
 
     reports = Report.objects.filter(farm=farm_id)
     return render(request, 'farmer/overview/months.html', {'reports': reports})
-
