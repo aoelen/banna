@@ -61,6 +61,27 @@ def dashboard(request):
         total_bananas_harvested = total_bananas_harvested + report_yield.harvested_amount_kg_banana
         total_trees_planted = total_trees_planted + report_yield.planted_amount_trees
 
+    ## Trees per yield per month
+    yields_trees = Reports_Yield.objects.filter(report_id__year="2018").select_related('report_id').order_by('report_id__month_numeric', '-id');
+
+    trees_yield_month = {}
+
+    for i in range(1,13):
+        trees_yield_month[i] = {}
+
+        for y in range(1,6):
+            trees_yield_month[i][y] = 0
+
+    for yields_tree in yields_trees:
+        yields_tree.yield_number = int(yields_tree.yield_number.replace('Yield ', ''))
+        if not yields_tree.report_id.month_numeric in trees_yield_month:
+            trees_yield_month[yields_tree.report_id.month_numeric] = {}
+
+        if not yields_tree.yield_number in trees_yield_month[yields_tree.report_id.month_numeric]:
+            trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] = 0;
+
+        trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] = trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] + yields_tree.planted_amount_trees
+
     ## Farmer monthly updates
     all_farms = Farm.objects.all()
 
@@ -82,7 +103,8 @@ def dashboard(request):
         'planted_per_month': planted_per_month,
         'current_month': month_numbers_convert[now.month],
         'farmers_update': farmers_update,
-        'farmers_no_update': farmers_no_update
+        'farmers_no_update': farmers_no_update,
+        'trees_yield_month': trees_yield_month
     }
 
     # Render the .html file
@@ -138,75 +160,55 @@ def farmers(request):
 
 def harvests(request):
 
-    harvests = Reports_Yield.objects.all()
+    '''harvests = Reports_Yield.objects.all()
     count = 0
     context = {
         'harvests': harvests
 
     }
-    print(context)
+    print(context)'''
+
+    harvests = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id');
+
+    harvest_per_month = {}
+
+    for harvest in harvests:
+        if not harvest.report_id.month in harvest_per_month:
+            harvest_per_month[harvest.report_id.month] = 0
+
+        harvest_per_month[harvest.report_id.month] = harvest_per_month[harvest.report_id.month] + harvest.harvested_amount_kg_banana
+
+    #count = 0
+    context = {
+        #'trees': trees
+        'harvests': harvests,
+        'harvest_per_month': harvest_per_month
+    }
 
     # Render the .html file
     return render(request, 'dashboard/harvests.html', context)
 
 def trees(request):
+    yields = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id'); #.filter(report_id__year="2018").
 
-    # trees = Reports_Yield.objects.all()
-    # farms = Farm.objects.all()
-    # list_farm_ids=[]
-    # for farm in farms:
-    #     reports = Report.objects.filter(farm_id = farm)
-    #     for report in reports:
-    #         farm_id = report.farm
-    #         if farm_id not in list_farm_ids:
-    #             list_farm_ids.append(farm)
-    #
-    # data = {}
-    # # print(list_farm_ids)
-    # for farm in list_farm_ids:
-    #     data['username'] = {
-    #                 'farm name': farm.name,
-    #                 'farmer': farm.farmer.first_name,
-    #                 # 'pic': farm.person_in_charge.first_name,
-    #                 'zone': farm.zone,
-    #             }
-    #
-    #     reports = Report.objects.filter(farm_id = farm)
-    #     for report in reports:
-    #         data['username']['report'] = {
-    #                     'id':report.id,
-    #                     'fertilizer':{
-    #                         'used':report.fertilizer_used,
-    #                         'amount': report.fertilizer_amount
-    #                     },
-    #                     'month':report.month,
-    #                     'year':report.year,
-    #                 }
-    #         data['username']['report']['yields'] ={}
-    #         yields = Reports_Yield.objects.filter(report_id = report)
-    #         for yield_id in yields:
-    #             data['username']['report'] ['yields'] = {
-    #                         'yield': yield_id.yield_number,
-    #                         'harvested_amount_kg_banana': yield_id.harvested_amount_kg_banana,
-    #                         'planted_amount_trees': yield_id.planted_amount_trees
-    #                     }
-    #             print(yield_id.yield_number)
-    #             print(yield_id.harvested_amount_kg_banana)
-    #             print(yield_id.planted_amount_trees)
-    #
-    # pprint.pprint(data)
-    #
-    #
-    #
-    #
-    # count = 0
-    # context = {
-    #     'trees': data
-    #
-    # }
+    planted_per_month = {}
+
+    for row in yields:
+        if not row.report_id.month in planted_per_month:
+            planted_per_month[row.report_id.month] = 0
+
+        planted_per_month[row.report_id.month] = planted_per_month[row.report_id.month] + row.planted_amount_trees
+
+    #count = 0
+    context = {
+        #'trees': trees
+        'rows': yields,
+        'planted_per_month': planted_per_month
+    }
+    #print(context)
 
     # Render the .html file
-    return render(request, 'dashboard/trees.html')
+    return render(request, 'dashboard/trees.html', context)
 
 def users(request):
 

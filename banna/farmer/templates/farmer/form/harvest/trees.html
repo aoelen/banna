@@ -11,16 +11,16 @@ $(document).ready(function() {
     });
 });
 </script>
-<header>Harvested trees</header>
+<header>Harvested Trees</header>
 
 <div class="p-form-planted">
-    <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/harvestedform/" method="POST">
+    <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/harvestedtreesform/" method="POST">
         {% csrf_token %}
         <table>
             <thead>
                 <tr>
                     <td class="first">Yield</td>
-                    <td class="second">Amount of harvested trees</td>
+                    <td class="second">Amount of Trees</td>
                 </tr>
             </thead>
             <tbody>
@@ -46,13 +46,6 @@ $(document).ready(function() {
                 </tr>
             </tbody>
         </table>
-
-        <!--
-        <div class="bottom-menu">
-            <a href="/farmer/form_planted/{{report_id}}" class="back button">Go back</a>
-            <a href="#" class="edit button" id="submitForm">Next</a>
-        </div>
-        -->
 
         <div class="bottom-menu">
                 <a href="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/plantedform/">

@@ -240,14 +240,21 @@
                          function drawChart() {
                            var data = google.visualization.arrayToDataTable([
                              ['Month', 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
-                             ['Jan',  30,      40,      40,      40,      20],
+                             /*['Jan',  30,      40,      40,      40,      20],
                              ['Feb',  70,      60,      50,      40,      30],
                              ['Mar',  60,      20,      40,      30,      20],
                              ['Apr',  30,      40,      50,      60,      10],
                              ['May',  20,      50,      45,      80,      30],
                              ['June',  70,     60,      70,      10,      10],
                              ['July',  60,     20,      65,      80,      5],
-                             ['Aug',   10,      5,      0,      0,      0]
+                             ['Aug',   10,      5,      0,      0,      0]*/
+                             {% for month, row in trees_yield_month.items %}
+                             ['{{month}}',
+                             {% for index,yield_n in row.items %}
+                             {{yield_n}},
+                             {% endfor %}
+                            ],
+                             {% endfor %}
                            ]);
 
                            var options = {
@@ -537,7 +544,7 @@
 
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd9zkxd3rWAT0eaTjSWCalscw4JACDtNs&callback=initMap">
-</script>    
+</script>
 
 
 
