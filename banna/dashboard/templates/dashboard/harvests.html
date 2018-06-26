@@ -34,23 +34,21 @@
                    <div class="col-lg-12 col-xs-12 col-sm-12">
                     <table class="table table-striped">
                       <tr>
-                        <th>S/N</th>
-                        <th>Farm Name</th>
                         <th>Farmer Name</th>
                         <th>Yield</th>
-                        <th>Quantity Harvested (KG)</th>
+                        <th>Bananas Harvested (KG)</th>
+                        <th>Trees Harvested</th>
                         <th>Date</th>
                       </tr>
                       {% for harvest in harvests %}
-                                 <tr>
-                                     <td>  </td>
-                                     <td> {{harvest.report_id}} </td>
-                                     <td> Aron  </td>
-                                     <td> {{harvest.yield_number}} </td>
-                                     <td> {{harvest.harvested_amount_kg_banana}} </td>
-                                     <td> 24.06.2018 </td>
-                                 </tr>
-                         {% endfor %}
+                         <tr>
+                             <td> {{ harvest.report_id.farm.farmer.first_name }} {{ harvest.report_id.farm.farmer.last_name }} </td>
+                             <td> {{ harvest.yield_number }} </td>
+                             <td> {{ harvest.harvested_amount_kg_banana }} </td>
+                             <td> Unknown </td>
+                             <td> {{ harvest.report_id.month }} {{ harvest.report_id.year }} </td>
+                         </tr>
+                      {% endfor %}
                     </table>
                    </div>
                </div>
@@ -64,14 +62,9 @@
             function drawChart() {
               var data = google.visualization.arrayToDataTable([
                 ['Month', 'KG' ],
-                ['Jan',  300],
-                ['Feb',  170],
-                ['Mar',  60],
-                ['Apr',  130],
-                ['May',  200],
-                ['June',  170],
-                ['July',  260],
-                ['Aug',  230]
+                {% for month,amount in harvest_per_month.items %}
+                ['{{ month }}', {{amount}}],
+                {% endfor %}
               ]);
 
               var options = {

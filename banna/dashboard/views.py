@@ -8,6 +8,7 @@ from farmer.models import Farm, Report, UserForm, Reports_Yield
 import pprint
 import datetime
 
+
 @login_required
 def index(request):
 
@@ -137,78 +138,50 @@ def farmers(request):
 
 def harvests(request):
 
-    harvests = Reports_Yield.objects.all()
+    '''harvests = Reports_Yield.objects.all()
     count = 0
     context = {
         'harvests': harvests
 
     }
-    print(context)
+    print(context)'''
+
+    harvests = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id');
+
+    harvest_per_month = {}
+
+    for harvest in harvests:
+        if not harvest.report_id.month in harvest_per_month:
+            harvest_per_month[harvest.report_id.month] = 0
+
+        harvest_per_month[harvest.report_id.month] = harvest_per_month[harvest.report_id.month] + harvest.harvested_amount_kg_banana
+
+    #count = 0
+    context = {
+        #'trees': trees
+        'harvests': harvests,
+        'harvest_per_month': harvest_per_month
+    }
 
     # Render the .html file
     return render(request, 'dashboard/harvests.html', context)
 
 def trees(request):
+    yields = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id'); #.filter(report_id__year="2018").
 
-    trees = Reports_Yield.objects.all()
-    farms = Farm.objects.all()
-    list_farm_ids=[]
-    for farm in farms:
-        reports = Report.objects.filter(farm_id = farm)
-        for report in reports:
-            farm_id = report.farm
-            if farm_id not in list_farm_ids:
-                list_farm_ids.append(farm)
+    planted_per_month = {}
 
-    data = []
-    # print(list_farm_ids)
-    for farm in list_farm_ids:
-        data.append(
-            {'userinfo':
-                {
-                    'farm name': farm.name,
-                    'farmer': farm.farmer.first_name,
-                    # 'pic': farm.person_in_charge.first_name,
-                    'zone': farm.zone
-                }
-            }
-        )
+    for row in yields:
+        if not row.report_id.month in planted_per_month:
+            planted_per_month[row.report_id.month] = 0
 
-        reports = Report.objects.filter(farm_id = farm)
-        for report in reports:
-            data.append(
-                {'report':
-                    {
-                        'id':report.id,
-                        'fertilizer':{
-                            'used':report.fertilizer_used,
-                            'amount': report.fertilizer_amount
-                        },
-                        'month':report.month,
-                        'year':report.year
-                    }
-                }
-            )
+        planted_per_month[row.report_id.month] = planted_per_month[row.report_id.month] + row.planted_amount_trees
 
-            yields = Reports_Yield.objects.filter(report_id = report)
-            for yield_id in yields:
-                data.append(
-                    {'yields': {
-                            'yield': yield_id.yield_number,
-                            'harvested_amount_kg_banana': yield_id.harvested_amount_kg_banana,
-                            'planted_amount_trees': yield_id.planted_amount_trees
-                        }
-                    }
-                )
-    pprint.pprint(data)
-
-
-
-
-    count = 0
+    #count = 0
     context = {
-        'trees': trees
-
+        #'trees': trees
+        'rows': yields,
+        'planted_per_month': planted_per_month
     }
     #print(context)
 

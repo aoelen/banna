@@ -105,7 +105,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-6 col-xs-12 col-sm-12">
+                <div class="col-lg-12 col-xs-12 col-sm-12">
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
@@ -114,20 +114,7 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <div id="bananas" class="chart">  </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-xs-12 col-sm-12">
-                    <div class="portlet light">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="icon-bar-chart font-yellow "></i>
-                                <span>Fertilizer Used</span>
-                            </div>
-                        </div>
-                        <div class="portlet-body">
-                            <div id="trees" class="chart">  </div>
+                            <div id="trees_per_yield" class="chart">  </div>
                         </div>
                     </div>
                 </div>
@@ -245,6 +232,36 @@
                  }
             </script>
 
+<!-- Trees per Yield -->
+<script type="text/javascript">
+                   google.charts.load('current', {'packages':['corechart']});
+                         google.charts.setOnLoadCallback(drawChart);
+
+                         function drawChart() {
+                           var data = google.visualization.arrayToDataTable([
+                             ['Month', 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
+                             ['Jan',  30,      40,      40,      40,      20],
+                             ['Feb',  70,      60,      50,      40,      30],
+                             ['Mar',  60,      20,      40,      30,      20],
+                             ['Apr',  30,      40,      50,      60,      10],
+                             ['May',  20,      50,      45,      80,      30],
+                             ['June',  70,     60,      70,      10,      10],
+                             ['July',  60,     20,      65,      80,      5],
+                             ['Aug',   10,      5,      0,      0,      0]
+                           ]);
+
+                           var options = {
+                             curveType: 'function',
+                             legend: { position: 'right' },
+                             vAxis: { gridlines: { count: 6, color: 'white' } },
+                             colors: ['red','green', 'yellow', 'blue', 'purple']
+                           };
+
+                           var chart = new google.visualization.LineChart(document.getElementById('trees_per_yield'));
+                           chart.draw(data, options);
+                         }
+                    </script>
+
 <!-- Farm Updates Pie -->
 <script type="text/javascript">
                google.charts.load("current", {packages:["corechart"]});
@@ -266,6 +283,8 @@
              </script>
 
 <!-- Map for Zone -->
+<!--
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
                             google.charts.load('current', {
                               'packages':['geochart'],
@@ -292,6 +311,145 @@
 
                               chart.draw(data, options);
                             }
-    </script>
+</script>
+-->
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.load('visualization', '1', {'packages': ['geochart']});
+    google.setOnLoadCallback(drawVisualization);
+
+    function drawVisualization() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'State');
+      data.addColumn('number', 'Data');
+      data.addRows([
+        [{v:'MY-14', f:' Wilayah Persekutuan Kuala Lumpur'}, 42],
+        [{v:'MY-15', f:' Wilayah Persekutuan Labuan'}, 57],
+        [{v:'MY-16', f:' Wilayah Persekutuan Putrajaya'}, 38],
+        [{v:'MY-01', f:' Johor'}, 82],
+        [{v:'MY-02', f:' Kedah'}, 46],
+        [{v:'MY-03', f:' Kelantan'}, 51],
+        [{v:'MY-04', f:' Melaka'}, 72],
+        [{v:'MY-05', f:' Negeri Sembilan'}, 16],
+        [{v:'MY-06', f:' Pahang'}, 2],
+        [{v:'MY-08', f:' Perak'}, 87],
+        [{v:'MY-09', f:' Perlis'}, 29],
+        [{v:'MY-07', f:' Pulau Pinang'}, 49],
+        [{v:'MY-12', f:' Sabah'}, 26],
+        [{v:'MY-13', f:' Sarawak'}, 94],
+        [{v:'MY-10', f:' Selangor'}, 35],
+        [{v:'MY-11', f:' Terengganu'}, 79],
+      ]);
+      
+      var opts = {
+        region: 'MY',
+        displayMode: 'regions',
+        resolution: 'provinces',
+        width: 640, 
+        height: 480
+      };
+      var geochart = new google.visualization.GeoChart(
+          document.getElementById('visualization'));
+      geochart.draw(data, opts);
+    };
+</script>
+
+<div id="visualization" style="margin: 1em"> </div>
+-->
+<div id="map"></div>
+<script>
+  function initMap(){
+    // Map options
+    var options = {
+      zoom:10,
+      center:{lat:1.436003,lng:110.535081}
+    }
+
+    // New map
+    var map = new google.maps.Map(document.getElementById('farm_zones'), options);
+
+    /*
+    // Add marker
+    var marker = new google.maps.Marker({
+      position:{lat:1.540658,lng:110.529964},
+      map:map,
+      icon:'../../static/dashboard/img/mini-happy-banana.png'
+    });
+
+    var infoWindow = new google.maps.InfoWindow({
+      content:'<h1>Farmer 1</h1>'
+    });
+
+    marker.addListener('click', function(){
+      infoWindow.open(map, marker);
+    });
+    */
+
+    // Array of markers
+    var markers = [
+      // Asajaya zone
+      {
+        coordinates:{lat:1.540658,lng:110.529964},
+        content:'<h4>Farmer 1</h4>'
+      },
+      {
+        coordinates:{lat:1.528604,lng:110.539684},
+        content:'<h4>Farmer 2</h4>'
+      },
+      {
+        coordinates:{lat:1.521740,lng:110.522518},
+        content:'<h4>Farmer 3</h4>'
+      },
+      {
+        coordinates:{lat:1.560865,lng:110.494023},
+        content:'<h4>Farmer 4</h4>'
+      },
+      // Samarahan zone
+      {
+        coordinates:{lat:1.458699,lng:110.421651},
+        content:''
+      },
+      // Simunjan zone
+      {
+        coordinates:{lat:1.240577,lng:110.692323},
+        content:''
+      }
+    ];
+
+    // Loop through markers
+    for(var i = 0;i < markers.length;i++){
+      // Add marker
+      addMarker(markers[i]);
+    }
+
+    // Add Marker Function
+    function addMarker(props){
+      var marker = new google.maps.Marker({
+      position:props.coordinates,
+      map:map,
+      icon:'../../static/dashboard/img/mini-happy-banana.png'
+    });
+
+      // Check content
+      if(props.content){
+        var infoWindow = new google.maps.InfoWindow({
+          content:props.content
+        });
+
+        marker.addListener('click', function(){
+          infoWindow.open(map, marker);
+        });
+      }
+    }
+  }
+</script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd9zkxd3rWAT0eaTjSWCalscw4JACDtNs&callback=initMap">
+</script>    
+
+
 
 {% endblock %}
