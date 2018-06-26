@@ -3,9 +3,16 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
+from django.contrib.auth.models import User
+
+from farmer.models import Farm, Report, UserForm, Reports_Yield
+import pprint
+=======
 import datetime
 
 from farmer.models import Farm, Report, UserForm, Reports_Yield
+>>>>>>> 93e334d77039b33bd9139512caa93310bdf232e1
 
 @login_required
 def index(request):
@@ -108,8 +115,16 @@ def factory_data(request):
 
 def factory_overview(request):
 
+    factory_input = Farm.objects.all()
+
+
+    context = {
+        'factory_input': factory_input
+    }
+    print(context)
+
     # Render the .html file
-    return render(request, 'dashboard/factory_overview.html')
+    return render(request, 'dashboard/factory_overview.html', context)
 
 def factory(request):
 
@@ -117,19 +132,94 @@ def factory(request):
     return render(request, 'dashboard/factory.html')
 
 def farmers(request):
+    farmers = Farm.objects.all()
 
+    context = {
+        'farmers': farmers
+    }
+    print(context)
     # Render the .html file
-    return render(request, 'dashboard/farmers.html')
+    return render(request, 'dashboard/farmers.html', context)
 
 def harvests(request):
 
+    harvests = Reports_Yield.objects.all()
+    count = 0
+    context = {
+        'harvests': harvests
+
+    }
+    print(context)
+
     # Render the .html file
-    return render(request, 'dashboard/harvests.html')
+    return render(request, 'dashboard/harvests.html', context)
 
 def trees(request):
 
+    trees = Reports_Yield.objects.all()
+    farms = Farm.objects.all()
+    list_farm_ids=[]
+    for farm in farms:
+        reports = Report.objects.filter(farm_id = farm)
+        for report in reports:
+            farm_id = report.farm
+            if farm_id not in list_farm_ids:
+                list_farm_ids.append(farm)
+
+    data = []
+    # print(list_farm_ids)
+    for farm in list_farm_ids:
+        data.append(
+            {'userinfo':
+                {
+                    'farm name': farm.name,
+                    'farmer': farm.farmer.first_name,
+                    # 'pic': farm.person_in_charge.first_name,
+                    'zone': farm.zone
+                }
+            }
+        )
+
+        reports = Report.objects.filter(farm_id = farm)
+        for report in reports:
+            data.append(
+                {'report':
+                    {
+                        'id':report.id,
+                        'fertilizer':{
+                            'used':report.fertilizer_used,
+                            'amount': report.fertilizer_amount
+                        },
+                        'month':report.month,
+                        'year':report.year
+                    }
+                }
+            )
+
+            yields = Reports_Yield.objects.filter(report_id = report)
+            for yield_id in yields:
+                data.append(
+                    {'yields': {
+                            'yield': yield_id.yield_number,
+                            'harvested_amount_kg_banana': yield_id.harvested_amount_kg_banana,
+                            'planted_amount_trees': yield_id.planted_amount_trees
+                        }
+                    }
+                )
+    pprint.pprint(data)
+
+
+
+
+    count = 0
+    context = {
+        'trees': trees
+
+    }
+    #print(context)
+
     # Render the .html file
-    return render(request, 'dashboard/trees.html')
+    return render(request, 'dashboard/trees.html', context)
 
 def users(request):
 
