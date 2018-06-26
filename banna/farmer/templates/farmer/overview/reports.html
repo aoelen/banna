@@ -14,20 +14,18 @@ $(document).ready(function() {
     });
 });
 </script>
-
-{% if date.items %}
-<header>{{date.month}} {{date.year}}</header>
-    {% endif %}
+    {% if data.items %}
+    <header>{{data.date.month}} {{data.date.year}}</header>
 
     <div class="p-select-month">
-        {% if trees.items %}
+
         <div class="select">
-            <div class="name">Planted trees</div><div class="number">{{trees.trees_total}}</div>
+            <div class="name">Planted Trees</div><div class="number">{{data.total_planted}}</div>
         </div>
         <div class="open">
             <table>
-                {% for yield in trees.trees_yield %}
-                    {% for key, value in yield.items %}
+                {% for yield in data.trees%}
+                    {% for key, value in yield.planted.items %}
                     <tr>
                         <td>Yield {{ key }}</td>
                         <td class="number-t">{{ value }}</td>
@@ -36,16 +34,15 @@ $(document).ready(function() {
                 {% endfor %}
             </table>
         </div>
-        {% endif %}
 
-        {% if harvested.items %}
+
         <div class="select">
-            <div class="name">Harvest KGs</div><div class="number">{{harvested.amount_total}}</div>
+            <div class="name">Harvested Trees</div><div class="number">{{data.total_harvested}}</div>
         </div>
         <div class="open">
             <table>
-                {% for yield in harvested.trees_yield %}
-                    {% for key, value in yield.items %}
+                {% for yield in data.trees %}
+                    {% for key, value in yield.harvested.items %}
                     <tr>
                         <td>Yield {{ key }}</td>
                         <td class="number-t">{{ value }}</td>
@@ -54,18 +51,32 @@ $(document).ready(function() {
                 {% endfor %}
             </table>
         </div>
-        {% endif %}
 
-        {% if fertilizer.items %}
         <div class="select">
-            <div class="name"></div>Fertilizer used<div class="number">{{fertilizer.used}}</div>
+            <div class="name">Harvest KGs</div><div class="number">{{data.total_bananas_kg}}</div>
+        </div>
+        <div class="open">
+            <table>
+                {% for yield in data.trees %}
+                    {% for key, value in yield.bananas.items %}
+                    <tr>
+                        <td>Yield {{ key }}</td>
+                        <td class="number-t">{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="select">
+            <div class="name"></div>Fertilizer used<div class="number">{{data.fertilizer.used}}</div>
         </div>
         <div class="open">
             <table>
                 <tr>
                     <td>Fertilizer amount</td>
-                    {% if fertilizer.amount %}
-                    <td class="number-t">{{fertilizer.amount}}</td>
+                    {% if data.fertilizer.amount %}
+                    <td class="number-t">{{data.fertilizer.amount}}</td>
                     {% else %}
                     <td class="number-t">No result</td>
                     {% endif %}
@@ -73,16 +84,17 @@ $(document).ready(function() {
             </table>
         </div>
         {% endif %}
+
     </div>
 
-<div class="bottom-menu twobutton">
-            <a href="/farmer/{{ farm_id }}/">
-                <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
-            </a>
-            <a href="/farmer/{{farm_id}}/{{date.year}}/{{ date.month }}/{{report.id}}/plantedform/">
-                <button type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Edit</button>
-            </a>
-</div>
+    <div class="bottom-menu twobutton">
+                <a href="/farmer/{{ farm_id }}/">
+                    <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
+                </a>
+                <a href="/farmer/{{farm_id}}/{{data.date.year}}/{{ data.date.month }}/{{report.id}}/plantedform/">
+                    <button type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Edit</button>
+                </a>
+    </div>
 
 
 {% endblock %}

@@ -6,3 +6,4 @@ from .overview.farms import *
 from .overview.months import *
 from .overview.reports import *
 from .login_redirect import *
+from .overview.statistics import *
