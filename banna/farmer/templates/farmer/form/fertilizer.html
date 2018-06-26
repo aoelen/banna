@@ -25,7 +25,7 @@ $(document).ready(function() {
 
 <header>Fertilizer</header>
 
-<form action="/farmer/form_fertilizer/{{report_id}}" method="POST">
+    <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/fertilizerform/" method="POST">
     {% csrf_token %}
     <div class="p-form-fertilizer">
         <div class="label">Did you use a fertilizer this month?</div>
@@ -44,14 +44,12 @@ $(document).ready(function() {
         </div>
 
         <div class="bottom-menu">
-            <div class="row">
-                <div class="col-6">
-                    <button href="/farmer/form_harvest/{{ report_id }}" type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
-                </div>
-                <div class="col-6">
-                    <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Submit</button>
-                </div>    
-            </div>            
+            <a href="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/harvestedform/">
+                <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
+            </a>
+            <a>
+                <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Submit</button>
+            </a>
         </div>
 
        

@@ -11,16 +11,16 @@ $(document).ready(function() {
     });
 });
 </script>
-<header>Harvested trees</header>
+<header>New planted trees</header>
 
 <div class="p-form-planted">
-    <form action="/farmer/form_harvest/{{report_id}}" method="POST">
+    <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/plantedform/" method="POST">
         {% csrf_token %}
         <table>
             <thead>
                 <tr>
                     <td class="first">Yield</td>
-                    <td class="second">Amount of harvested trees</td>
+                    <td class="second">Amount of planted trees</td>
                 </tr>
             </thead>
             <tbody>
@@ -47,22 +47,14 @@ $(document).ready(function() {
             </tbody>
         </table>
 
-        <!--
-        <div class="bottom-menu">
-            <a href="/farmer/form_planted/{{report_id}}" class="back button">Go back</a>
-            <a href="#" class="edit button" id="submitForm">Next</a>
-        </div>
-        -->
 
-        <div class="bottom-menu">
-            <div class="row">
-                <div class="col-6">
-                    <button href="/farmer/form_planted/{{report_id}}" type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
-                </div>
-                <div class="col-6">
-                    <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Next</button>
-                </div>    
-            </div>            
+         <div class="bottom-menu">
+             <a href="/farmer/{{farm_id}}/{{year}}/{{ month }}/" >
+                 <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
+             </a>
+             <a>
+                 <button type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Next</button>
+             </a>
         </div>
 
     </form>

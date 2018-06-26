@@ -105,12 +105,27 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-lg-12 col-xs-12 col-sm-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-yellow"></i>
+                                <span>Trees Planted <small>per yield</small></span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div id="trees_per_yield" class="chart">  </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
                   <div class="col-lg-6 col-xs-12 col-sm-12">
                       <div class="portlet light bordered">
                           <div class="portlet-title">
                               <div class="caption">
                                   <i class="icon-cursor font-red"></i>
-                                  <span>Farm Updates Submitted by Farmers</span>
+                                  <span>Farm Updates Submitted by Farmers, for: {{current_month}}</span>
                               </div>
                           </div>
                           <div class="portlet-body">
@@ -135,7 +150,6 @@
               </div>
       </div>
   </div>
-
 <!-- Monthly Statistics Line Chart -->
 <script type="text/javascript">
        google.charts.load('current', {'packages':['corechart']});
@@ -173,19 +187,10 @@
 
            function drawChart() {
              var data = google.visualization.arrayToDataTable([
-               ['Month', 'KG' ],
-               ['Jan',  300],
-               ['Feb',  170],
-               ['Mar',  60],
-               ['Apr',  130],
-               ['May',  200],
-               ['June',  170],
-               ['July',  260],
-               ['Aug',  230],
-               ['Sep',  230],
-               ['Oct',  230],
-               ['Nov',  230],
-               ['Dec',  230]
+               ['Month', 'KG'],
+               {% for month, harvest in harvest_per_month.items %}
+               ['{{month}}', {{harvest}}],
+               {% endfor %}
              ]);
 
              var options = {
@@ -208,14 +213,9 @@
                  function drawChart() {
                    var data = google.visualization.arrayToDataTable([
                      ['Month', 'Trees' ],
-                     ['Jan',  1000],
-                     ['Feb',  1170],
-                     ['Mar',  660],
-                     ['Apr',  1030],
-                     ['May',  1000],
-                     ['June',  1170],
-                     ['July',  660],
-                     ['Aug',  1030]
+                     {% for month, planted in planted_per_month.items %}
+                     ['{{month}}', {{planted}}],
+                     {% endfor %}
                    ]);
 
 
@@ -232,6 +232,36 @@
                  }
             </script>
 
+<!-- Trees per Yield -->
+<script type="text/javascript">
+                   google.charts.load('current', {'packages':['corechart']});
+                         google.charts.setOnLoadCallback(drawChart);
+
+                         function drawChart() {
+                           var data = google.visualization.arrayToDataTable([
+                             ['Month', 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
+                             ['Jan',  30,      40,      40,      40,      20],
+                             ['Feb',  70,      60,      50,      40,      30],
+                             ['Mar',  60,      20,      40,      30,      20],
+                             ['Apr',  30,      40,      50,      60,      10],
+                             ['May',  20,      50,      45,      80,      30],
+                             ['June',  70,     60,      70,      10,      10],
+                             ['July',  60,     20,      65,      80,      5],
+                             ['Aug',   10,      5,      0,      0,      0]
+                           ]);
+
+                           var options = {
+                             curveType: 'function',
+                             legend: { position: 'right' },
+                             vAxis: { gridlines: { count: 6, color: 'white' } },
+                             colors: ['red','green', 'yellow', 'blue', 'purple']
+                           };
+
+                           var chart = new google.visualization.LineChart(document.getElementById('trees_per_yield'));
+                           chart.draw(data, options);
+                         }
+                    </script>
+
 <!-- Farm Updates Pie -->
 <script type="text/javascript">
                google.charts.load("current", {packages:["corechart"]});
@@ -239,8 +269,8 @@
                function drawChart() {
                  var data = google.visualization.arrayToDataTable([
                    ['Farmers', 'Updates for Month'],
-                   ['Update',     11],
-                   ['No-Update',      2]
+                   ['Update', {{farmers_update}}],
+                   ['No-Update', {{farmers_no_update}}]
                  ]);
 
                  var options = {

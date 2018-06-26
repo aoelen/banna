@@ -1,31 +1,14 @@
 from django.shortcuts import get_object_or_404, render, redirect
 
-from farmer.models import Month, Farm, Report, Reports_Yield
+from farmer.models import Date, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
-from datetime import datetime
-
-
-
-#SHOW OVERVIEW FARMS
-def overview_farm(request):
-    for loggedin_user in  User.objects.filter(id= request.user.id):
-        farms = Farm.objects.filter(person_in_charge=loggedin_user)
-    return render(request, 'farmer/farms.html', {'farms': farms})
-
-
-#SHOW OVERVIEW MONTH REPORTS
-def overview_months(request, farm_id):
-    currentMonth = datetime.now().month
-    # User.objects.filter(date_of_registration_field__lt=my_date)
-
-    user = User.objects.filter(id=request.user.id)
-    reports = Report.objects.filter(farm=farm_id)
-
-
-    return render(request, 'farmer/overview.html', {'reports': reports})
+from datetime import datetime, date
+from time import strftime
+from django.contrib.auth.decorators import user_passes_test
+from farmer.views import auth_check
 
 #SHOW OVERVIEW REPORT
-def overview_report(request, farm_id, year, month_id , month):
+def overview_report(request, farm_id, year , month):
     list_trees_yield = []
     list_harvested_bananas_yield = []
     total_amount_trees = 0
@@ -33,7 +16,7 @@ def overview_report(request, farm_id, year, month_id , month):
 
     farm_object = Farm.objects.filter(id=farm_id)
     for farm in farm_object:
-        reports = Report.objects.filter(farm=farm, month_id= month_id)
+        reports = Report.objects.filter(farm=farm, month= month)
 
         for report in reports:
             fertilizer_used = report.fertilizer_used
@@ -55,7 +38,6 @@ def overview_report(request, farm_id, year, month_id , month):
                     yield_number.yield_number: yield_number.harvested_amount_kg_banana
                     }
                 )
-    print(report)
 
     fertilizer = {
            'used': fertilizer_used,
@@ -75,7 +57,6 @@ def overview_report(request, farm_id, year, month_id , month):
     }
 
     date = {
-        'month_id': month_id,
         'month': month,
         'year': year
     }
@@ -90,4 +71,4 @@ def overview_report(request, farm_id, year, month_id , month):
 
     }
 
-    return render(request, 'farmer/select_month.html', context)
+    return render(request, 'farmer/overview/reports.html', context)

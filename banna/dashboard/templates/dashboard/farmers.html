@@ -8,21 +8,20 @@
 
  <table class="table table-striped">
    <tr>
-     <th>Farmer ID</th>
-     <th>Name</th>
-     <th>PIC</th>
+     <th>Farm ID</th>
+     <th>Farmer Name</th>
      <th>Zone</th>
      <th>Date Registered</th>
      <th>Actions</th>
      <th></th>
+     <th></th>
    </tr>
-
+  {% for farmer in farmers %}
      <tr>
-         <td> 001 </td>
-         <td> Anna Bon </td>
-         <td> Linh Tran </td>
-         <td> Zone 2 </td>
-         <td> 20.06.2018 </td>
+         <td> {{farmer.id}} </td>
+         <td> {{farmer.farmer.first_name}}</td>
+         <td> {{farmer.zone}}</td>
+         <td> {{farmer.farmer.date_joined}}</td>
          <td><a href="/farmer/overview" class="btn bg-success pullright" style = "color: white;">View </td>
          <td><a href="/dashboard/edit_farmer" class="btn btn-primary pullright">Edit </td>
          <td>
@@ -32,6 +31,7 @@
            </form>
          </td>
      </tr>
+  {% endfor %}
  </table>
 
 {% endblock %}

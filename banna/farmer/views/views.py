@@ -4,10 +4,18 @@ from django.shortcuts import redirect
 # Create your views here.
 from django.http import HttpResponse
 
-from farmer.models import Month, Farm, Report, UserForm, Reports_Yield
+from farmer.models import Report, UserForm, Reports_Yield
 
 def index(request):
     return HttpResponse("<h2>You are at the farmer page!</h2>")
+
+def login_redirect(request):
+    if (request.user.groups.filter(name='government').exists() or request.user.groups.filter(name='factory').exists()):
+        return redirect('/dashboard/dashboard')
+    elif (request.user.groups.filter(name='farmer').exists()):
+        return redirect('/farmer/farms/')
+    else:
+        return redirect('/login')
 
 def overview(request):
 
@@ -85,7 +93,7 @@ def form_fertilizer(request, report_id):
 
     report = Report.objects.get(id=report_id)
     report.fertilizer_used = report.fertilizer_used.lower()
-    
+
     context = {
         'report': report,
         'report_id': report_id
