@@ -283,82 +283,6 @@
              </script>
 
 <!-- Map for Zone -->
-<!--
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-                            google.charts.load('current', {
-                              'packages':['geochart'],
-                              // Note: you will need to get a mapsApiKey for your project.
-                              // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-                              'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-                            });
-                            google.charts.setOnLoadCallback(drawRegionsMap);
-
-                            function drawRegionsMap() {
-                              var data = google.visualization.arrayToDataTable([
-                                ['Country', 'Popularity'],
-                                ['Germany', 200],
-                                ['United States', 300],
-                                ['Brazil', 400],
-                                ['Canada', 500],
-                                ['France', 600],
-                                ['RU', 700]
-                              ]);
-
-                              var options = {};
-
-                              var chart = new google.visualization.GeoChart(document.getElementById('farm_zones'));
-
-                              chart.draw(data, options);
-                            }
-</script>
--->
-<!--
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.load('visualization', '1', {'packages': ['geochart']});
-    google.setOnLoadCallback(drawVisualization);
-
-    function drawVisualization() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'State');
-      data.addColumn('number', 'Data');
-      data.addRows([
-        [{v:'MY-14', f:' Wilayah Persekutuan Kuala Lumpur'}, 42],
-        [{v:'MY-15', f:' Wilayah Persekutuan Labuan'}, 57],
-        [{v:'MY-16', f:' Wilayah Persekutuan Putrajaya'}, 38],
-        [{v:'MY-01', f:' Johor'}, 82],
-        [{v:'MY-02', f:' Kedah'}, 46],
-        [{v:'MY-03', f:' Kelantan'}, 51],
-        [{v:'MY-04', f:' Melaka'}, 72],
-        [{v:'MY-05', f:' Negeri Sembilan'}, 16],
-        [{v:'MY-06', f:' Pahang'}, 2],
-        [{v:'MY-08', f:' Perak'}, 87],
-        [{v:'MY-09', f:' Perlis'}, 29],
-        [{v:'MY-07', f:' Pulau Pinang'}, 49],
-        [{v:'MY-12', f:' Sabah'}, 26],
-        [{v:'MY-13', f:' Sarawak'}, 94],
-        [{v:'MY-10', f:' Selangor'}, 35],
-        [{v:'MY-11', f:' Terengganu'}, 79],
-      ]);
-      
-      var opts = {
-        region: 'MY',
-        displayMode: 'regions',
-        resolution: 'provinces',
-        width: 640, 
-        height: 480
-      };
-      var geochart = new google.visualization.GeoChart(
-          document.getElementById('visualization'));
-      geochart.draw(data, opts);
-    };
-</script>
-
-<div id="visualization" style="margin: 1em"> </div>
--->
-<div id="map"></div>
 <script>
   function initMap(){
     // Map options
@@ -391,7 +315,7 @@
     var markers = [
       // Asajaya zone
       {
-        coordinates:{lat:1.540658,lng:110.529964},
+        coordinates:{lat:1.498600,lng:110.668350},
         content:'<h4>Farmer 1</h4>'
       },
       {
@@ -403,18 +327,30 @@
         content:'<h4>Farmer 3</h4>'
       },
       {
-        coordinates:{lat:1.560865,lng:110.494023},
+        coordinates:{lat:1.507574,lng:110.602161},
         content:'<h4>Farmer 4</h4>'
       },
       // Samarahan zone
       {
         coordinates:{lat:1.458699,lng:110.421651},
-        content:''
+        content:'<h4>Farmer 5</h4>'
+      },
+      {
+        coordinates:{lat:1.455715,lng:110.585572},
+        content:'<h4>Farmer 6</h4>'
       },
       // Simunjan zone
       {
         coordinates:{lat:1.240577,lng:110.692323},
-        content:''
+        content:'<h4>Farmer 7</h4>'
+      },
+      {
+        coordinates:{lat:1.325291,lng:110.584198},
+        content:'<h4>Farmer 8</h4>'
+      },
+      {
+        coordinates:{lat:1.340393,lng:110.751740},
+        content:'<h4>Farmer 9</h4>'
       }
     ];
 
@@ -443,6 +379,159 @@
         });
       }
     }
+
+    var myCoordinatesAsajaya = [
+      new google.maps.LatLng(1.592036,110.524664),
+      new google.maps.LatLng(1.581741,110.484152),
+      new google.maps.LatLng(1.569386,110.491018),
+      new google.maps.LatLng(1.542617,110.472479),
+      new google.maps.LatLng(1.527516,110.475912),
+      new google.maps.LatLng(1.512415,110.474539),
+      new google.maps.LatLng(1.518593,110.486212),
+      new google.maps.LatLng(1.506924,110.493765),
+      new google.maps.LatLng(1.501432,110.497198),
+      new google.maps.LatLng(1.502119,110.503378),
+      new google.maps.LatLng(1.506237,110.523291),
+      new google.maps.LatLng(1.500060,110.650320),
+      new google.maps.LatLng(1.490450,110.644140),
+      new google.maps.LatLng(1.446519,110.643454),
+      new google.maps.LatLng(1.444460,110.664740),
+      new google.maps.LatLng(1.474662,110.732718),
+      new google.maps.LatLng(1.480154,110.737524),
+      new google.maps.LatLng(1.531634,110.747824),
+      new google.maps.LatLng(1.551540,110.748511),
+      new google.maps.LatLng(1.561836,110.752630),
+      new google.maps.LatLng(1.562522,110.742331),
+      new google.maps.LatLng(1.550853,110.727225),
+      new google.maps.LatLng(1.558404,110.691519),
+      new google.maps.LatLng(1.565267,110.677786),
+      new google.maps.LatLng(1.576250,110.651694),
+      new google.maps.LatLng(1.588605,110.633154),
+      new google.maps.LatLng(1.598214,110.600882),
+      new google.maps.LatLng(1.594782,110.576849),
+      new google.maps.LatLng(1.586545,110.550757),
+      new google.maps.LatLng(1.584486,110.537710),
+      new google.maps.LatLng(1.590664,110.523291)
+    ];
+    var polyOptionsAsajaya = {
+    path: myCoordinatesAsajaya,
+    strokeColor: "#FF0000",
+    strokeOpacity: 1,
+    strokeWeight: 3
+    }
+    var it = new google.maps.Polyline(polyOptionsAsajaya);
+    it.setMap(map);
+
+    var myCoordinatesSamarahan = [
+      new google.maps.LatLng(1.511877,110.471552),
+      new google.maps.LatLng(1.514623,110.468118),
+      new google.maps.LatLng(1.507072,110.459879),
+      new google.maps.LatLng(1.509818,110.447519),
+      new google.maps.LatLng(1.507759,110.439966),
+      new google.maps.LatLng(1.502267,110.435846),
+      new google.maps.LatLng(1.498835,110.424173),
+      new google.maps.LatLng(1.505013,110.419367),
+      new google.maps.LatLng(1.507759,110.410440),
+      new google.maps.LatLng(1.512563,110.411127),
+      new google.maps.LatLng(1.496776,110.393274),
+      new google.maps.LatLng(1.483048,110.384348),
+      new google.maps.LatLng(1.473438,110.379541),
+      new google.maps.LatLng(1.469319,110.369241),
+      new google.maps.LatLng(1.472065,110.348642),
+      new google.maps.LatLng(1.470006,110.343149),
+      new google.maps.LatLng(1.459710,110.338342),
+      new google.maps.LatLng(1.454905,110.329416),
+      new google.maps.LatLng(1.454905,110.319933),
+      new google.maps.LatLng(1.449413,110.313066),
+      new google.maps.LatLng(1.439803,110.308946),
+      new google.maps.LatLng(1.434998,110.311693),
+      new google.maps.LatLng(1.434312,110.326799),
+      new google.maps.LatLng(1.424702,110.332979),
+      new google.maps.LatLng(1.421956,110.334352),
+      new google.maps.LatLng(1.409600,110.359758),
+      new google.maps.LatLng(1.404795,110.384477),
+      new google.maps.LatLng(1.404109,110.401643),
+      new google.maps.LatLng(1.406168,110.415376),
+      new google.maps.LatLng(1.406168,110.423616),
+      new google.maps.LatLng(1.391753,110.424303),
+      new google.maps.LatLng(1.370473,110.424303),
+      new google.maps.LatLng(1.362235,110.427736),
+      new google.maps.LatLng(1.360863,110.436662),
+      new google.maps.LatLng(1.372532,110.457948),
+      new google.maps.LatLng(1.373219,110.464128),
+      new google.maps.LatLng(1.370473,110.473055),
+      new google.maps.LatLng(1.349193,110.486787),
+      new google.maps.LatLng(1.347820,110.490221),
+      new google.maps.LatLng(1.353998,110.506700),
+      new google.maps.LatLng(1.352625,110.534166),
+      new google.maps.LatLng(1.357430,110.532793),
+      new google.maps.LatLng(1.366354,110.528673),
+      new google.maps.LatLng(1.445981,110.641283),
+      new google.maps.LatLng(1.489225,110.641969),
+      new google.maps.LatLng(1.498835,110.646776),
+      new google.maps.LatLng(1.505013,110.523866),
+      new google.maps.LatLng(1.499522,110.497087),
+      new google.maps.LatLng(1.516682,110.484727),
+      new google.maps.LatLng(1.511191,110.472368)
+    ];
+    var polyOptionsSamarahan = {
+    path: myCoordinatesSamarahan,
+    strokeColor: "#3bc32e",
+    strokeOpacity: 1,
+    strokeWeight: 3
+    }
+    var it = new google.maps.Polyline(polyOptionsSamarahan);
+    it.setMap(map);
+
+    var myCoordinatesSimunjan = [
+      new google.maps.LatLng(1.426761,110.711321),
+      new google.maps.LatLng(1.445295,110.641969),
+      new google.maps.LatLng(1.365668,110.527300),
+      new google.maps.LatLng(1.351252,110.533479),
+      new google.maps.LatLng(1.100684,110.791658),
+      new google.maps.LatLng(1.099998,110.809511),
+      new google.maps.LatLng(1.094505,110.815691),
+      new google.maps.LatLng(1.086267,110.815004),
+      new google.maps.LatLng(1.066358,110.819810),
+      new google.maps.LatLng(1.062925,110.831483),
+      new google.maps.LatLng(1.029972,110.847276),
+      new google.maps.LatLng(1.026539,110.854829),
+      new google.maps.LatLng(1.020360,110.852769),
+      new google.maps.LatLng(1.014182,110.831483),
+      new google.maps.LatLng(0.985216,110.845216),
+      new google.maps.LatLng(0.971485,110.863756),
+      new google.maps.LatLng(0.977664,110.885728),
+      new google.maps.LatLng(0.995514,110.891222),
+      new google.maps.LatLng(1.006499,110.891222),
+      new google.maps.LatLng(1.021603,110.904268),
+      new google.maps.LatLng(1.028468,110.907571),
+      new google.maps.LatLng(1.029841,110.922677),
+      new google.maps.LatLng(1.027095,110.939843),
+      new google.maps.LatLng(1.029155,110.963189),
+      new google.maps.LatLng(1.031901,110.991342),
+      new google.maps.LatLng(1.132133,110.970056),
+      new google.maps.LatLng(1.176070,110.954263),
+      new google.maps.LatLng(1.218218,110.987909),
+      new google.maps.LatLng(1.262153,110.967309),
+      new google.maps.LatLng(1.299223,110.961816),
+      new google.maps.LatLng(1.347275,110.947397),
+      new google.maps.LatLng(1.354826,110.917871),
+      new google.maps.LatLng(1.390522,110.881479),
+      new google.maps.LatLng(1.387089,110.845773),
+      new google.maps.LatLng(1.404937,110.812127),
+      new google.maps.LatLng(1.425530,110.711877)
+    ];
+    var polyOptionsSimunjan = {
+    path: myCoordinatesSimunjan,
+    strokeColor: "#4043f4",
+    strokeOpacity: 1,
+    strokeWeight: 3
+    }
+    var it = new google.maps.Polyline(polyOptionsSimunjan);
+    it.setMap(map);
+
+
+
   }
 </script>
 
