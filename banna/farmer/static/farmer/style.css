@@ -76,6 +76,7 @@ header {
     padding:13px 20px;
     display:block;
     color:#3e3e3e;
+
 }.p-overview .overview li a:hover {
     text-decoration: none;
 }
@@ -124,6 +125,7 @@ header {
 .p-select-month table td.number-t {
     text-align: right;
 }
+
 .bottom-menu {
     height: 45px;
     width:100%;
@@ -132,9 +134,20 @@ header {
     left:0;
     float: left;
 }
-.bottom-menu button {
-float:left;width:50%;display:block;border-radius:0
+
+.bottom-menu a button{
+    float:left;
+    width:50%;
+    display:block;
+    border-radius:0
 }
+
+.bottom-menu a {
+    width:100%;
+
+}
+
+
 .bottom-menu .custom-btn {
     background-color: #1aa613;
 }
