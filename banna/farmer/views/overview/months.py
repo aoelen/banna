@@ -21,34 +21,42 @@ def overview_months(request, farm_id):
 
     reports = Report.objects.filter(farm=farm_id)
 
+    data = {}
     for report in reports:
         month_name = report.month
         month_number = strptime(month_name, '%B').tm_mon
-
-        data = {}
         data['report'] = {
             'farm_id': farm_id,
             'month': report.month,
             'year': report.year
+        }
+
+        if report.report_date is None:
+            if currentdate <= datetime(report.year, month_number, 7).date():
+                data['report']['date'] = {
+                    'message': " ",
+                    'value': 'fas fa-angle-double-right'
+                }
+            if currentdate > datetime(report.year, month_number, 7).date() and currentdate < datetime(report.year, month_number, 20).date():
+                data['report']['date'] = {
+                    'message': 'error',
+                    'value': 'fas fa-exclamation-triangle'
+                }
+
+            if currentdate > datetime(report.year, month_number, 21).date():
+                data['report']['date'] = {
+                    'message': 'danger',
+                    'value': 'fas fa-exclamation-circle'
+                }
+        if report.report_date is not None:
+            data['report']['date'] = {
+                'message': "success",
+                'value': 'fas fa-check-circle'
             }
 
-        if currentdate <= datetime(report.year, month_number, 7).date():
-            data['date'] = {
-                'value': 'test'
-            }
-        if currentdate > datetime(report.year, month_number, 7).date() and currentdate < datetime(report.year, month_number, 20).date():
-            data['date'] = {
-                'value': 'test'
-            }
-
-        if currentdate > datetime(report.year, month_number, 21).date():
-            data['date'] = {
-                'value': 'test'
-            }
-        print(data)
 
     context = {
-        'reports': reports,
+        'data': data,
         'farm_id': farm_id
     }
 

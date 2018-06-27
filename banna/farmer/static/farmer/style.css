@@ -89,12 +89,17 @@ header {
     font-size: 25px;
     margin-top:-7px
 }
-.p-overview .overview li .status.success {
+.p-overview .overview li a .status .success {
     color:#2ddb14
 }
-.p-overview .overview li .status.error {
-    color:#f90303;
+.p-overview .overview li a .status .error {
+    color:#e6e600;
 }
+
+.p-overview .overview li a .status .danger {
+    color:#f90303
+}
+
 .p-select-month .select{
     height:48px;
     background: #e0e0e0;

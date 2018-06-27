@@ -3,15 +3,18 @@ from django.shortcuts import redirect
 from farmer.models import Report, UserForm, Reports_Yield
 
 
+
 def form_fertilizer(request, farm_id, year, month, report_id):
     if request.method == "POST":
         Report.objects.filter(id=report_id).update(fertilizer_amount=request.POST.get('fertilizer_kgs', ''),
-                                                   fertilizer_used=request.POST.get('fertilizer_used', ''))
+                                                   fertilizer_used=request.POST.get('fertilizer_used', ''),
+                                                   )
 
         return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/succes/")
 
     report = Report.objects.get(id=report_id)
     report.fertilizer_used = report.fertilizer_used.lower()
+
 
     context = {
         'report': report,

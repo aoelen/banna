@@ -18,8 +18,7 @@ class Report(models.Model):
     # month = models.ForeignKey("Date", on_delete=models.CASCADE, null = 'True')
     farm = models.ForeignKey("Farm", on_delete=models.CASCADE)
     month_numeric = models.IntegerField(null=True, blank = 'True')
-    report_date = models.DateField(default=datetime.date.today) #maybe useful for later?
-
+    report_date = models.DateField(null=True) #maybe useful for later?
 
     def __str__(self):
         return str(self.farm.name) + " " + str(self.month) + " " + str(self.year)

@@ -16,6 +16,15 @@ $(document).ready(function() {
 <div class="p-form-planted">
     <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/plantedform/" method="POST">
         {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.yields.errors }}
+        {{ form.yields.1.errors }}
+        {{ form.yields.2.errors }}
+        {{ form.yields.3.errors }}
+        {{ form.yields.4.errors }}
+        {{ form.yields.5.errors }}
+
+
         <table>
             <thead>
                 <tr>
@@ -23,6 +32,7 @@ $(document).ready(function() {
                     <td class="second">Amount of planted trees</td>
                 </tr>
             </thead>
+
             <tbody>
                 <tr>
                     <td class="yield">1</td>
