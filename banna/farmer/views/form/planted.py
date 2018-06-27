@@ -7,34 +7,37 @@ import ctypes
 
 
 def form_planted(request, farm_id, year, month, report_id):
+    message_alert = ""
+    redirect_page = True
+
     if request.method == "POST":
 
         yields = request.POST.getlist('yield[]')
-        # for index, single_yield in enumerate(yields):
-        #     if single_yield == "":
-        #         print(index+1)
-        #         print('error')
-        #         ctypes.windll.user32.MessageBoxW(0, "Your text", "Your title", 1)
-        #
-        #         return redirect('/farmer/error/')
 
         for index, single_yield in enumerate(yields):
-            report = Report.objects.get(id=report_id)
-            person, created = Reports_Yield.objects.update_or_create(
-                    report_id=report, yield_number=index+1, defaults={"planted_amount_trees": single_yield}
-                )
+            if single_yield == "":
+                message_alert = "#message_alert"
+                redirect_page = False
+                break
 
+        if redirect_page == True:
+            for index, single_yield in enumerate(yields):
+                report = Report.objects.get(id=report_id)
+                person, created = Reports_Yield.objects.update_or_create(
+                        report_id=report, yield_number=index+1, defaults={"planted_amount_trees": single_yield}
+                    )
 
-        return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/harvestedtreesform/")
+            return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/harvestedtreesform/")
 
     reports_yield = Reports_Yield.objects.filter(report_id=report_id)
+    print(message_alert)
 
     yields = {}
-
     for report in reports_yield:
         yields[report.yield_number] = report.planted_amount_trees
 
     context = {
+        'message_alert': message_alert,
         'yields': yields,
         'report_id': report_id,
         'farm_id': farm_id,

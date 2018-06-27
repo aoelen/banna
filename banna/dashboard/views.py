@@ -2,12 +2,27 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from farmer.models import Farm, Report, UserForm, Reports_Yield
+from farmer.models import Farm, Report, UserForm, Reports_Yield, Factory_Data
 import pprint
 import datetime
 
+month_numbers_convert = {
+    1: 'Jan',
+    2: 'Feb',
+    3: 'Mar',
+    4: 'Apr',
+    5: 'May',
+    6: 'Jun',
+    7: 'Jul',
+    8: 'Aug',
+    9: 'Sep',
+    10: 'Oct',
+    11: 'Nov',
+    12: 'Dec'
+}
 
 @login_required
 def index(request):
@@ -24,24 +39,8 @@ def dashboard(request):
     now = datetime.datetime.now()
     report_yields = Reports_Yield.objects.all()
     farms_amount = Farm.objects.count()
-    reports_this_year = Report.objects.filter(year=now.year).order_by('month_numeric');
-
-    month_numbers_convert = {
-        1: 'Jan',
-        2: 'Feb',
-        3: 'Mar',
-        4: 'Apr',
-        5: 'May',
-        6: 'Jun',
-        7: 'Jul',
-        8: 'Aug',
-        9: 'Sep',
-        10: 'Oct',
-        11: 'Nov',
-        12: 'Dec'
-    }
-
-    yields = Reports_Yield.objects.filter(report_id__year="2018");
+    reports_this_year = Report.objects.filter(year=now.year).order_by('month_numeric')
+    yields = Reports_Yield.objects.filter(report_id__year="2018")
 
     harvest_per_month = {}
     planted_per_month = {}
@@ -60,6 +59,30 @@ def dashboard(request):
     for report_yield in report_yields:
         total_bananas_harvested = total_bananas_harvested + report_yield.harvested_amount_kg_banana
         total_trees_planted = total_trees_planted + report_yield.planted_amount_trees
+
+    ## Total KGs harvested
+    factory_datas = Factory_Data.objects.all()
+
+    total_factory_kgs = 0
+    for factory_data in factory_datas:
+        total_factory_kgs = total_factory_kgs + factory_data.kgs_received
+        print(factory_data.kgs_received)
+
+    ## KGS harvested vs KGs received
+    harvest_vs_received = {}
+    factory_year_datas = Factory_Data.objects.filter(year=now.year)
+
+    for i in range(1,13):
+        harvest_vs_received[month_numbers_convert[i]] = {}
+
+        for y in range(0,2):
+            harvest_vs_received[month_numbers_convert[i]][y] = 0
+
+    for month, harvest in harvest_per_month.items():
+        harvest_vs_received[month][0] = harvest
+
+    for factory_year_data in factory_year_datas:
+        harvest_vs_received[month_numbers_convert[factory_year_data.month]][1] = factory_year_data.kgs_received
 
     ## Trees per yield per month
     yields_trees = Reports_Yield.objects.filter(report_id__year="2018").select_related('report_id').order_by('report_id__month_numeric', '-id');
@@ -82,7 +105,12 @@ def dashboard(request):
 
         trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] = trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] + yields_tree.planted_amount_trees
 
-    print(trees_yield_month)
+    trees_yield_month_converted = {}
+
+    # convert month numbers to year
+    for i in range(1,13):
+        trees_yield_month_converted[month_numbers_convert[i]] = trees_yield_month[i]
+
     ## Farmer monthly updates
     all_farms = Farm.objects.all()
 
@@ -96,6 +124,8 @@ def dashboard(request):
         else:
             farmers_update = farmers_update + 1
 
+    farms = Farm.objects.all()
+
     context = {
         'total_bananas_harvested': total_bananas_harvested,
         'total_trees_planted': total_trees_planted,
@@ -105,7 +135,10 @@ def dashboard(request):
         'current_month': month_numbers_convert[now.month],
         'farmers_update': farmers_update,
         'farmers_no_update': farmers_no_update,
-        'trees_yield_month': trees_yield_month
+        'trees_yield_month': trees_yield_month_converted,
+        'total_factory_kgs': total_factory_kgs,
+        'harvest_vs_received': harvest_vs_received,
+        'farms': farms
     }
 
     # Render the .html file
@@ -127,27 +160,112 @@ def edit_farmer(request):
     return render(request, 'dashboard/edit_farmer.html')
 
 def factory_data(request):
+    now = datetime.datetime.now()
 
-    # Render the .html file
-    return render(request, 'dashboard/factory_data.html')
+    if request.method == "POST":
+        month = request.POST.get('month', '')
+        kgs_received = request.POST.get('kgs_received', '')
 
-def factory_overview(request):
+        Factory_Data.objects.update_or_create(
+            month=month, kgs_received=kgs_received, year=now.year
+        )
 
-    factory_input = Farm.objects.all()
+        return redirect('/dashboard/factory')
 
+    factory_datas = Factory_Data.objects.filter(year=now.year)
+
+    months_filledin = []
+
+    for factory_data in factory_datas:
+        months_filledin.append(factory_data.month)
 
     context = {
-        'factory_input': factory_input
+        'factory_data': factory_data,
+        'months': month_numbers_convert,
+        'months_filledin': months_filledin
     }
-    print(context)
+
+    # Render the .html file
+    return render(request, 'dashboard/factory_data.html', context)
+
+def factory_data_delete(request, data_id):
+    Factory_Data.objects.filter(id=data_id).delete()
+
+    return redirect('/dashboard/factory')
+
+
+def factory_data_edit(request, data_id):
+    if request.method == "POST":
+        kgs_received = request.POST.get('kgs_received', '')
+
+        Factory_Data.objects.filter(id=data_id).update(
+            kgs_received=kgs_received
+        )
+
+        return redirect('/dashboard/factory')
+
+    data = Factory_Data.objects.get(id=data_id)
+
+    context = {
+        'data': data,
+        'month': month_numbers_convert
+    }
+
+    return render(request, 'dashboard/factory_data_edit.html', context)
+
+
+    #return redirect('/dashboard/factory_data_edit', context)
+
+
+def factory_overview(request):
+    now = datetime.datetime.now()
+
+    factory_datas = Factory_Data.objects.filter(year=now.year).order_by('id')
+
+    graph_datas = {}
+
+    for factory_data in factory_datas:
+        graph_datas[factory_data.month] = factory_data.kgs_received
+
+    graph_datas_converted = {}
+    for i in range(1,13):
+        if i in graph_datas:
+            graph_datas_converted[month_numbers_convert[i]] = graph_datas[i]
+        else:
+            graph_datas_converted[month_numbers_convert[i]] = 0
+
+    context = {
+        'factory_datas': factory_datas,
+        'graph_datas': graph_datas_converted
+    }
 
     # Render the .html file
     return render(request, 'dashboard/factory_overview.html', context)
 
 def factory(request):
+    now = datetime.datetime.now()
+
+    factory_datas = Factory_Data.objects.filter(year=now.year).order_by('id')
+
+    graph_datas = {}
+
+    for factory_data in factory_datas:
+        graph_datas[factory_data.month] = factory_data.kgs_received
+
+    graph_datas_converted = {}
+    for i in range(1,13):
+        if i in graph_datas:
+            graph_datas_converted[month_numbers_convert[i]] = graph_datas[i]
+        else:
+            graph_datas_converted[month_numbers_convert[i]] = 0
+
+    context = {
+        'factory_datas': factory_datas,
+        'graph_datas': graph_datas_converted
+    }
 
     # Render the .html file
-    return render(request, 'dashboard/factory.html')
+    return render(request, 'dashboard/factory.html', context)
 
 def farmers(request):
     farmers = Farm.objects.all()
