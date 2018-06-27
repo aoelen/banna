@@ -82,6 +82,7 @@ def dashboard(request):
 
         trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] = trees_yield_month[yields_tree.report_id.month_numeric][yields_tree.yield_number] + yields_tree.planted_amount_trees
 
+    print(trees_yield_month)
     ## Farmer monthly updates
     all_farms = Farm.objects.all()
 

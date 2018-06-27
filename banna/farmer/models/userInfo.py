@@ -8,13 +8,13 @@ class Zone(models.Model):
     def __str__(self):
         zone_name = "Zone " + str(self.zone)
         return zone_name
-
+ 
 
 class Farm(models.Model):
     name = models.CharField(max_length=30)
     farmer = models.ForeignKey(User, related_name="Farmer" ,on_delete=models.CASCADE)
     person_in_charge = models.ManyToManyField(User, related_name="PIC")
     zone = models.ForeignKey("Zone", on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return str(self.name)
