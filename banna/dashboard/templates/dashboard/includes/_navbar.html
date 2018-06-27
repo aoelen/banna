@@ -8,7 +8,9 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="/dashboard/dashboard">Dashboard <span class="sr-only">(current)</span></a>
-        </li>{% for user_group in request.user.groups.all %}
+        </li>
+
+        {% for user_group in request.user.groups.all %}
 
         {% ifequal user_group|stringformat:"s" 'factory' %}
         <li class="nav-item">
@@ -20,16 +22,20 @@
         <li class="nav-item">
           <a class="nav-link" href="/dashboard/factory_overview">Factory Overview</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/farmers">Farmers</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/dashboard/users">Users</a>
+        </li>
         {% endifequal %}
         {% endfor %}
 
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard/farmers">Farmers</a>
-          </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard/users">Users</a>
-          </li>
+
+
         </ul>
 
         <ul class="navbar-nav navbar-right">

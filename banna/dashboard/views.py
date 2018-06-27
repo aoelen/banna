@@ -160,14 +160,6 @@ def farmers(request):
 
 def harvests(request):
 
-    '''harvests = Reports_Yield.objects.all()
-    count = 0
-    context = {
-        'harvests': harvests
-
-    }
-    print(context)'''
-
     harvests = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id');
 
     harvest_per_month = {}
@@ -178,9 +170,7 @@ def harvests(request):
 
         harvest_per_month[harvest.report_id.month] = harvest_per_month[harvest.report_id.month] + harvest.harvested_amount_kg_banana
 
-    #count = 0
     context = {
-        #'trees': trees
         'harvests': harvests,
         'harvest_per_month': harvest_per_month
     }
@@ -199,13 +189,11 @@ def trees(request):
 
         planted_per_month[row.report_id.month] = planted_per_month[row.report_id.month] + row.planted_amount_trees
 
-    #count = 0
+
     context = {
-        #'trees': trees
         'rows': yields,
         'planted_per_month': planted_per_month
     }
-    #print(context)
 
     # Render the .html file
     return render(request, 'dashboard/trees.html', context)

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /******************************
  3RD PARTY PLUGIN CUSTOMIZATION 
 ******************************/
@@ -1124,19 +1124,18 @@ table.dataTable thead .sorting_desc_disabled {
     display: none; }
 
 table.dataTable thead .sorting {
-  background: url("../plugins/datatables/images/sort_both.png") no-repeat center right; }
+   no-repeat center right; }
 
 table.dataTable thead .sorting_asc {
-  background: url("../plugins/datatables/images/sort_asc.png") no-repeat center right; }
+ no-repeat center right; }
 
 table.dataTable thead .sorting_desc {
-  background: url("../plugins/datatables/images/sort_desc.png") no-repeat center right; }
+ no-repeat center right; }
 
 table.dataTable thead .sorting_asc_disabled {
-  background: url("../plugins/datatables/images/sort_asc_disabled.png") no-repeat center right; }
+ 
 
-table.dataTable thead .sorting_desc_disabled {
-  background: url("../plugins/datatables/images/sort_desc_disabled.png") no-repeat center right; }
+table.dataTable thead .sorting_desc_disabled {no-repeat center right; }
 
 table.dataTable th:active {
   outline: none; }
