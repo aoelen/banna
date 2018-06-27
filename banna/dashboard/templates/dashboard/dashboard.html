@@ -27,7 +27,7 @@
                           </div>
                           <div class="details">
                               <div class="number">
-                                  <span id = "total_trees" >0</span>
+                                  <span id = "total_trees" >{{total_factory_kgs}}</span>
                               </div>
                               <div> Bananas Received (KG) </div>
                           </div>
@@ -158,20 +158,25 @@
              function drawChart() {
                var data = google.visualization.arrayToDataTable([
                  ['Month', 'Factory Received', 'Harvests'],
-                 ['Jan',  300,      400],
+                 {% for month, row in harvest_vs_received.items %}
+                ['{{month}}', {{row.1}}, {{row.0}}],
+                 {% endfor %}
+                 /*['Jan',  300,      400],
                  ['Feb',  170,      260],
                  ['Mar',  260,       120],
                  ['Apr',  130,      240],
                  ['May',  200,      150],
                  ['June',  170,      360],
                  ['July',  260,       320],
-                 ['Aug',  230,      340]
+                 ['Aug',  230,      340]*/
                ]);
 
                var options = {
                  curveType: 'function',
                  legend: { position: 'bottom' },
-                 vAxis: { gridlines: { count: 6, color: 'white' } },
+                 vAxis: { gridlines: { count: 6, color: 'white' }, minValue:0, viewWindow: {
+                   min: 0
+               } },
                  colors: ['red','green']
                };
 
@@ -195,7 +200,9 @@
 
              var options = {
                curveType: 'none',
-               hAxis: { gridlines: { count: 6, color: 'white' } },
+               hAxis: { gridlines: { count: 6, color: 'white' }, minValue:0, viewWindow: {
+                 min: 0
+             }  },
                legend: { position: 'right' }
              };
 
@@ -222,7 +229,9 @@
                    var options = {
                      curveType: 'none',
                      legend: { position: 'right' },
-                     hAxis: { gridlines: { count: 6, color: 'white' } },
+                     hAxis: { gridlines: { count: 6, color: 'white' } , minValue:0, viewWindow: {
+                       min: 0
+                   } },
                      colors: ['green']
                    };
 
@@ -240,14 +249,7 @@
                          function drawChart() {
                            var data = google.visualization.arrayToDataTable([
                              ['Month', 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
-                             /*['Jan',  30,      40,      40,      40,      20],
-                             ['Feb',  70,      60,      50,      40,      30],
-                             ['Mar',  60,      20,      40,      30,      20],
-                             ['Apr',  30,      40,      50,      60,      10],
-                             ['May',  20,      50,      45,      80,      30],
-                             ['June',  70,     60,      70,      10,      10],
-                             ['July',  60,     20,      65,      80,      5],
-                             ['Aug',   10,      5,      0,      0,      0]*/
+                             /*['Jan',  30,      40,      40,      40,      20],*/
                              {% for month, row in trees_yield_month.items %}
                              ['{{month}}',
                              {% for index,yield_n in row.items %}
@@ -260,7 +262,9 @@
                            var options = {
                              curveType: 'function',
                              legend: { position: 'right' },
-                             vAxis: { gridlines: { count: 6, color: 'white' } },
+                             vAxis: { gridlines: { count: 6, color: 'white' }, minValue:0, viewWindow: {
+                               min: 0
+                           }  },
                              colors: ['red','green', 'yellow', 'blue', 'purple']
                            };
 
@@ -321,44 +325,12 @@
     // Array of markers
     var markers = [
       // Asajaya zone
+      {% for farm in farms %}
       {
-        coordinates:{lat:1.498600,lng:110.668350},
-        content:'<h4>Farmer 1</h4>'
-      },
-      {
-        coordinates:{lat:1.528604,lng:110.539684},
-        content:'<h4>Farmer 2</h4>'
-      },
-      {
-        coordinates:{lat:1.521740,lng:110.522518},
-        content:'<h4>Farmer 3</h4>'
-      },
-      {
-        coordinates:{lat:1.507574,lng:110.602161},
-        content:'<h4>Farmer 4</h4>'
-      },
-      // Samarahan zone
-      {
-        coordinates:{lat:1.458699,lng:110.421651},
-        content:'<h4>Farmer 5</h4>'
-      },
-      {
-        coordinates:{lat:1.455715,lng:110.585572},
-        content:'<h4>Farmer 6</h4>'
-      },
-      // Simunjan zone
-      {
-        coordinates:{lat:1.240577,lng:110.692323},
-        content:'<h4>Farmer 7</h4>'
-      },
-      {
-        coordinates:{lat:1.325291,lng:110.584198},
-        content:'<h4>Farmer 8</h4>'
-      },
-      {
-        coordinates:{lat:1.340393,lng:110.751740},
-        content:'<h4>Farmer 9</h4>'
-      }
+        coordinates:{lat:{{farm.lat}},lng:{{farm.lng}}},
+        content:'<h4>{{farm.name}}</h4>'
+    },
+      {% endfor %}
     ];
 
     // Loop through markers
