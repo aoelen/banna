@@ -4,26 +4,25 @@ from farmer.models import Date, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
 from datetime import datetime, date
 from time import strptime
-
+import pprint
 
 #SHOW OVERVIEW MONTH REPORTS
 def overview_months(request, farm_id):
     currentdate =  datetime.now().date()
-
     #Transform number into month name
     formated_month = datetime(int(currentdate.year), int(currentdate.month), int(currentdate.day))
     selected_month = formated_month.strftime("%B")
 
-    #Create of get new month report
-    person, created = Report.objects.get_or_create(
-        month=selected_month,
-        year=currentdate.year,
-        farm_id=farm_id,
-        report_date = None,
-        fertilizer_used = "",
-        # fertilizer_amount = 0,
-        month_numeric= currentdate.month,
-    )
+    farms = Farm.objects.filter(id=farm_id)
+    for farm in farms:
+        print(farm.id)
+        #Create of get new month report
+        person, created = Report.objects.get_or_create(
+            month = selected_month,
+            month_numeric=int(currentdate.month),
+            year = int(currentdate.year),
+            farm = farm,
+        )
 
     reports = Report.objects.filter(farm=farm_id)
 
@@ -54,12 +53,12 @@ def overview_months(request, farm_id):
                     'message': 'danger',
                     'value': 'fas fa-exclamation-circle'
                 }
-        if report.report_date is not None:
+        else:
             data['report']['date'] = {
                 'message': "success",
                 'value': 'fas fa-check-circle'
             }
-
+    print(data)
 
     context = {
         'data': data,

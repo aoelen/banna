@@ -13,8 +13,10 @@ class Zone(models.Model):
 class Farm(models.Model):
     name = models.CharField(max_length=30)
     farmer = models.ForeignKey(User, related_name="Farmer" ,on_delete=models.CASCADE)
-    person_in_charge = models.ManyToManyField(User, related_name="PIC")
+    # person_in_charge = models.ManyToManyField(User, related_name="PIC")
     zone = models.ForeignKey("Zone", on_delete=models.CASCADE)
-    
+    longitude = models.IntegerField(null=True, blank = 'True')
+    latitude = models.IntegerField(null=True, blank = 'True')
+
     def __str__(self):
         return str(self.name)

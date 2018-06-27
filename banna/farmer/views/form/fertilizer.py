@@ -26,7 +26,6 @@ def form_fertilizer(request, farm_id, year, month, report_id):
             message_alert = "#message_alert"
 
     report = Report.objects.get(id=report_id)
-    report.fertilizer_used = report.fertilizer_used.lower()
 
 
     context = {
