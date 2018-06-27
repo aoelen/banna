@@ -4,13 +4,10 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
-
-# urlpatterns = [
-#     path('hallo',  views.select_month, name='select_month'),
-# ]
-
 
 def is_farmer(user):
     return user.groups.filter(name='farmer').exists()
@@ -58,4 +55,4 @@ urlpatterns = [
 #     url('/form_harvest/<int:report_id>', login_required(views.form_harvest), name='form_harvest'),
 #     path('(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/form_fertilizer/<int:report_id>', login_required(views.form_fertilizer), name='form_fertilizer'),
 #     path('(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/success/<int:report_id>', login_required(views.success), name='success'),
- ]
+ ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
