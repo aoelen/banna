@@ -6,7 +6,8 @@
   <a class="btn bg-success" style = "color: white;" href="/dashboard/add_farmer">Add New Farmer </a>
  <hr>
 
- <table class="table table-striped">
+<table class="table table-striped" id = "farmers_table">
+ <thead>
    <tr>
      <th>Farm ID</th>
      <th>Farmer Name</th>
@@ -16,6 +17,8 @@
      <th></th>
      <th></th>
    </tr>
+  </thead>
+ <tbody>
   {% for farmer in farmers %}
      <tr>
          <td> {{farmer.id}} </td>
@@ -32,6 +35,23 @@
          </td>
      </tr>
   {% endfor %}
- </table>
+ </tbody>
+</table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#farmers_table').DataTable( {
+      dom: 'Bfrtip',
+      "lengthMenu": [ 10, 25, 50, 75, 100 ],
+      buttons: [
+
+            { extend: 'copyHtml5', className: 'copyButton' },
+            { extend: 'excelHtml5', className: 'excelButton' },
+            { extend: 'csvHtml5', className: 'csvButton' }
+
+      ]
+    } );
+} );
+</script>
 
 {% endblock %}
