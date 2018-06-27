@@ -9,5 +9,5 @@ from time import strftime
 #SHOW OVERVIEW FARMS
 def overview_farm(request):
     for loggedin_user in  User.objects.filter(id= request.user.id):
-        farms = Farm.objects.filter(person_in_charge=loggedin_user)
+        farms = Farm.objects.filter(farmer=loggedin_user)
     return render(request, 'farmer/overview/farms.html', {'farms': farms})

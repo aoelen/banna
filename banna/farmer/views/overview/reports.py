@@ -17,7 +17,7 @@ def overview_report(request, farm_id, year , month):
 
     farm_object = Farm.objects.filter(id=farm_id)
     for farm in farm_object:
-        reports = Report.objects.filter(farm=farm, month= month)
+        reports = Report.objects.filter(farm_id=farm, month= month)
 
         for report in reports:
             data['fertilizer'] = {
@@ -27,7 +27,6 @@ def overview_report(request, farm_id, year , month):
 
             yield_reports = Reports_Yield.objects.filter(report_id=report).order_by('id')
             for yield_number in yield_reports:
-                print(yield_number)
                 total_amount_planted_trees += yield_number.planted_amount_trees
                 total_amount_harvested_trees += yield_number.harvested_amount_trees
                 total_amount_harvested_kg += yield_number.harvested_amount_kg_banana
