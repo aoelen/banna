@@ -9,21 +9,39 @@ $(document).ready(function() {
 
         return false;
     });
+
+     $('{{message_alert}}').modal({
+            show: true,
+            backdrop: "static"
+     });
 });
 </script>
+
+
 <header>New planted trees</header>
+
+        <div class="container">
+            <div id="message_alert" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Error Message</h4>
+                    </div>
+                    <div class="modal-body">
+                      <h6>Please fill in all fields. If there are no new planted trees in a particular yield, please fill in zero.</h6>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
 
 <div class="p-form-planted">
     <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/plantedform/" method="POST">
         {% csrf_token %}
-        {{ form.non_field_errors }}
-        {{ form.yields.errors }}
-        {{ form.yields.1.errors }}
-        {{ form.yields.2.errors }}
-        {{ form.yields.3.errors }}
-        {{ form.yields.4.errors }}
-        {{ form.yields.5.errors }}
-
 
         <table>
             <thead>

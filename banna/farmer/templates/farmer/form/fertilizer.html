@@ -9,9 +9,9 @@ $(document).ready(function() {
         $(this).addClass('selected');
 
         if ($(this).hasClass('yes')) {
-            $('input[name="fertilizer_used"]').val('yes');
+            $('input[name="fertilizer_used"]').val('Yes');
         } else {
-            $('input[name="fertilizer_used"]').val('no');
+            $('input[name="fertilizer_used"]').val('No');
         }
     });
 
@@ -20,16 +20,39 @@ $(document).ready(function() {
 
         return false;
     });
+
+    $('{{message_alert}}').modal({
+        show: true,
+        backdrop: "static"
+    });
 });
 </script>
 
 <header>Fertilizer</header>
 
+    <div class="container">
+            <div id="message_alert" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Error Message</h4>
+                    </div>
+                    <div class="modal-body">
+                      <h6>Please fill in all fields. If there are no harvested trees in a particular yield, please fill in zero.</h6>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
     <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/fertilizerform/" method="POST">
     {% csrf_token %}
     <div class="p-form-fertilizer">
         <div class="label">Did you use a fertilizer this month?</div>
-        <input type="hidden" name="fertilizer_used" value="{{report.used}}" >
+        <input type="hidden" name="fertilizer_used" value="{{report.fertilizer_used|title}}" >
 
         <div class="buttons">
             <div class="yes button {% if report.fertilizer_used == 'yes' %}selected{% endif %}">Yes</div>
@@ -44,16 +67,13 @@ $(document).ready(function() {
         </div>
 
         <div class="bottom-menu">
-            <a href="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/harvestedform/">
+            <a href="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/harvestedbananasform/">
                 <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
             </a>
             <a>
                 <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Submit</button>
             </a>
         </div>
-
-       
-
     </div>
 </form>
 

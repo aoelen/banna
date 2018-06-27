@@ -5,12 +5,7 @@ import datetime
 
 
 class Report(models.Model):
-    FERTILIZER_USED = (
-        ('Yes', 'Yes'),
-        ('No', 'No'),
-    )
-
-    fertilizer_used = models.CharField(max_length=30, choices=FERTILIZER_USED)
+    fertilizer_used = models.CharField(max_length=30, null=True, blank = 'True')
     fertilizer_amount = models.IntegerField(null=True, blank = 'True')
     month = models.CharField(max_length=10, blank = 'True',null=True)
     year = models.IntegerField(blank = 'True',null=True)
@@ -18,7 +13,7 @@ class Report(models.Model):
     # month = models.ForeignKey("Date", on_delete=models.CASCADE, null = 'True')
     farm = models.ForeignKey("Farm", on_delete=models.CASCADE)
     month_numeric = models.IntegerField(null=True, blank = 'True')
-    report_date = models.DateField(null=True) #maybe useful for later?
+    report_date = models.DateField(null=True, blank = 'True')
 
     def __str__(self):
         return str(self.farm.name) + " " + str(self.month) + " " + str(self.year)

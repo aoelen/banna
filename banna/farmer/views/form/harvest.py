@@ -4,18 +4,28 @@ from farmer.models import Report, UserForm, Reports_Yield
 
 
 def form_harvest_trees(request, farm_id, year, month, report_id):
+    message_alert = ""
+    redirect_page = True
+
     if request.method == "POST":
 
         yields = request.POST.getlist('yield[]')
 
         for index, single_yield in enumerate(yields):
-            report = Report.objects.get(id=report_id)
+            if single_yield == "":
+                message_alert = "#message_alert"
+                redirect_page = False
+                break
 
-            person, created = Reports_Yield.objects.update_or_create(
-                report_id=report, yield_number=index+1, defaults={"harvested_amount_trees": single_yield}
-            )
+        if redirect_page == True:
+            for index, single_yield in enumerate(yields):
+                report = Report.objects.get(id=report_id)
 
-        return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/harvestedbananasform/")
+                person, created = Reports_Yield.objects.update_or_create(
+                    report_id=report, yield_number=index+1, defaults={"harvested_amount_trees": single_yield}
+                )
+
+            return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/harvestedbananasform/")
 
     reports_yield = Reports_Yield.objects.filter(report_id=report_id)
 
@@ -25,6 +35,7 @@ def form_harvest_trees(request, farm_id, year, month, report_id):
         yields[report.yield_number] = report.harvested_amount_trees
 
     context = {
+        'message_alert': message_alert,
         'yields': yields,
         'report_id': report_id,
         'farm_id': farm_id,
@@ -36,18 +47,28 @@ def form_harvest_trees(request, farm_id, year, month, report_id):
 
 
 def form_harvest_bananas(request, farm_id, year, month, report_id):
+    message_alert = ""
+    redirect_page = True
+
     if request.method == "POST":
 
         yields = request.POST.getlist('yield[]')
 
         for index, single_yield in enumerate(yields):
-            report = Report.objects.get(id=report_id)
+            if single_yield == "":
+                message_alert = "#message_alert"
+                redirect_page = False
+                break
 
-            person, created = Reports_Yield.objects.update_or_create(
-                report_id=report, yield_number=index+1, defaults={"harvested_amount_kg_banana": single_yield}
-            )
+        if redirect_page == True:
+            for index, single_yield in enumerate(yields):
+                report = Report.objects.get(id=report_id)
 
-        return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/fertilizerform/")
+                person, created = Reports_Yield.objects.update_or_create(
+                    report_id=report, yield_number=index+1, defaults={"harvested_amount_kg_banana": single_yield}
+                )
+
+            return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/fertilizerform/")
 
     reports_yield = Reports_Yield.objects.filter(report_id=report_id)
 
@@ -57,6 +78,7 @@ def form_harvest_bananas(request, farm_id, year, month, report_id):
         yields[report.yield_number] = report.harvested_amount_kg_banana
 
     context = {
+        'message_alert': message_alert,
         'yields': yields,
         'report_id': report_id,
         'farm_id': farm_id,
