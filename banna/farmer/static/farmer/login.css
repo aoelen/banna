@@ -42,9 +42,12 @@ header {
     font-size: 25px;
     margin-top:-7px
 
-#login_background{z-index: 1;}
+#login_background{
+    z-index: 1;
+}
+
 #login_background:before{
-            content: "";
+  content: "";
   position: absolute;
   z-index: -1;
   top: 0;
@@ -53,7 +56,7 @@ header {
   right: 0;
   background-image: url('img/login_background.png');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size:100%;
     opacity: 0.6;
     filter:alpha(opacity=40);
     height:100%;

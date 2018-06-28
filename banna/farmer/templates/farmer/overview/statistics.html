@@ -7,42 +7,37 @@
     <div class="container" id="layout_background">
     </div>
         <header>Statistics Overview</header>
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-xs-12 col-sm-12 statisticsgraph">
-                    <div class="statisticsgraph">
+                <div class="statisticsgraph">
                       <div class="caption">
                             <i class="icon-bar-chart font-red"></i>
-                                        <span>Monthly Harvested Bananas (KG)</span>
+                            <span>Monthly Harvested Bananas (KG)</span>
                       </div>
                       <div id="my_monthly_stat" class="chart"></div>
-                    </div>
                 </div>
-            </div>
-                        <hr>
+    <div class="container-fluid">
+    <hr>
 
-            <div class="row">
+            <div class="row boxes">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class = "bg-success" style = "height: 55px; margin-top:5px; color: white;">
+                    <div class = "box thb" style = "height: 55px; margin-top:5px; color: white;">
                                   <div style= "margin-left:5px;">
-                                      <span style = "font-size: 20px;" id = "total_harvested">{{bananas_harvested}}</span>
+                                      <span style = "font-size: 18px;" id = "total_harvested">{{bananas_harvested}}</span>
                                           <div>Total Bananas Harvested (KG) </div>
                                   </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <div class = "bg-primary" style = "height: 55px; margin-top:5px; color: white;">
+                      <div class = "box ttp" style = "height: 55px; margin-top:5px; color: white;">
                                     <div style= "margin-left:5px;">
-                                        <span style = "font-size: 20px;" id = "total_planted">{{trees_planted}}</span>
+                                        <span style = "font-size: 18px;" id = "total_planted">{{trees_planted}}</span>
                                             <div> Total Trees Planted</div>
                                     </div>
                       </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <div class = "bg-danger" style = "height: 55px; margin-top:5px; color: white;">
+                      <div class = "box tth" style = "height: 55px; margin-top:5px; color: white;">
                                     <div style= "margin-left:5px;">
-                                        <span style = "font-size: 20px;" id = "total_harvested">{{trees_harvested}}</span>
+                                        <span style = "font-size: 18px;" id = "total_harvested">{{trees_harvested}}</span>
                                             <div> Total Trees Harvested </div>
                                     </div>
                       </div>
@@ -65,7 +60,7 @@
 
                      function drawChart() {
                        var data = google.visualization.arrayToDataTable([
-                         ['Period', 'Expected Harvest', 'Actual Harvest'],
+                         ['Period', 'Expected', 'Actual'],
                          ['June',  300,      400],
                          ['July',  170,      260],
                          ['August',  260,       120],
@@ -77,7 +72,9 @@
 
                        var options = {
                          curveType: 'function',
-                         legend: { position: 'bottom' },
+                         legend: { position: 'top' },
+                         width: '320',
+                         height: '215',
                          vAxis: { gridlines: { count: 6, color: 'white' } },
                          colors: ['red','green']
                        };

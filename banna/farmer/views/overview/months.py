@@ -39,7 +39,7 @@ def overview_months(request, farm_id):
                     'year': report.year,
                     'date':{
                         'message': " ",
-                        'value': 'fas fa-angle-double-right'
+                        'value': 'icons/angle-double-right.svg',
                     }
                 })
 
@@ -50,7 +50,7 @@ def overview_months(request, farm_id):
                     'year': report.year,
                     'date':{
                         'message': 'error',
-                        'value': 'fas fa-exclamation-triangle'
+                        'value': 'icons/alert.png'
                     }
                 })
 
@@ -61,7 +61,7 @@ def overview_months(request, farm_id):
                     'year': report.year,
                     'date':{
                         'message': 'danger',
-                        'value': 'fas fa-exclamation-circle'
+                        'value': 'icons/cancel.svg'
                     }
                 })
         else:
@@ -71,7 +71,7 @@ def overview_months(request, farm_id):
                 'year': report.year,
                 'date': {
                     'message': "success",
-                    'value': 'fas fa-check-circle'
+                    'value': 'icons/check.png'
                 }
             })
     print(data)
