@@ -42,15 +42,14 @@ $(document).ready(function() {
 <div class="p-form-planted">
     <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/plantedform/" method="POST">
         {% csrf_token %}
-
+    <div class="planted-table">
         <table>
             <thead>
                 <tr>
-                    <td class="first">Yield</td>
-                    <td class="second">Amount of planted trees</td>
+                    <td class="first"><strong>Yield</strong></td>
+                    <td class="second"><strong>Amount of trees</strong></td>
                 </tr>
             </thead>
-
             <tbody>
                 <tr>
                     <td class="yield">1</td>
@@ -74,14 +73,14 @@ $(document).ready(function() {
                 </tr>
             </tbody>
         </table>
-
+    </div>
 
          <div class="bottom-menu">
              <a href="/farmer/{{farm_id}}/{{year}}/{{ month }}/" >
-                 <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
+                 <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block twobuttons">Go back</button>
              </a>
              <a>
-                 <button type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Next</button>
+                 <button type="button" class="edit button btn btn-success custom-btn btn-lg btn-block twobuttons" id="submitForm">Next</button>
              </a>
         </div>
 

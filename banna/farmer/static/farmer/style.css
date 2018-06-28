@@ -65,30 +65,44 @@ header {
 }
 
 .p-overview .overview li {
-    /*background: #7ea25d;*/
+    background: #7ea25d;
     width:100%;
     height:50px;
     border-bottom: 1px solid #bbbbbb;
 }
+
 .p-overview .overview li a {
     width:inherit;
     height:inherit;
     padding:13px 20px;
     display:block;
-    color:#3e3e3e;
+    color: #ffffff;
+
+}
 
 }.p-overview .overview li a:hover {
     text-decoration: none;
 }
-.p-overview .overview li:nth-child(even) {
-    background: #e0e0e0
+
+
+.p-overview .overview li:nth-child(odd) {
+    background: rgba(107, 151, 70, 0.7)
 }
+
+.p-overview .overview li:nth-child(even) {
+    background: rgba(79, 113, 42, 0.7)
+
+}
+
+
+
 .p-overview .overview li .status {
     display: block;
     float:right;
     font-size: 25px;
     margin-top:-7px
 }
+
 .p-overview .overview li a .status .success {
     color:#2ddb14
 }
@@ -102,20 +116,26 @@ header {
 
 .p-select-month .select{
     height:48px;
-    background: #e0e0e0;
+    background: rgba(79, 113, 42, 0.7);
     width:100%;
     padding:12px 20px;
-    border-bottom: 1px solid #bbbbbb;
+    border-bottom: 1px solid #ffffff;
 }
-
 .p-select-month .select .name{
     float:left;
+    color: #ffffff;
 }
 .p-select-month .select .number{
     float:right;
+    color: #ffffff;
+
 }
 .p-select-month .open {
     display:none;
+    background: rgba(107, 151, 70, 0.7);
+    box-shadow: 5px, 5px grey;
+    color: #ffffff;
+
 }
 .p-select-month table {
     width:100%;
@@ -125,7 +145,7 @@ header {
     padding:7px 20px 7px 50px
 }
 .p-select-month table tr:nth-child(even) {
-    /*background: #7b9d5c;*/
+    background: #7b9d5c;
 }
 .p-select-month table td.number-t {
     text-align: right;
@@ -133,24 +153,19 @@ header {
 
 .bottom-menu {
     height: 45px;
-    width:100%;
     bottom:0;
-    position: absolute;
     left:0;
-    float: left;
+    right:0;
+    position: absolute;
 }
 
-.bottom-menu a button{
-    float:left;
+.bottom-menu .twobuttons{
     width:50%;
+    float:left;
     display:block;
     border-radius:0
 }
 
-.bottom-menu a {
-    width:100%;
-
-}
 
 
 .bottom-menu .custom-btn {
@@ -165,28 +180,54 @@ header {
 .bottom-menu .button.edit:hover {
     background: #0a3807;
 }
-.p-form-planted table {
+.p-form-planted .planted-table {
     width:100%;
-}
-.p-form-planted table thead .first {
-    width:50%;
     text-align: center;
+    padding-bottom: 4%;
+    color: #ffffff;
+     background: rgba(107, 151, 70, 0.7);
+
+}
+
+
+.p-form-planted table thead .first {
+    width:200px;
+    text-align: center;
+    border-bottom: 1px solid #ffffff;
+    background-color: rgba(79, 113, 42, 0.7);
+    padding-top: 4%;
+
 }
 .p-form-planted table thead .second {
-    width:50%;
+    width:200px;
     text-align: center;
+
+    border-bottom: 1px solid white;
+    background-color: rgba(79, 113, 42, 0.7);
+
+    padding-top: 4%;
+
+
 }
+
+.p-form-planted table {
+
+}
+
 .p-form-planted table td {
-    padding:5px 0
+    padding:6px 0;
+
+
 }
 .p-form-planted table .yield {
     text-align: center;
+
 }
 .p-form-planted table .input {
     text-align: center;
 }
 .p-form-planted table input {
-    width:100px;
+    width:40%;
     border-radius: 5px;
     text-align: center
 }

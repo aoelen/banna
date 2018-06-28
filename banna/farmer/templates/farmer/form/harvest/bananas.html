@@ -40,43 +40,46 @@ $(document).ready(function() {
 <div class="p-form-planted">
     <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/harvestedbananasform/" method="POST">
         {% csrf_token %}
-        <table>
-            <thead>
-                <tr>
-                    <td class="first">Yield</td>
-                    <td class="second">Amount of Bananas</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="yield">1</td>
-                    <td class="input"><input type="number" name="yield[]" value="{{yields.1}}" /> KG</td>
-                </tr>
-                <tr>
-                    <td class="yield">2</td>
-                    <td class="input"><input type="number" name="yield[]"  value="{{yields.2}}" /> KG</td>
-                </tr>
-                <tr>
-                    <td class="yield">3</td>
-                    <td class="input"><input type="number" name="yield[]" value="{{yields.3}}" /> KG</td>
-                </tr>
-                <tr>
-                    <td class="yield">4</td>
-                    <td class="input"><input type="number" name="yield[]" value="{{yields.4}}" /> KG</td>
-                </tr>
-                <tr>
-                    <td class="yield">5</td>
-                    <td class="input"><input type="number" name="yield[]" value="{{yields.5}}" /> KG</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="planted-table">
+
+            <table>
+                <thead>
+                    <tr>
+                        <td class="first"><strong>Yield</strong></td>
+                        <td class="second"><strong>Amount of Bananas</strong></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="yield">1</td>
+                        <td class="input"><input type="number" name="yield[]" value="{{yields.1}}" /> KG</td>
+                    </tr>
+                    <tr>
+                        <td class="yield">2</td>
+                        <td class="input"><input type="number" name="yield[]"  value="{{yields.2}}" /> KG</td>
+                    </tr>
+                    <tr>
+                        <td class="yield">3</td>
+                        <td class="input"><input type="number" name="yield[]" value="{{yields.3}}" /> KG</td>
+                    </tr>
+                    <tr>
+                        <td class="yield">4</td>
+                        <td class="input"><input type="number" name="yield[]" value="{{yields.4}}" /> KG</td>
+                    </tr>
+                    <tr>
+                        <td class="yield">5</td>
+                        <td class="input"><input type="number" name="yield[]" value="{{yields.5}}" /> KG</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div class="bottom-menu">
                 <a href="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/plantedform/">
-                    <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block">Go back</button>
+                    <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block twobuttons">Go back</button>
                 </a>
                 <a>
-                    <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Next</button>
+                    <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block twobuttons" id="submitForm">Next</button>
                 </a>
         </div>
 

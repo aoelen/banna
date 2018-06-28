@@ -7,18 +7,17 @@
 <div class="p-overview">
 
     {% if data %}
-
-
         <ul class="overview">
-            {% for key, report in data.items %}
-            <li>
-                <a href="/farmer/{{report.farm_id}}/{{ report.year }}/{{ report.month }}">
-                    <span class="name">{{report.month}} {{report.year}}</span>
-                    <span class="status"><i class="{{report.date.message}} {{report.date.value}}"></i></span>
-                </a>
-            </li>
+            <div id="overview-month">
+            {% for month in data %}
+                <li>
+                    <a href="/farmer/{{month.farm_id}}/{{ month.year }}/{{ month.month }}">
+                        <span class="name" >{{month.month}} {{month.year}}</span>
+                        <span class="status"><i class="{{month.date.message}} {{month.date.value}}"></i></span>
+                    </a>
+                </li>
             {% endfor %}
-
+            </div>
         </ul>
 
     {% else %}
@@ -28,10 +27,10 @@
 
 <div class="bottom-menu">
     <a href="/farmer/farms/">
-        <button type="button" class="btn btn-success custom-btn btn-lg btn-block" >Go back</button>
+        <button type="button" class="btn btn-success custom-btn btn-lg btn-block twobuttons" >Go back</button>
     </a>
     <a href="/farmer/{{farm_id}}/statistics/">
-        <button type="button" class="edit button btn btn-success custom-btn btn-lg btn-block" id="submitForm">Statistics</button>
+        <button type="button" class="edit button btn btn-success custom-btn btn-lg btn-block twobuttons" id="submitForm">Statistics</button>
     </a>
 </div>
 
