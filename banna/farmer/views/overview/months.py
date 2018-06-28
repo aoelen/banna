@@ -26,38 +26,54 @@ def overview_months(request, farm_id):
 
     reports = Report.objects.filter(farm=farm_id)
 
-    data = {}
+    data = []
     for report in reports:
         month_name = report.month
         month_number = strptime(month_name, '%B').tm_mon
-        data['report'] = {
-            'farm_id': farm_id,
-            'month': report.month,
-            'year': report.year
-        }
 
         if report.report_date is None:
             if currentdate <= datetime(report.year, month_number, 7).date():
-                data['report']['date'] = {
-                    'message': " ",
-                    'value': 'fas fa-angle-double-right'
-                }
+                data.append({
+                    'farm_id': farm_id,
+                    'month': report.month,
+                    'year': report.year,
+                    'date':{
+                        'message': " ",
+                        'value': 'fas fa-angle-double-right'
+                    }
+                })
+
             if currentdate > datetime(report.year, month_number, 7).date() and currentdate < datetime(report.year, month_number, 20).date():
-                data['report']['date'] = {
-                    'message': 'error',
-                    'value': 'fas fa-exclamation-triangle'
-                }
+                data.append({
+                    'farm_id': farm_id,
+                    'month': report.month,
+                    'year': report.year,
+                    'date':{
+                        'message': 'error',
+                        'value': 'fas fa-exclamation-triangle'
+                    }
+                })
 
             if currentdate > datetime(report.year, month_number, 21).date():
-                data['report']['date'] = {
-                    'message': 'danger',
-                    'value': 'fas fa-exclamation-circle'
-                }
+                data.append({
+                    'farm_id': farm_id,
+                    'month': report.month,
+                    'year': report.year,
+                    'date':{
+                        'message': 'danger',
+                        'value': 'fas fa-exclamation-circle'
+                    }
+                })
         else:
-            data['report']['date'] = {
-                'message': "success",
-                'value': 'fas fa-check-circle'
-            }
+            data.append({
+                'farm_id': farm_id,
+                'month': report.month,
+                'year': report.year,
+                'date': {
+                    'message': "success",
+                    'value': 'fas fa-check-circle'
+                }
+            })
     print(data)
 
     context = {

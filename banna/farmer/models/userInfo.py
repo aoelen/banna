@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Zone(models.Model):
-
     zone = models.CharField(max_length=8)
 
     def __str__(self):
@@ -13,7 +12,6 @@ class Zone(models.Model):
 class Farm(models.Model):
     name = models.CharField(max_length=30)
     farmer = models.ForeignKey(User, related_name="Farmer" ,on_delete=models.CASCADE)
-    # person_in_charge = models.ManyToManyField(User, related_name="PIC")
     zone = models.ForeignKey("Zone", on_delete=models.CASCADE)
     lat = models.DecimalField(max_digits=9, decimal_places=6,null=True, blank = 'True')
     lng = models.DecimalField(max_digits=9, decimal_places=6,null=True, blank = 'True')

@@ -1,65 +1,54 @@
+{% extends 'farmer/layout.html' %}
 {% load static %}
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Banna - Farmer management</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'farmer/Statistics.css' %}" />
-    <link href="{% static 'dashboard/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'dashboard/plugins/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{% block content %}
 
-  </head>
 
-  <body>
     <div class="container" id="layout_background">
     </div>
         <header>Statistics Overview</header>
-        <div class="container-fluid " style ="background-color: white;">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12 col-sm-12 statisticsgraph">
+                    <div class="statisticsgraph">
+                      <div class="caption">
+                            <i class="icon-bar-chart font-red"></i>
+                                        <span>Monthly Harvested Bananas (KG)</span>
+                      </div>
+                      <div id="my_monthly_stat" class="chart"></div>
+                    </div>
+                </div>
+            </div>
+                        <hr>
+
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class = "bg-success" style = "height: 100px; margin-top:5px; color: white;">
+                    <div class = "bg-success" style = "height: 55px; margin-top:5px; color: white;">
                                   <div style= "margin-left:5px;">
-                                      <span style = "font-size: 30px;" id = "total_harvested">{{bananas_harvested}}</span>
+                                      <span style = "font-size: 20px;" id = "total_harvested">{{bananas_harvested}}</span>
                                           <div>Total Bananas Harvested (KG) </div>
                                   </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <div class = "bg-primary" style = "height: 100px; margin-top:5px; color: white;">
+                      <div class = "bg-primary" style = "height: 55px; margin-top:5px; color: white;">
                                     <div style= "margin-left:5px;">
-                                        <span style = "font-size: 30px;" id = "total_planted">{{trees_planted}}</span>
+                                        <span style = "font-size: 20px;" id = "total_planted">{{trees_planted}}</span>
                                             <div> Total Trees Planted</div>
                                     </div>
                       </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <div class = "bg-danger" style = "height: 100px; margin-top:5px; color: white;">
+                      <div class = "bg-danger" style = "height: 55px; margin-top:5px; color: white;">
                                     <div style= "margin-left:5px;">
-                                        <span style = "font-size: 30px;" id = "total_harvested">{{trees_harvested}}</span>
+                                        <span style = "font-size: 20px;" id = "total_harvested">{{trees_harvested}}</span>
                                             <div> Total Trees Harvested </div>
                                     </div>
                       </div>
                 </div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-lg-12 col-xs-12 col-sm-12">
-                      <div class="caption">
-                            <i class="icon-bar-chart font-red"></i>
-                                        <span>Monthly Statistics</span>
-                      </div>
-                      <div id="my_monthly_stat" class="chart"></div>
-                </div>
-            </div>
+
             <div class="bottom-menu">
                <a href="/farmer/{{farm_id}}" class="back button btn-block">
                 <button type="button" class="btn btn-success custom-btn btn-lg btn-block">Go Back</button>
@@ -67,6 +56,8 @@
             </div>
         </div>
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script type="text/javascript">
                google.charts.load('current', {'packages':['corechart']});
@@ -75,11 +66,12 @@
                      function drawChart() {
                        var data = google.visualization.arrayToDataTable([
                          ['Period', 'Expected Harvest', 'Actual Harvest'],
-                         ['1',  300,      400],
-                         ['2',  170,      260],
-                         ['3',  260,       120],
-                         ['4',  130,      240],
-                         ['5',  200,      150]
+                         ['June',  300,      400],
+                         ['July',  170,      260],
+                         ['August',  260,       120],
+                         ['September',  130,      240],
+                         ['November',  200,      150],
+                         ['December',  200,      150]
 
                        ]);
 
@@ -95,5 +87,5 @@
                      }
                 </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  </body>
-</html>
+{% endblock %}
+
