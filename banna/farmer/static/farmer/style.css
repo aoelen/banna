@@ -276,3 +276,9 @@ header {
     margin-top: 70px;
     display: inline-block;
 }
+
+.statisticsgraph{
+    background-color:#ffffff;
+    padding-top: 3%;
+    padding-bottom 5%;
+}
