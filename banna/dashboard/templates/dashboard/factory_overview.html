@@ -37,11 +37,13 @@
                     </tr>
                   </thead>
                   <tbody>
+                      {% for factory_data in factory_datas %}
                       <tr>
-                          <td> 1 </td>
-                          <td> 300 </td>
-                          <td> 25.06.2018 </td>
+                          <td> {{factory_data.id}} </td>
+                          <td> {{factory_data.kgs_received}} </td>
+                          <td> {{factory_data.month}}-{{factory_data.year}} </td>
                       </tr>
+                      {% endfor %}
                   </tbody>
                 </table>
               </div>
@@ -56,20 +58,17 @@
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                   ['Month', 'Factory Received', 'Harvests'],
-                  ['Jan',  300,      400],
-                  ['Feb',  170,      260],
-                  ['Mar',  260,       120],
-                  ['Apr',  130,      240],
-                  ['May',  200,      150],
-                  ['June',  170,      360],
-                  ['July',  260,       320],
-                  ['Aug',  230,      340]
+                  {% for month, graph_data in graph_datas.items %}
+                  ['{{ month }}', {{graph_data}}, 0],
+                  {% endfor %}
                 ]);
 
                 var options = {
                   curveType: 'function',
                   legend: { position: 'bottom' },
-                  vAxis: { gridlines: { count: 6, color: 'white' } },
+                  vAxis: { gridlines: { count: 6, color: 'white' }, minValue:0, viewWindow: {
+                    min: 0
+                } },
                   colors: ['red','green']
                 };
 

@@ -2,6 +2,17 @@
 {% load static %}
 
 {% block body %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.delete_row').on('click', function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure to delete this item?')) {
+            location.href = '/dashboard/factory_data_delete/' + $(this).attr('data-id')
+        }
+    })
+});
+</script>
+
 <h1>Factory Overview</h1>
  <hr>
  <div class="container-fluid">
@@ -41,26 +52,21 @@
                     </tr>
                   </thead>
                   <tbody>
+                      {% for factory_data in factory_datas %}
                       <tr>
-                          <td> 1 </td>
-                          <td> 300 </td>
-                          <td> 25.06.2018 </td>
-                          <td><a href="#" class="btn btn-primary pullright">Edit </td>
+                          <td> {{factory_data.id}} </td>
+                          <td> {{factory_data.kgs_received}} </td>
+                          <td> {{factory_data.month}}-{{factory_data.year}} </td>
+                          <td><a href="/dashboard/factory_data_edit/{{factory_data.id}}" class="btn btn-primary pullright">Edit </td>
                           <td>
-                            <form >
-                               <input type="hidden" name="_method" value="DELETE">
-                               <input type ="submit" value ="Delete" class="btn btn-danger">
+                            <form>
+                               <a class="btn bg-danger delete_row" style="color: white;" data-id="{{factory_data.id}}">Delete</a>
                             </form></td>
                       </tr>
+                      {% endfor %}
                   </tbody>
               </table>
             </div>
-
-
-
-
-
-
            </div>
 
      </div>
@@ -73,20 +79,17 @@
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                   ['Month', 'Factory Received', 'Harvests'],
-                  ['Jan',  300,      400],
-                  ['Feb',  170,      260],
-                  ['Mar',  260,       120],
-                  ['Apr',  130,      240],
-                  ['May',  200,      150],
-                  ['June',  170,      360],
-                  ['July',  260,       320],
-                  ['Aug',  230,      340]
+                  {% for month, graph_data in graph_datas.items %}
+                  ['{{ month }}', {{graph_data}}, 0],
+                  {% endfor %}
                 ]);
 
                 var options = {
                   curveType: 'function',
                   legend: { position: 'bottom' },
-                  vAxis: { gridlines: { count: 6, color: 'white' } },
+                  vAxis: { gridlines: { count: 6, color: 'white' }, minValue:0, viewWindow: {
+                    min: 0
+                }},
                   colors: ['red','green']
                 };
 
@@ -95,19 +98,20 @@
               }
          </script>
 <script type="text/javascript">
-         $(document).ready(function() {
-             $('#factory_table').DataTable( {
-               dom: 'Bfrtip',
-               "lengthMenu": [ 10, 25, 50, 75, 100 ],
-               buttons: [
+ $(document).ready(function() {
+     $('#factory_table').DataTable( {
+       dom: 'Bfrtip',
+       "order": [[ 0, "desc" ]],
+       "lengthMenu": [ 10, 25, 50, 75, 100 ],
+       buttons: [
 
-                     { extend: 'copyHtml5', className: 'copyButton' },
-                     { extend: 'excelHtml5', className: 'excelButton' },
-                     { extend: 'csvHtml5', className: 'csvButton' }
+             { extend: 'copyHtml5', className: 'copyButton' },
+             { extend: 'excelHtml5', className: 'excelButton' },
+             { extend: 'csvHtml5', className: 'csvButton' }
 
-               ]
-             } );
-         } );
-         </script>
+       ]
+     } );
+ } );
+ </script>
 
 {% endblock %}

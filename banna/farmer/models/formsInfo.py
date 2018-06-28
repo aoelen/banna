@@ -39,3 +39,14 @@ class Reports_Yield(models.Model):
 
     def __str__(self):
         return str(self.report_id) + ": " + str(self.yield_number)
+
+class Factory_Data(models.Model):
+    kgs_received = models.IntegerField(null = 'True')
+    month = models.IntegerField(null = 'True')
+    year = models.IntegerField(null = 'True')
+
+    class Meta:
+        unique_together = ('month', 'year',)
+
+    def __str__(self):
+        return str(self.month) + ": " + str(self.year)
