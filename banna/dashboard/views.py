@@ -284,9 +284,12 @@ def harvests(request):
 
     for harvest in harvests:
         if not harvest.report_id.month in harvest_per_month:
-            harvest_per_month[harvest.report_id.month] = 0
+            harvest_per_month[harvest.report_id.month] = {}
+            harvest_per_month[harvest.report_id.month]['kgs'] = 0
+            harvest_per_month[harvest.report_id.month]['number'] = 0
 
-        harvest_per_month[harvest.report_id.month] = harvest_per_month[harvest.report_id.month] + harvest.harvested_amount_kg_banana
+        harvest_per_month[harvest.report_id.month]['kgs'] = harvest_per_month[harvest.report_id.month]['kgs'] + harvest.harvested_amount_kg_banana
+        harvest_per_month[harvest.report_id.month]['number'] = harvest_per_month[harvest.report_id.month]['number'] + harvest.harvested_amount_trees
 
     context = {
         'harvests': harvests,
