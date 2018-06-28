@@ -48,7 +48,7 @@
                              <td> {{ harvest.report_id.farm.farmer.first_name }} {{ harvest.report_id.farm.farmer.last_name }} </td>
                              <td> {{ harvest.yield_number }} </td>
                              <td> {{ harvest.harvested_amount_kg_banana }} </td>
-                             <td> Unknown </td>
+                             <td> {{ harvest.harvested_amount_trees}} </td>
                              <td> {{ harvest.report_id.month }} {{ harvest.report_id.year }} </td>
                          </tr>
                       {% endfor %}
@@ -65,9 +65,9 @@
 
             function drawChart() {
               var data = google.visualization.arrayToDataTable([
-                ['Month', 'KG' ],
+                ['Month', 'KG', 'Number of trees' ],
                 {% for month,amount in harvest_per_month.items %}
-                ['{{ month }}', {{amount}}],
+                ['{{ month }}', {{amount.kgs}}, {{amount.number}}],
                 {% endfor %}
               ]);
 
@@ -75,7 +75,7 @@
                 curveType: 'function',
                 vAxis: { gridlines: { count: 6, color: 'white' } },
                 legend: { position: 'right' },
-                 colors: ['green']
+                 colors: ['green','red']
               };
 
               var chart = new google.visualization.LineChart(document.getElementById('total_harvest'));
