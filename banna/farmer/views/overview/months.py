@@ -13,6 +13,7 @@ def overview_months(request, farm_id):
     formated_month = datetime(int(currentdate.year), int(currentdate.month), int(currentdate.day))
     selected_month = formated_month.strftime("%B")
 
+    print(selected_month)
     farms = Farm.objects.filter(id=farm_id)
     for farm in farms:
         print(farm.id)
@@ -61,7 +62,7 @@ def overview_months(request, farm_id):
                     'year': report.year,
                     'date':{
                         'message': 'danger',
-                        'value': 'icons/cancel.svg'
+                        'value': 'icons/cancel.png'
                     }
                 })
         else:

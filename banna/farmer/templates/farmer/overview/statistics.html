@@ -4,21 +4,21 @@
 {% block content %}
 
 
-    <div class="container" id="layout_background">
     </div>
         <header>Statistics Overview</header>
                 <div class="statisticsgraph">
+
                       <div class="caption">
                             <i class="icon-bar-chart font-red"></i>
                             <span>Monthly Harvested Bananas (KG)</span>
                       </div>
-                      <div id="my_monthly_stat" class="chart"></div>
-                </div>
+                            <div id="my_monthly_stat" class="chart"></div>
+                    </div>
     <div class="container-fluid">
     <hr>
 
             <div class="row boxes">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class = "box thb" style = "height: 55px; margin-top:5px; color: white;">
                                   <div style= "margin-left:5px;">
                                       <span style = "font-size: 18px;" id = "total_harvested">{{bananas_harvested}}</span>
@@ -26,7 +26,7 @@
                                   </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <div class = "box ttp" style = "height: 55px; margin-top:5px; color: white;">
                                     <div style= "margin-left:5px;">
                                         <span style = "font-size: 18px;" id = "total_planted">{{trees_planted}}</span>
@@ -34,7 +34,7 @@
                                     </div>
                       </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <div class = "box tth" style = "height: 55px; margin-top:5px; color: white;">
                                     <div style= "margin-left:5px;">
                                         <span style = "font-size: 18px;" id = "total_harvested">{{trees_harvested}}</span>
@@ -49,11 +49,7 @@
                 <button type="button" class="btn btn-success custom-btn btn-lg btn-block">Go Back</button>
                </a>
             </div>
-        </div>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script type="text/javascript">
                google.charts.load('current', {'packages':['corechart']});
                      google.charts.setOnLoadCallback(drawChart);
@@ -73,8 +69,7 @@
                        var options = {
                          curveType: 'function',
                          legend: { position: 'top' },
-                         width: '320',
-                         height: '215',
+                         height: '290',
                          vAxis: { gridlines: { count: 6, color: 'white' } },
                          colors: ['red','green']
                        };
