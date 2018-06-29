@@ -1,6 +1,6 @@
 {% load static %}
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-success">
-      <a class="navbar-brand" href="/dashboard/dashboard">
+      <a class="navbar-brand" href="/dashboard">
          <img src="{% static 'dashboard/img/Banna.png' %}" class="img-fluid" alt="Responsive image" width="50" height="35">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
         </li>
 
         {% for user_group in request.user.groups.all %}

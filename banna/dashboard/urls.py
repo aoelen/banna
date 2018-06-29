@@ -10,7 +10,7 @@ def has_dashboard_permission(user):
 urlpatterns = [
     path('login', user_passes_test(has_dashboard_permission)(auth_views.login), {'template_name': 'dashboard/login.html'}, name='login'),
     path('logout', auth_views.logout, {'template_name': 'dashboard/logout.html'},  name='logout'),
-    path('dashboard', user_passes_test(has_dashboard_permission)(views.dashboard), name='dashboard'),
+    path('', user_passes_test(has_dashboard_permission)(views.dashboard), name='dashboard'),
     path('add_farmer', user_passes_test(has_dashboard_permission)(views.add_farmer), name='add_farmer'),
     path('add_user', user_passes_test(has_dashboard_permission)(views.add_user), name='add_user'),
     path('edit_farmer', user_passes_test(has_dashboard_permission)(views.edit_farmer), name='edit_farmer'),
