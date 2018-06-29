@@ -180,7 +180,6 @@ def factory_data(request):
         months_filledin.append(factory_data.month)
 
     context = {
-        'factory_data': factory_data,
         'months': month_numbers_convert,
         'months_filledin': months_filledin
     }
