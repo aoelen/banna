@@ -142,7 +142,6 @@ header {
 }
 .p-select-month table {
     width:100%;
-
 }
 .p-select-month table td{
     padding:7px 20px 7px 50px
@@ -239,18 +238,20 @@ header {
     border-radius: 5px;
     text-align: center
 }
-.p-form-fertilizer .box {
+.p-form-fertilizer .fertilizer-box {
     margin-top: 30%;
+    color: #ffffff;
     background-color: rgba(107, 151, 70, 0.7);
 }
 .p-form-fertilizer .label {
     text-align: center;
     line-height: 5px;
+    padding-top: 10%;
 }
 .p-form-fertilizer .buttons {
     width:200px;
     margin:5% auto;
-    margin-top: -3%;
+    margin-top: 5%;
 }
 .p-form-fertilizer .buttons .button {
     width:50%;
@@ -272,7 +273,7 @@ header {
 .p-form-fertilizer .fertilizer-input {
     text-align: center;
     padding-bottom: 20px;
-    margin-top: -3%;
+    margin-top: 5%;
 }
 .p-form-fertilizer .fertilizer-input input{
     width:100px;
