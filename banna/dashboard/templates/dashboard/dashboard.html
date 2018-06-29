@@ -192,7 +192,7 @@
 
              function drawChart() {
                var data = google.visualization.arrayToDataTable([
-                 ['Month', 'Factory Received', 'Harvests'],
+                 ['Month', 'Factory Received (KGs)', 'Harvests (number of trees)'],
                  {% for month, row in harvest_vs_received.items %}
                 ['{{month}}', {{row.1}}, {{row.0}}],
                  {% endfor %}

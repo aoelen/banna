@@ -46,12 +46,15 @@ def dashboard(request):
     planted_per_month = {}
 
     for single_yield in yields:
-        if not 'single_yield.report_id.month_numeric' in harvest_per_month:
+        if not month_numbers_convert[single_yield.report_id.month_numeric] in harvest_per_month:
             harvest_per_month[month_numbers_convert[single_yield.report_id.month_numeric]] = 0
+            print('NOT')
+
+        if not month_numbers_convert[single_yield.report_id.month_numeric] in planted_per_month:
             planted_per_month[month_numbers_convert[single_yield.report_id.month_numeric]] = 0
 
-        harvest_per_month[month_numbers_convert[single_yield.report_id.month_numeric]] = single_yield.harvested_amount_kg_banana
-        planted_per_month[month_numbers_convert[single_yield.report_id.month_numeric]] = single_yield.planted_amount_trees
+        harvest_per_month[month_numbers_convert[single_yield.report_id.month_numeric]] += single_yield.harvested_amount_kg_banana
+        planted_per_month[month_numbers_convert[single_yield.report_id.month_numeric]] += single_yield.planted_amount_trees
 
     total_bananas_harvested = 0
     total_trees_planted = 0
