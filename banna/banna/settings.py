@@ -161,7 +161,7 @@ except KeyError:
 if HEROKU:
     STATIC_URL = "http://" + SFTP_HOST + "/" + SFTP_USER + "/django/"
 
-    DEBUG = False
+    DEBUG = True
 
     SFTP_STORAGE_HOST = SFTP_HOST
     SFTP_STORAGE_ROOT = '/django/'
