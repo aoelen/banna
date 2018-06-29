@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'dashboard',
     'farmer',
     'banna',
-    #'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
