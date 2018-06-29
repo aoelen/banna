@@ -167,6 +167,7 @@
            <thead>
              <tr>
                <th>Farm Name</th>
+               <th>Month</th>
                <th>Status</th>
                <th></th>
 
@@ -176,7 +177,8 @@
             {% for item in farmer_updates_list %}
                <tr>
                    <td> {{item.name}} </td>
-                   <td> {% if item.completed == True %} Completed {% else %} Not completed{% endif %}</td>
+                   <td> {{last_month}}</td>
+                   <td> {% if item.completed == True %} Completed {% else %} Not completed{% endif %}</td>               
                    <td> <i class=" {% if item.completed == True %}icon-check font-blue{% else %}icon-close font-red{% endif %}" style= "font-size: 24px;"></i> </td>
                </tr>
             {% endfor %}
