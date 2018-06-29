@@ -124,7 +124,7 @@ def dashboard(request):
         #if not i in farmer_updates_list:
         #    farmer_updates_list[i] = {}
 
-        report = Report.objects.filter(farm_id=farm, month_numeric=now.month)
+        report = Report.objects.filter(farm_id=farm, month_numeric=now.month-1)
         #user = User.objects.filter()
         report_count = report.count()
 
@@ -155,6 +155,7 @@ def dashboard(request):
         'harvest_per_month': harvest_per_month,
         'planted_per_month': planted_per_month,
         'current_month': month_numbers_convert[now.month],
+        'last_month': month_numbers_convert[now.month-1],
         'farmers_update': farmers_update,
         'farmers_no_update': farmers_no_update,
         'trees_yield_month': trees_yield_month_converted,
