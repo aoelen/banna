@@ -3,7 +3,6 @@
 
 {% block body %}
   <h1>Farmers</h1>
-  <a class="btn bg-success" style = "color: white;" href="/dashboard/add_farmer">Add New Farmer </a>
  <hr>
 
 <table class="table table-striped" id = "farmers_table">
@@ -13,9 +12,7 @@
      <th>Farmer Name</th>
      <th>Zone</th>
      <th>Date Registered</th>
-     <th>Actions</th>
-     <th></th>
-     <th></th>
+
    </tr>
   </thead>
  <tbody>
@@ -25,14 +22,7 @@
          <td> {{farmer.farmer.first_name}}</td>
          <td> {{farmer.zone}}</td>
          <td> {{farmer.farmer.date_joined}}</td>
-         <td><a href="/farmer/overview" class="btn bg-success pullright" style = "color: white;">View </td>
-         <td><a href="/dashboard/edit_farmer" class="btn btn-primary pullright">Edit </td>
-         <td>
-           <form >
-              <input type="hidden" name="_method" value="DELETE">
-              <input type ="submit" value ="Delete" class="btn btn-danger">
-           </form>
-         </td>
+
      </tr>
   {% endfor %}
  </tbody>

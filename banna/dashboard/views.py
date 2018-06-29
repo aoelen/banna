@@ -339,8 +339,3 @@ def trees(request):
 
     # Render the .html file
     return render(request, 'dashboard/trees.html', context)
-
-def users(request):
-
-    # Render the .html file
-    return render(request, 'dashboard/users.html')

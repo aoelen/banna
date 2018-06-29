@@ -22,5 +22,4 @@ urlpatterns = [
     path('farmers', user_passes_test(has_dashboard_permission)(views.farmers), name='farmers'),
     path('harvests', user_passes_test(has_dashboard_permission)(views.harvests), name='harvests'),
     path('trees', user_passes_test(has_dashboard_permission)(views.trees), name='trees'),
-    path('users', user_passes_test(has_dashboard_permission)(views.users), name='users'),
 ]

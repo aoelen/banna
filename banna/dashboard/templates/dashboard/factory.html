@@ -16,8 +16,8 @@ $(document).ready(function() {
 <h1>Factory Overview</h1>
  <hr>
  <div class="container-fluid">
-     <div class="page-content page-content-popup">
-           <div class="row">
+   <div class="page-content page-content-popup">
+            <div class="row">
                <div class="col-lg-12 col-xs-12 col-sm-12">
                    <div class="portlet light bordered">
                        <div class="portlet-title">
@@ -37,11 +37,12 @@ $(document).ready(function() {
            </div>
             <div class="clearfix"></div>
             <h2>Factory Data</h2>
-            <a class="btn bg-success" style = "color: white;" href="/dashboard/factory_data">Add New Data </a>
 
-           <div class="row">
-                 <div class="col-lg-12 col-xs-12 col-sm-12">
-                  <table class="table table-striped" id ="factory_table">
+            <a class="btn bg-success" style = "color: white;" href="/dashboard/factory_data">Add New Data </a>
+            <hr>
+            <div class="row">
+              <div class="col-lg-12 col-xs-12 col-sm-12">
+                <table class="table table-striped" id ="factory_table">
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -65,11 +66,10 @@ $(document).ready(function() {
                       </tr>
                       {% endfor %}
                   </tbody>
-              </table>
+                </table>
+              </div>
             </div>
-           </div>
-
-     </div>
+    </div>
  </div>
 
 <script type="text/javascript">
