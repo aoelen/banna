@@ -161,32 +161,20 @@
       </div>
       <div class="modal-body">
          <div class = "farmers_updates" style = "padding-left: 50px; padding-top: 20px;">
-            {% for farmer_update_item in farmer_updates %}
+            {% for item in farmer_updates_list %}
              <div class="row">
                      <div class ="col-lg-6 col-md-4 col-sm-6 col-xs-12" >
-                          <h4>{{farmer_update_item}} {{farmer_update_item.name}} </h4>
+                          <h4>{{item.name}} </h4>
                      </div>
                      <div class ="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                          <h5> Not Completed </h5>
+                          <h5> {% if item.completed == True %} Completed {% else %} Not completed{% endif %}</h5>
                      </div>
                      <div class ="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                       <i class="icon-hourglass font-red" style= "font-size: 20px;"></i>
+                       <i class=" {% if item.completed == True %}icon-check font-green{% else %}icon-hourglass font-red{% endif %}" style= "font-size: 20px;"></i>
                      </div>
              </div>
             <hr>
             {% endfor %}
-            <div class="row">
-                    <div class ="col-lg-6 col-md-4 col-sm-6 col-xs-12" >
-                         <h4> John Snow </h4>
-                    </div>
-                    <div class ="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                         <h5> Complete </h5>
-                    </div>
-                    <div class ="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                      <i class="icon-check font-green" style= "font-size: 20px;"></i>
-                    </div>
-            </div>
-             <hr>
           </div>
       </div>
       <div class="modal-footer">
