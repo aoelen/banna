@@ -5,26 +5,23 @@
   <head>
     <meta charset="utf-8">
     <title>Banna</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'dashboard/plugins/bootstrap/css/bootstrap.min.css' %}" type="text/css" />
+    <link href="{% static 'dashboard/plugins/datatables-1.10.18/css/jquery.datatables.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'dashboard/plugins/datatables-1.10.18/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'dashboard/css/custom.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'dashboard/css/layout.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'dashboard/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'dashboard/plugins/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'dashboard/plugins/jqvmap/jqvmap/jqvmap.css' %}"  rel="stylesheet" type="text/css" />
     <link href="{% static 'dashboard/css/components.min.css' %}" rel="stylesheet" id="style_components"  type="text/css" />
-    <link href="{% static 'dashboard/css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'dashboard/css/custom.css' %}" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="{% static 'dashboard/plugins/datatables-1.10.18/js/jquery.dataTables.min.js' %}"></script> <script type="text/javascript" src="{% static 'dashboard/plugins/datatables-1.10.18/js/dataTables.buttons.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/plugins/datatables-1.10.18/js/dataTables.bootstrap4.min.js' %}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
-    <link rel="shortcut icon" href="favicon.ico" /> 
+    <script type="text/javascript" src="{% static 'dashboard/plugins/datatables-1.10.18/js/dataTables.buttons.html5.min.js' %}"></script>
+    <link rel="shortcut icon" href="">
   </head>
 
   <body>
@@ -36,7 +33,7 @@
       {% endblock %}
     </div>
 
-    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js">
+    <script type="text/javascript" src= "{% static 'dashboard/plugins/bootstrap/js/bootstrap.min.js' %}">
     </script>
 
   </body>

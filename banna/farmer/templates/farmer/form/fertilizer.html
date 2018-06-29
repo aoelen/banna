@@ -51,19 +51,21 @@ $(document).ready(function() {
     <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/fertilizerform/" method="POST">
     {% csrf_token %}
     <div class="p-form-fertilizer">
-        <div class="label">Did you use a fertilizer this month?</div>
-        <input type="hidden" name="fertilizer_used" value="{{report.fertilizer_used|title}}" >
+        <div class="box">
+            <div class="label"><h4>Did you use a fertilizer this month?</h4></div>
+            <input type="hidden" name="fertilizer_used" value="{{report.fertilizer_used|title}}" >
 
-        <div class="buttons">
-            <div class="yes button {% if report.fertilizer_used == 'Yes' %}selected{% endif %}">Yes</div>
-            <div class="no button {% if report.fertilizer_used == 'No' %}selected{% endif %}">No</div>
-        </div>
+            <div class="buttons">
+                <div class="yes button {% if report.fertilizer_used == 'Yes' %}selected{% endif %}">Yes</div>
+                <div class="no button {% if report.fertilizer_used == 'No' %}selected{% endif %}">No</div>
+            </div>
 
-        <div class="clear"></div>
-        <div class="label">How much fertilizer did you use? (optional)</div>
+            <div class="clear"></div>
+            <div class="label"><h5>How much fertilizer did you use? (optional)</h5></div>
 
-        <div class="fertilizer-input">
-            <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
+            <div class="fertilizer-input">
+                <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
+            </div>
         </div>
 
         <div class="bottom-menu">

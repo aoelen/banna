@@ -10,6 +10,7 @@ input {
     border:1px solid #c9c9c9;
     border-radius: 0px;
     padding: 4px 0;
+    color: #000000;
 }
 html {
     min-height:100%;
@@ -101,6 +102,8 @@ header {
     float:right;
     font-size: 25px;
     margin-top:-7px
+    with: 20px;
+    height: 20px;
 }
 
 .p-overview .overview li a .status .success {
@@ -201,16 +204,15 @@ header {
 .p-form-planted table thead .second {
     width:200px;
     text-align: center;
-
     border-bottom: 1px solid white;
     background-color: rgba(79, 113, 42, 0.7);
-
     padding-top: 4%;
 
 
 }
 
 .p-form-planted table {
+    width:100%;
 
 }
 
@@ -225,24 +227,35 @@ header {
 }
 .p-form-planted table .input {
     text-align: center;
+    color: #000000;
+}
+
+.p-form-planted table .input .kg{
+    text-align: center;
+    color: #ffffff;
 }
 .p-form-planted table input {
     width:40%;
     border-radius: 5px;
     text-align: center
 }
+.p-form-fertilizer .box {
+    margin-top: 30%;
+    background-color: rgba(107, 151, 70, 0.7);
+}
 .p-form-fertilizer .label {
     text-align: center;
-    margin-top:40px;
+    line-height: 5px;
 }
 .p-form-fertilizer .buttons {
     width:200px;
-    margin:20px auto;
+    margin:5% auto;
+    margin-top: -3%;
 }
 .p-form-fertilizer .buttons .button {
     width:50%;
     float:left;
-    padding:10px 0;
+    padding:5% 0;
     text-align: center;
     background: #bdbdbd;
 }
@@ -259,17 +272,25 @@ header {
 .p-form-fertilizer .fertilizer-input {
     text-align: center;
     padding-bottom: 20px;
+    margin-top: -3%;
 }
 .p-form-fertilizer .fertilizer-input input{
     width:100px;
     border-radius: 5px;
     text-align: center;
+    color: #000000;
 }
 .clear{
     clear:both;
 }
 .p-success {
     text-align: center;
+    color: #1aa613;
+}
+
+.p-success .btn {
+    background-color: #1aa613;
+    color: #ffffff;
 }
 .p-success img{
     width:150px;
@@ -277,8 +298,43 @@ header {
     display: inline-block;
 }
 
+
+
 .statisticsgraph{
     background-color:#ffffff;
     padding-top: 3%;
     padding-bottom 5%;
+    text-align: center;
 }
+
+
+.container-fluid {
+    margin-top: -10px;
+}
+
+.container-fluid .boxes {
+    margin-top: -10px;
+}
+
+.container-fluid .thb{
+    background-color:#027BFF;
+    box-shadow: 2px 2px #6C747D;
+    margin-top: -20px;
+}
+
+.container-fluid .ttp{
+    background-color:#26A745;
+    box-shadow: 2px 2px #6C747D;
+
+}
+
+.container-fluid .tth{
+    background-color:#FFC206;
+    box-shadow: 2px 2px #6C747D;
+}
+
+
+#my_monthly_stat{
+    left: 0;
+}
+

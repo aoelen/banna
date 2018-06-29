@@ -13,16 +13,23 @@
                 <li>
                     <a href="/farmer/{{month.farm_id}}/{{ month.year }}/{{ month.month }}">
                         <span class="name" >{{month.month}} {{month.year}}</span>
-                        <span class="status"><i class="{{month.date.message}} {{month.date.value}}"></i></span>
+
+                        <img class='status' src="../../../static/farmer/img/{{month.date.value}}">
                     </a>
                 </li>
             {% endfor %}
             </div>
+
         </ul>
+
+
 
     {% else %}
         <p>No data available.</p>
     {% endif %}
+</div>
+<div>
+
 </div>
 
 <div class="bottom-menu">

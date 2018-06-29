@@ -12,6 +12,7 @@ def statistics(request, farm_id):
     trees_planted = 0
     trees_harvested = 0
     yields = Reports_Yield.objects.filter(report_id__farm__id=farm_id);
+    print(yields)
 
     for report_yield in yields:
         bananas_harvested = bananas_harvested + report_yield.harvested_amount_kg_banana
