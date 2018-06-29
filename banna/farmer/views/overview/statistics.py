@@ -5,8 +5,15 @@ from datetime import datetime, date
 from time import strftime
 from django.contrib.auth.decorators import user_passes_test
 from farmer.views import auth_check
+from django.utils import translation
 
-def statistics(request, farm_id):
+
+def statistics(request, farm_id, language_code):
+    user_language = language_code
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
 
     bananas_harvested = 0
     trees_planted = 0

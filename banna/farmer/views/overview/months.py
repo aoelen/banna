@@ -4,10 +4,17 @@ from farmer.models import Date, Farm, Report, Reports_Yield
 from django.contrib.auth.models import User
 from datetime import datetime, date
 from time import strptime
-import pprint
+from django.utils import translation
 
 #SHOW OVERVIEW MONTH REPORTS
-def overview_months(request, farm_id):
+def overview_months(request, farm_id, language_code):
+    user_language = language_code
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
+
     currentdate =  datetime.now().date()
     #Transform number into month name
     formated_month = datetime(int(currentdate.year), int(currentdate.month), int(currentdate.day))
@@ -79,7 +86,8 @@ def overview_months(request, farm_id):
 
     context = {
         'data': data,
-        'farm_id': farm_id
+        'farm_id': farm_id,
+        'language': language_code
     }
 
     return render(request, 'farmer/overview/months.html', context)

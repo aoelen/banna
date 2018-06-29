@@ -6,10 +6,16 @@ from datetime import datetime, date
 from time import strftime
 from django.contrib.auth.decorators import user_passes_test
 from farmer.views import auth_check
-import pprint
+from django.utils import translation
 
 #SHOW OVERVIEW REPORT
-def overview_report(request, farm_id, year , month):
+def overview_report(request, farm_id, year , month, language_code):
+    user_language = language_code
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     data = {}
     total_amount_planted_trees = 0
     total_amount_harvested_trees = 0

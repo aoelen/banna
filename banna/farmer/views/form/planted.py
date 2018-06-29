@@ -4,9 +4,16 @@ from farmer.models import Report, UserForm, Reports_Yield, Date, Farm
 from django.contrib.auth.models import User
 from time import strftime
 import ctypes
+from django.utils import translation
 
 
-def form_planted(request, farm_id, year, month, report_id):
+def form_planted(request, farm_id, year, month, report_id, language_code):
+    user_language = language_code
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     message_alert = ""
     redirect_page = True
 

@@ -1,0 +1,36 @@
+{% extends 'farmer/layout.html' %}
+{% load static %}
+
+{% load i18n %}
+
+{% block content %}
+<header>Choose your Lanaguage</header>
+
+<form action="/farmer/language/" method="POST">
+        {% csrf_token %}
+
+    <div class="row flag-box">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <button href="#" name="language" type="submit" value="en">
+                <img class="flag" src="../../../static/farmer/img/flag/english.png">
+                <h4 class="label">English</h4>
+            </button>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+
+            <button href="#" name="language" type="submit" value="ms">
+                <img class="flag" src="../../../static/farmer/img/flag/malay-2.png">
+                <h4 class="label">Bahasa Malaysia</h4>
+            </button>
+        </div>
+    </div>
+</form>
+
+<div class="bottom-menu">
+     <a href="/logout" class="back button btn-block">
+        <button type="button" class="btn btn-success custom-btn btn-lg btn-block">Logout</button>
+
+     </a>
+</div>
+
+{% endblock %}

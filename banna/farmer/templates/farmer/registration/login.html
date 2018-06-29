@@ -1,4 +1,5 @@
 {% load static %}
+{% load static i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -42,6 +43,7 @@
                         <div class="error-message">
                           {{ form.non_field_errors}}
                         </div>
+
 
                         <p>
                             <input id="input_username" type="text" name="username" class="form-control" placeholder="Username" required autofocus>

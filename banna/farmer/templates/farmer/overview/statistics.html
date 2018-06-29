@@ -1,16 +1,17 @@
 {% extends 'farmer/layout.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
 
     </div>
-        <header>Statistics Overview</header>
+        <header>{% trans "Statistics" %}</header>
                 <div class="statisticsgraph">
 
                       <div class="caption">
                             <i class="icon-bar-chart font-red"></i>
-                            <span>Monthly Harvested Bananas (KG)</span>
+                            <span>{% trans "Monthly Harvested Bananas (KG)" %}</span>
                       </div>
                             <div id="my_monthly_stat" class="chart"></div>
                     </div>
@@ -22,7 +23,7 @@
                     <div class = "box thb" style = "height: 55px; margin-top:5px; color: white;">
                                   <div style= "margin-left:5px;">
                                       <span style = "font-size: 18px;" id = "total_harvested">{{bananas_harvested}}</span>
-                                          <div>Total Bananas Harvested (KG) </div>
+                                          <div>{% trans "Total Bananas Harvested (KG)" %}</div>
                                   </div>
                     </div>
                 </div>
@@ -30,7 +31,7 @@
                       <div class = "box ttp" style = "height: 55px; margin-top:5px; color: white;">
                                     <div style= "margin-left:5px;">
                                         <span style = "font-size: 18px;" id = "total_planted">{{trees_planted}}</span>
-                                            <div> Total Trees Planted</div>
+                                            <div>{% trans "Total Trees Planted" %}</div>
                                     </div>
                       </div>
                 </div>
@@ -38,7 +39,7 @@
                       <div class = "box tth" style = "height: 55px; margin-top:5px; color: white;">
                                     <div style= "margin-left:5px;">
                                         <span style = "font-size: 18px;" id = "total_harvested">{{trees_harvested}}</span>
-                                            <div> Total Trees Harvested </div>
+                                            <div>{% trans "Total Trees Harvested" %}</div>
                                     </div>
                       </div>
                 </div>
@@ -46,7 +47,7 @@
 
             <div class="bottom-menu">
                <a href="/farmer/{{farm_id}}" class="back button btn-block">
-                <button type="button" class="btn btn-success custom-btn btn-lg btn-block">Go Back</button>
+                <button type="button" class="btn btn-success custom-btn btn-lg btn-block">{% trans "Go back" %}</button>
                </a>
             </div>
 

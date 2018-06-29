@@ -1,32 +1,35 @@
 {% extends 'farmer/layout.html' %}
 {% load static %}
 
+{% load i18n %}
+
 {% block content %}
-<header>Overview Farms</header>
+<header>{% trans "Overview Farms" %}</header>
 
 <div class="p-overview">
-
     {% if farms %}
 
 
         <ul class="overview">
             {% for farm in farms %}
 
-            <li><a href="/farmer/{{ farm.id }}/"><span class="name">{{farm.name}}</span></a></li>
+            <li><a href="/farmer/{{language}}/{{ farm.id }}/"><span class="name">{{farm.name}}</span></a></li>
 
             {% endfor %}
 
         </ul>
 
     {% else %}
-        <p>No data available.</p>
+        <p>{% trans "No data available." %}</p>
     {% endif %}
+
+
+
 </div>
 
 <div class="bottom-menu">
-     <a href="/logout" class="back button btn-block">
-        <button type="button" class="btn btn-success custom-btn btn-lg btn-block">Logout</button>
-
+     <a href="/farmer/language/" class="back button btn-block">
+        <button type="button" class="btn btn-success custom-btn btn-lg btn-block">{% trans "Go back" %}</button>
      </a>
 </div>
 
