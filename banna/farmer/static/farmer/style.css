@@ -204,16 +204,15 @@ header {
 .p-form-planted table thead .second {
     width:200px;
     text-align: center;
-
     border-bottom: 1px solid white;
     background-color: rgba(79, 113, 42, 0.7);
-
     padding-top: 4%;
 
 
 }
 
 .p-form-planted table {
+    width:100%;
 
 }
 
@@ -250,13 +249,13 @@ header {
 }
 .p-form-fertilizer .buttons {
     width:200px;
-    margin:20px auto;
+    margin:5% auto;
     margin-top: -3%;
 }
 .p-form-fertilizer .buttons .button {
     width:50%;
     float:left;
-    padding:10px 0;
+    padding:5% 0;
     text-align: center;
     background: #bdbdbd;
 }

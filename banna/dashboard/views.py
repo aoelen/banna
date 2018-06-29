@@ -66,7 +66,6 @@ def dashboard(request):
     total_factory_kgs = 0
     for factory_data in factory_datas:
         total_factory_kgs = total_factory_kgs + factory_data.kgs_received
-        print(factory_data.kgs_received)
 
     ## KGS harvested vs KGs received
     harvest_vs_received = {}
@@ -112,17 +111,38 @@ def dashboard(request):
         trees_yield_month_converted[month_numbers_convert[i]] = trees_yield_month[i]
 
     ## Farmer monthly updates
-    all_farms = Farm.objects.all()
+    all_farms = Farm.objects.select_related('farmer').all()
 
     farmers_update = 0
     farmers_no_update = 0
-    for farm in all_farms:
-        report = Report.objects.filter(farm_id=farm, month_numeric=now.month).count()
 
-        if report == 0:
+    farmer_updates_list = []
+    #i = 0
+    for farm in all_farms:
+        #if not i in farmer_updates_list:
+        #    farmer_updates_list[i] = {}
+
+        report = Report.objects.filter(farm_id=farm, month_numeric=now.month)
+        #user = User.objects.filter()
+        report_count = report.count()
+
+        item = {
+            'name': farm.farmer.first_name + ' ' + farm.farmer.last_name,
+            'completed': report_count == 1
+        }
+
+        farmer_updates_list.append(item)
+
+        #farmer_updates_list[i]['name'] = farm.farmer.first_name + ' ' + farm.farmer.last_name
+        #farmer_updates_list[i]['completed'] = report_count == 1
+
+        if report_count == 0:
             farmers_no_update = farmers_no_update + 1
         else:
             farmers_update = farmers_update + 1
+
+        i = i+1
+    print(farmer_updates_list)
 
     farms = Farm.objects.all()
 
@@ -138,7 +158,8 @@ def dashboard(request):
         'trees_yield_month': trees_yield_month_converted,
         'total_factory_kgs': total_factory_kgs,
         'harvest_vs_received': harvest_vs_received,
-        'farms': farms
+        'farms': farms,
+        'farmer_updates_list': farmer_updates_list
     }
 
     # Render the .html file
