@@ -24,6 +24,7 @@ docutils==0.14
 Faker==0.7.3
 gunicorn==19.7.1
 idna==2.6
+django-widget-tweaks==1.4.2
 imagesize==0.7.1
 Jinja2==2.10
 livereload==2.5.1
