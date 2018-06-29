@@ -125,7 +125,7 @@
                           <div class="portlet-title">
                               <div class="caption">
                                   <i class="icon-cursor font-red"></i>
-                                  <span>Farm Updates Submitted by Farmers <small> for {{current_month}} </small></span>
+                                  <span>Farm Updates Submitted by Farmers <small> for {{last_month}} </small></span>
                               </div>
                           </div>
                           <div class="portlet-body" data-toggle="modal" data-target="#farmer_update_page">
@@ -157,28 +157,33 @@
     <div class="modal-content">
       <div class="modal-header bg-success" style= "color:white;">
           <i class="icon-bar-chart font-red"></i>
-        <h3 class="modal-title">Farmer Updates for {{current_month}}</h3>
+        <h3 class="modal-title">Farmer Updates for {{last_month}}</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-         <div class = "farmers_updates" style = "padding-left: 50px; padding-top: 20px;">
+          <table class="table table-striped" id = "farmer_update_table">
+           <thead>
+             <tr>
+               <th>Farm Name</th>
+               <th>Month</th>
+               <th>Status</th>
+               <th></th>
+
+             </tr>
+            </thead>
+           <tbody>
             {% for item in farmer_updates_list %}
-             <div class="row">
-                     <div class ="col-lg-6 col-md-4 col-sm-6 col-xs-12" >
-                          <h4>{{item.name}} </h4>
-                     </div>
-                     <div class ="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                          <h5> {% if item.completed == True %} Completed {% else %} Not completed{% endif %}</h5>
-                     </div>
-                     <div class ="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                       <i class=" {% if item.completed == True %}icon-check font-green{% else %}icon-hourglass font-red{% endif %}" style= "font-size: 20px;"></i>
-                     </div>
-             </div>
-            <hr>
+               <tr>
+                   <td> {{item.name}} </td>
+                   <td> {{last_month}}</td>
+                   <td> {% if item.completed == True %} Completed {% else %} Not completed{% endif %}</td>               
+                   <td> <i class=" {% if item.completed == True %}icon-check font-blue{% else %}icon-close font-red{% endif %}" style= "font-size: 24px;"></i> </td>
+               </tr>
             {% endfor %}
-          </div>
+           </tbody>
+          </table>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn bg-success" style = "color:white;" data-dismiss="modal">Close</button>
@@ -321,6 +326,22 @@
                  chart.draw(data, options);
                }
              </script>
+
+<script type="text/javascript">
+             $(document).ready(function() {
+                 $('#farmer_update_table').DataTable( {
+                   dom: 'Bfrtip',
+                   "lengthMenu": [ 10, 25, 50, 75, 100 ],
+                   buttons: [
+
+                         { extend: 'copyHtml5', className: 'copyButton' },
+                         { extend: 'excelHtml5', className: 'excelButton' },
+                         { extend: 'csvHtml5', className: 'csvButton' }
+
+                   ]
+                 } );
+             } );
+</script>
 
 <!-- Map for Zone -->
 <script>

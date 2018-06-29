@@ -57,21 +57,20 @@
 
                      function drawChart() {
                        var data = google.visualization.arrayToDataTable([
-                         ['Period', 'Expected', 'Actual'],
-                         ['June',  300,      400],
-                         ['July',  170,      260],
-                         ['August',  260,       120],
-                         ['September',  130,      240],
-                         ['November',  200,      150],
-                         ['December',  200,      150]
-
+                         ['Month', 'Predicted Harvest (KGs)', 'Actual Harvest (KGs)'],
+                         {% for month, row in actual_vs_predicted.items %}
+                          ['{{month}}', {{row.0}}, {{row.1}}],
+                         {% endfor %}
                        ]);
 
                        var options = {
                          curveType: 'function',
                          legend: { position: 'top' },
                          height: '290',
-                         vAxis: { gridlines: { count: 6, color: 'white' } },
+                         pointSize: 5,
+                         vAxis: { gridlines: { count: 6, color: 'white' } , minValue:0, viewWindow: {
+                           min: 0
+                       } },
                          colors: ['red','green']
                        };
 
@@ -81,4 +80,3 @@
                 </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 {% endblock %}
-

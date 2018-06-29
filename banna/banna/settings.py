@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,7 @@ SECRET_KEY = ')ovq-ow=m0xv^m_6e531jc&unb5)#9x%=&v#4tu*j4!3%*a7ii'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -34,12 +35,12 @@ INSTALLED_APPS = [
     'dashboard',
     'farmer',
     'banna',
-    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'widget_tweaks',
     'django.contrib.staticfiles'
 ]
 
@@ -134,7 +135,60 @@ LOCALE_PATHS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+
+# This settings file is based on: https://github.com/abaart/KasaDaka-VSDK/blob/master/vsdk/settings.py
+try:
+    SFTP_PASS =  os.environ['SFTP_PASS']
+    SFTP_USER = os.environ['SFTP_USER']
+    HEROKU =os.environ['HEROKU']
+    SFTP_HOST = os.environ['SFTP_HOST']
+    SFTP_PORT = os.environ['SFTP_PORT']
+
+except KeyError:
+    # Some hardcoded variables for local testing
+    SFTP_PASS = ""
+    SFTP_USER = "group2"
+    HEROKU = False
+    SFTP_HOST = "django-static.vps.abaart.nl"
+    SFTP_PORT = ""
+
+
+if HEROKU:
+    STATIC_URL = "http://" + SFTP_HOST + "/" + SFTP_USER + "/"
+
+    DEBUG = True
+
+    SFTP_STORAGE_HOST = SFTP_HOST
+    SFTP_STORAGE_ROOT = '/django/'
+    SFTP_STORAGE_PARAMS = {
+        'port': SFTP_PORT,
+        'username': SFTP_USER,
+        'password': SFTP_PASS,
+        'allow_agent': False,
+        'look_for_keys': False,
+        }
+    STATICFILES_LOCATION = SFTP_STORAGE_HOST + '/static/'
+    MEDIAFILES_LOCATION = SFTP_STORAGE_HOST + '/media/'
+    DEFAULT_FILE_STORAGE = 'storages.backends.sftpstorage.SFTPStorage'
+    STATICFILES_STORAGE = 'storages.backends.sftpstorage.SFTPStorage'
+    MEDIA_URL = "http://" + SFTP_HOST + "/" + SFTP_USER + "/django/"
+
+    DATABASES = {
+        "default": dj_database_url.config()
+    }
+else:
+    STATIC_URL = "/static/"
