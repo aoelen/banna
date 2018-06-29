@@ -51,8 +51,8 @@ $(document).ready(function() {
     <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/fertilizerform/" method="POST">
     {% csrf_token %}
     <div class="p-form-fertilizer">
-        <div class="box">
-            <div class="label"><h4>Did you use a fertilizer this month?</h4></div>
+        <div class="fertilizer-box">
+            <div class="label"><h5>Did you use a fertilizer this month?</h5></div>
             <input type="hidden" name="fertilizer_used" value="{{report.fertilizer_used|title}}" >
 
             <div class="buttons">
@@ -61,7 +61,7 @@ $(document).ready(function() {
             </div>
 
             <div class="clear"></div>
-            <div class="label"><h5>How much fertilizer did you use? (optional)</h5></div>
+            <div class="label"><h6>How much fertilizer did you use? (optional)</h6></div>
 
             <div class="fertilizer-input">
                 <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
