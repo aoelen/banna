@@ -3,19 +3,20 @@
 
 {% block body %}
 
-<div class="container-fluid" style="margin-right: 200;	margin-left: 200px;">
-  <h1>Add Factory Data</h1>
+  <header class="header">Add New Data</header>
+
+<div class="container-fivid" style="margin-right: 200;	margin-left: 200px;">
  <div class="row">
    <div class="col-lg-8 col-xs-12 col-sm-12">
     <form method= "POST" action="">
         {% csrf_token %}
       <div class="form-group">
-       <label>How much bananas received? (KG)</label>
+       <h3 class="factory-label">How much bananas received? (KG)</h3>
        <input type="number" name="kgs_received" class="form-control"
        value="">
       </div>
       <div class="form-group">
-       <label>Select the month</label>
+       <h3>Select the month</h3>
        <select name="month" class="form-control">
            {% for index, month in months.items %}
            <option value="{{index}}" {% if index in months_filledin %}disabled="disabled"{% endif %}>{{month}} {% if index in months_filledin %}(Already filled in){% endif %}</option>

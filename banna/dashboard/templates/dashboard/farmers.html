@@ -2,31 +2,33 @@
 {% load static %}
 
 {% block body %}
-  <h1>Farmers</h1>
+  <header class="header shadow">Farmers</header>
  <hr>
 
-<table class="table table-striped" id = "farmers_table">
- <thead>
-   <tr>
-     <th>Farm ID</th>
-     <th>Farmer Name</th>
-     <th>Zone</th>
-     <th>Date Registered</th>
+<div class="container">
+    <table class="table table-striped" id = "farmers_table">
+     <thead>
+       <tr>
+         <th>Farm ID</th>
+         <th>Farmer Name</th>
+         <th>Zone</th>
+         <th>Date Registered</th>
 
-   </tr>
-  </thead>
- <tbody>
-  {% for farmer in farmers %}
-     <tr>
-         <td> {{farmer.id}} </td>
-         <td> {{farmer.farmer.first_name}}</td>
-         <td> {{farmer.zone}}</td>
-         <td> {{farmer.farmer.date_joined}}</td>
+       </tr>
+      </thead>
+     <tbody>
+      {% for farmer in farmers %}
+         <tr>
+             <td> {{farmer.id}} </td>
+             <td> {{farmer.farmer.first_name}}</td>
+             <td> {{farmer.zone}}</td>
+             <td> {{farmer.farmer.date_joined}}</td>
 
-     </tr>
-  {% endfor %}
- </tbody>
-</table>
+         </tr>
+      {% endfor %}
+     </tbody>
+    </table>
+</div>
 
 <script type="text/javascript">
 $(document).ready(function() {

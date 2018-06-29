@@ -1,10 +1,11 @@
 {% extends 'farmer/layout.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 
 
-<header>Success!</header>
+<header>{% trans "Success" %}!</header>
 
 <div class="p-success">
     <a href="">
@@ -12,8 +13,8 @@
     </a>
 
     <div>
-        <a href="/farmer/{{farm_id}}/{{year}}/{{month}}/" class="back button">
-            <button type="button" class="back button btn">Month Overview</button>
+        <a href="/farmer/{{language}}/{{farm_id}}/{{year}}/{{month}}/" class="back button">
+            <button type="button" class="back button btn">{% trans "Month Overview" %}</button>
         </a>
     </div>
 </div>

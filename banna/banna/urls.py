@@ -19,12 +19,11 @@ from django.urls import include, path
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-
 from django.conf.urls.i18n import i18n_patterns
 
 
 urlpatterns = [
-    path('i18n/', include('django.conf.urls.i18n')),  # < here
+    path('i18n/', include('django.conf.urls.i18n')),
     path('farmer/', include('farmer.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('admin/', admin.site.urls),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-29 19:16+0800\n"
+"POT-Creation-Date: 2018-06-29 23:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,138 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: farmer/templates/farmer/form/fertilizer.html:32
+#, fuzzy
+#| msgid "Fertilizer used"
+msgid "Fertilizer"
+msgstr "Kunstmest gebruikt"
+
+#: farmer/templates/farmer/form/fertilizer.html:39
+#: farmer/templates/farmer/form/harvest/bananas.html:27
+#: farmer/templates/farmer/form/harvest/trees.html:29
+#: farmer/templates/farmer/form/planted.html:29
+msgid "Error Message"
+msgstr "Waarschuwing"
+
+#: farmer/templates/farmer/form/fertilizer.html:42
+#: farmer/templates/farmer/form/harvest/trees.html:32
+msgid ""
+"Please fill in all fields. If there are no harvested trees in a particular "
+"yield, please fill in zero."
+msgstr ""
+"Vul graag alle velden in. Als er geen oorgst is in een bepaalde cyclusvul "
+"dan null in."
+
+#: farmer/templates/farmer/form/fertilizer.html:45
+#: farmer/templates/farmer/form/harvest/bananas.html:33
+#: farmer/templates/farmer/form/harvest/trees.html:35
+#: farmer/templates/farmer/form/planted.html:35
+msgid "Close"
+msgstr "Sluit"
+
+#: farmer/templates/farmer/form/fertilizer.html:56
+msgid "Did you use a fertilizer this month?"
+msgstr "Heb jij deze maand fertilizer gebruikt?"
+
+#: farmer/templates/farmer/form/fertilizer.html:60
+msgid "Yes"
+msgstr "Ja"
+
+#: farmer/templates/farmer/form/fertilizer.html:61
+msgid "No"
+msgstr "Nee"
+
+#: farmer/templates/farmer/form/fertilizer.html:65
+msgid "How much fertilizer did you use? (optional)"
+msgstr "Hoeveel kunstmest heb je gebruikt? (optioneel"
+
+#: farmer/templates/farmer/form/fertilizer.html:74
+#: farmer/templates/farmer/form/harvest/bananas.html:80
+#: farmer/templates/farmer/form/harvest/trees.html:80
+#: farmer/templates/farmer/form/planted.html:81
+#: farmer/templates/farmer/overview/farms.html:32
+#: farmer/templates/farmer/overview/months.html:38
+#: farmer/templates/farmer/overview/reports.html:93
+#: farmer/templates/farmer/overview/statistics.html:50
+msgid "Go back"
+msgstr "Terug"
+
+#: farmer/templates/farmer/form/fertilizer.html:77
+msgid "Submit"
+msgstr "Verstuur"
+
+#: farmer/templates/farmer/form/harvest/bananas.html:20
+#, fuzzy
+#| msgid "Monthly Harvested Bananas (KG)"
+msgid "Harvested Bananas"
+msgstr "Maandelijks Geoogst Bananas"
+
+#: farmer/templates/farmer/form/harvest/bananas.html:30
+msgid ""
+"Please fill in all fields. If there are no harvested bananas in a particular "
+"yield, please fill in zero."
+msgstr ""
+"Vul graag alle velden in. Als er geen oogst in een bepaald cyclus is gedaan, "
+"vul dan null in"
+
+#: farmer/templates/farmer/form/harvest/bananas.html:49
+#: farmer/templates/farmer/form/harvest/trees.html:49
+#: farmer/templates/farmer/form/planted.html:50
+#: farmer/templates/farmer/overview/reports.html:31
+#: farmer/templates/farmer/overview/reports.html:48
+#: farmer/templates/farmer/overview/reports.html:64
+msgid "Yield"
+msgstr "Cyclus"
+
+#: farmer/templates/farmer/form/harvest/bananas.html:50
+msgid "Amount of Bananas"
+msgstr "Hoeveelheid Bananen"
+
+#: farmer/templates/farmer/form/harvest/bananas.html:56
+#: farmer/templates/farmer/form/harvest/bananas.html:60
+#: farmer/templates/farmer/form/harvest/bananas.html:64
+#: farmer/templates/farmer/form/harvest/bananas.html:68
+#: farmer/templates/farmer/form/harvest/bananas.html:72
+msgid "KG"
+msgstr "KM"
+
+#: farmer/templates/farmer/form/harvest/bananas.html:83
+#: farmer/templates/farmer/form/harvest/trees.html:83
+#: farmer/templates/farmer/form/planted.html:84
+msgid "Next"
+msgstr "Volgende"
+
+#: farmer/templates/farmer/form/harvest/trees.html:22
+#: farmer/templates/farmer/overview/reports.html:41
+msgid "Harvested Trees"
+msgstr "Oogst bomen"
+
+#: farmer/templates/farmer/form/harvest/trees.html:50
+#: farmer/templates/farmer/form/planted.html:51
+msgid "Amount of Trees"
+msgstr "Hoeveelheid bomen"
+
+#: farmer/templates/farmer/form/planted.html:22
+msgid "New planted trees"
+msgstr "Nieuwe geplante bomen"
+
+#: farmer/templates/farmer/form/planted.html:32
+msgid ""
+"Please fill in all fields. If there are no new planted trees in a particular "
+"yield, please fill in zero."
+msgstr ""
+"Vul graag alle velden in. Als er geen niew geplante bomen is in een bepaald "
+"cyclus is gedaan, vul dan null in"
+
+#: farmer/templates/farmer/form/success.html:8
+msgid "Success"
+msgstr "Geslaagd"
+
+#: farmer/templates/farmer/form/success.html:17
+#: farmer/templates/farmer/overview/months.html:6
+msgid "Month Overview"
+msgstr "Maandelijks Overzicht"
 
 #: farmer/templates/farmer/overview/farms.html:7
 msgid "Overview Farms"
@@ -26,50 +158,26 @@ msgstr "Boederijen Overzicht"
 msgid "No data available."
 msgstr "Geen data beschikbaar"
 
-#: farmer/templates/farmer/overview/farms.html:32
-#: farmer/templates/farmer/overview/months.html:38
-#: farmer/templates/farmer/overview/reports.html:92
-#: farmer/templates/farmer/overview/statistics.html:50
-msgid "Go back"
-msgstr "Terug"
-
-#: farmer/templates/farmer/overview/months.html:6
-msgid "Month Overview"
-msgstr "Maandelijks Overzicht"
-
 #: farmer/templates/farmer/overview/months.html:41
+#: farmer/templates/farmer/overview/statistics.html:9
 msgid "Statistics"
 msgstr "Statistieken"
 
-#: farmer/templates/farmer/overview/reports.html:30
-msgid "Yield"
-msgstr "Jaar"
-
-#: farmer/templates/farmer/overview/reports.html:40
-msgid "Harvested Trees"
-msgstr "Oogst bomen"
-
-#: farmer/templates/farmer/overview/reports.html:56
+#: farmer/templates/farmer/overview/reports.html:57
 msgid "Harvest KGs"
 msgstr "Oogst Bananen"
 
-#: farmer/templates/farmer/overview/reports.html:72
+#: farmer/templates/farmer/overview/reports.html:73
 msgid "Fertilizer used"
 msgstr "Kunstmest gebruikt"
 
-#: farmer/templates/farmer/overview/reports.html:77
+#: farmer/templates/farmer/overview/reports.html:78
 msgid "Fertilizer amount"
 msgstr "Kunstmest hoeveelheid"
 
-#: farmer/templates/farmer/overview/reports.html:95
+#: farmer/templates/farmer/overview/reports.html:96
 msgid "Edit"
 msgstr "Aanpassen"
-
-#: farmer/templates/farmer/overview/statistics.html:9
-#, fuzzy
-#| msgid "Statistics"
-msgid "Statistics Overview"
-msgstr "Statistieken"
 
 #: farmer/templates/farmer/overview/statistics.html:14
 msgid "Monthly Harvested Bananas (KG)"
@@ -86,6 +194,61 @@ msgstr "Totaal bomen geplant"
 #: farmer/templates/farmer/overview/statistics.html:42
 msgid "Total Trees Harvested"
 msgstr "Totaal bomen geoogst"
+
+#: farmer/views/overview/statistics.py:19
+msgid "Jan"
+msgstr "Jan"
+
+#: farmer/views/overview/statistics.py:20
+msgid "Feb"
+msgstr "Feb"
+
+#: farmer/views/overview/statistics.py:21
+#: farmer/views/overview/statistics.py:22
+msgid "Apr"
+msgstr "Apr"
+
+#: farmer/views/overview/statistics.py:23
+msgid "May"
+msgstr "Mrt"
+
+#: farmer/views/overview/statistics.py:24
+msgid "Jun"
+msgstr "Jun"
+
+#: farmer/views/overview/statistics.py:25
+msgid "Jul"
+msgstr "Jul"
+
+#: farmer/views/overview/statistics.py:26
+msgid "Aug"
+msgstr "Aug"
+
+#: farmer/views/overview/statistics.py:27
+msgid "Sep"
+msgstr "Sep"
+
+#: farmer/views/overview/statistics.py:28
+msgid "Oct"
+msgstr "Okt"
+
+#: farmer/views/overview/statistics.py:29
+#, fuzzy
+#| msgid "No"
+msgid "Nov"
+msgstr "Nee"
+
+#: farmer/views/overview/statistics.py:30
+msgid "Dec"
+msgstr "Dec"
+
+#~ msgid "%(month.month)s "
+#~ msgstr "%(June.Juni)s"
+
+#, fuzzy
+#~| msgid "Statistics"
+#~ msgid "Statistics Overview"
+#~ msgstr "Statistieken"
 
 #~ msgid "Go Back"
 #~ msgstr "Terug"

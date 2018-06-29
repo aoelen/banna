@@ -2,16 +2,15 @@
 {% load static %}
 
 {% block body %}
-  <h1>Dashboard <small>Welcome </small></h1>
-
- <hr>
-
-  <div class="container-fluid">
+        <div class="logo shadow">
+            <img src="{% static 'farmer/img/BannaTree.png' %}" class="rounded mx-auto d-block" alt="Responsive image" height="300">
+        </div>
+    <div class="container-fluid">
       <div class="page-content page-content-popup">
               <div class="row">
                   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <a class="dashboard-stat dashboard-stat-v2 bg-primary" style = "color: white;"href="/dashboard/harvests">
-                          <div class="visual"></div>
+                      <a class="dashboard-stat dashboard-stat-v2 bg-primary shadow" style = "color: white;"href="/dashboard/harvests">
+                          <div class="visual "></div>
                           <div class="details">
                               <div class="number">
                                   <span id = "total_harvested">{{total_bananas_harvested}}</span>
@@ -21,7 +20,7 @@
                       </a>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <a class="dashboard-stat dashboard-stat-v2 bg-danger" style = "color: white;" href="/dashboard/factory_overview">
+                      <a class="dashboard-stat dashboard-stat-v2 bg-danger shadow" style = "color: white;" href="/dashboard/factory_overview">
                           <div class="visual">
 
                           </div>
@@ -34,7 +33,7 @@
                       </a>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <a class="dashboard-stat dashboard-stat-v2 bg-success" style = "color: white;" href="/dashboard/trees">
+                      <a class="dashboard-stat dashboard-stat-v2 bg-success shadow" style = "color: white;" href="/dashboard/trees">
                           <div class="visual">
 
                           </div>
@@ -47,9 +46,8 @@
                       </a>
                   </div>
                   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                      <a class="dashboard-stat dashboard-stat-v2 purple" style = "color: white;" href="/dashboard/farmers">
+                      <a class="dashboard-stat dashboard-stat-v2 purple shadow" style = "color: white;" href="/dashboard/farmers">
                           <div class="visual">
-
                           </div>
                           <div class="details">
                               <div class="number">
@@ -60,6 +58,8 @@
                       </a>
                   </div>
               </div>
+
+    <div class="container-fluid">
               <div class="clearfix"></div>
               <div class="row">
                   <div class="col-lg-12 col-xs-12 col-sm-12">
@@ -76,6 +76,7 @@
                       </div>
                   </div>
               </div>
+
               <div class="row">
                 <div class="col-lg-6 col-xs-12 col-sm-12">
                     <div class="portlet light">
@@ -128,10 +129,9 @@
                                   <span>Farm Updates Submitted by Farmers <small> for {{last_month}} </small></span>
                               </div>
                           </div>
-                          <div class="portlet-body" data-toggle="modal" data-target="#farmer_update_page">
+                          <div class="portlet-body text-center" data-toggle="modal" data-target="#farmer_update_page">
                                 <div id="farm_updates" class="chart"> </div>
-
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#farmer_update_page">View</button>
+                                <button type="button" class="btn btn-primary shadow block" data-toggle="modal" data-target="#farmer_update_page">Read More..</button>
                           </div>
                       </div>
                   </div>
@@ -191,6 +191,7 @@
     </div>
   </div>
 </div>
+    </div>
 
 
 <!-- Monthly Statistics Line Chart -->

@@ -3,14 +3,15 @@
 
 {% block body %}
 
+  <header class="header">Edit Factory Data</header>
 <div class="container-fluid" style="margin-right: 200;	margin-left: 200px;">
-  <h1>Edit Factory Data</h1>
+
  <div class="row">
    <div class="col-lg-8 col-xs-12 col-sm-12">
     <form method= "POST" action="">
         {% csrf_token %}
-      <div class="form-group">
-       <label>How much bananas received? (KG)</label>
+      <div class="form-group factory-box">
+       <h2 class="factory-label">How much bananas received? (KG)</h2>
        <input type="number" name="kgs_received" class="form-control"
        value="{{data.kgs_received}}">
       </div>

@@ -62,7 +62,8 @@ def overview_report(request, farm_id, year , month, language_code):
     context = {
         'data': data,
         'report' : report,
-        'farm_id' : farm_id
+        'farm_id' : farm_id,
+        'language': language_code
 
     }
     return render(request, 'farmer/overview/reports.html', context)

@@ -34,7 +34,7 @@ def form_planted(request, farm_id, year, month, report_id, language_code):
                         report_id=report, yield_number=index+1, defaults={"planted_amount_trees": single_yield}
                     )
 
-            return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/harvestedtreesform/")
+            return redirect('/farmer/'+ str(language_code) + '/' + str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/harvestedtreesform/")
 
     reports_yield = Reports_Yield.objects.filter(report_id=report_id)
     print(message_alert)
@@ -44,6 +44,7 @@ def form_planted(request, farm_id, year, month, report_id, language_code):
         yields[report.yield_number] = report.planted_amount_trees
 
     context = {
+        'language': language_code,
         'message_alert': message_alert,
         'yields': yields,
         'report_id': report_id,

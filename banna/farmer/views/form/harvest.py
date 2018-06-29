@@ -27,7 +27,7 @@ def form_harvest_trees(request, farm_id, year, month, report_id, language_code):
                 person, created = Reports_Yield.objects.update_or_create(
                     report_id=report, yield_number=index+1, defaults={"harvested_amount_trees": single_yield}
                 )
-            return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/harvestedbananasform/")
+            return redirect('/farmer/'+ str(language_code) + '/' + str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/harvestedbananasform/")
 
     reports_yield = Reports_Yield.objects.filter(report_id=report_id)
 
@@ -37,6 +37,7 @@ def form_harvest_trees(request, farm_id, year, month, report_id, language_code):
         yields[report.yield_number] = report.harvested_amount_trees
 
     context = {
+        'language': language_code,
         'message_alert': message_alert,
         'yields': yields,
         'report_id': report_id,
@@ -48,7 +49,7 @@ def form_harvest_trees(request, farm_id, year, month, report_id, language_code):
     return render(request, 'farmer/form/harvest/trees.html', context)
 
 
-def form_harvest_bananas(request, farm_id, year, month, report_id):
+def form_harvest_bananas(request, farm_id, year, month, report_id, language_code):
     message_alert = ""
     redirect_page = True
 
@@ -67,7 +68,7 @@ def form_harvest_bananas(request, farm_id, year, month, report_id):
                 person, created = Reports_Yield.objects.update_or_create(
                     report_id=report, yield_number=index+1, defaults={"harvested_amount_kg_banana": single_yield}
                 )
-            return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/fertilizerform/")
+            return redirect('/farmer/' + str(language_code) + '/' + str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/fertilizerform/")
 
     reports_yield = Reports_Yield.objects.filter(report_id=report_id)
 
@@ -77,6 +78,7 @@ def form_harvest_bananas(request, farm_id, year, month, report_id):
         yields[report.yield_number] = report.harvested_amount_kg_banana
 
     context = {
+        'language': language_code,
         'message_alert': message_alert,
         'yields': yields,
         'report_id': report_id,

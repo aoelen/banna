@@ -1,0 +1,57 @@
+
+#layout_background{z-index: 1;}
+#layout_background:before{
+            content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url('img/background.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    opacity: 0.6;
+    filter:alpha(opacity=40);
+    height:100%;
+    width:100%;
+}
+
+.header {
+    height:300px;
+    width:100%;
+    font-size: 80px;
+    text-align: center;
+    padding-top:15px;
+    background: rgba(107, 151, 70, 0.7);
+    font-weight: 600;
+    color:#fff;
+    padding-top: 5%;
+}
+
+
+.header .label{
+    margin-top: 30%;
+}
+.logo {
+    background: rgba(107, 151, 70, 0.7);
+}
+
+.block {
+    display: block;
+    width: 80%;
+    border: none;
+    background: rgba(107, 151, 70, 0.7);
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.factory-label{
+    padding-top: 10%;
+}
+
+.factory-box{
+    text-align: center;
+}

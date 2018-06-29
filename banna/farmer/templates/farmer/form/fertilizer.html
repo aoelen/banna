@@ -1,5 +1,6 @@
 {% extends 'farmer/layout.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <script type="text/javascript">
@@ -28,40 +29,40 @@ $(document).ready(function() {
 });
 </script>
 
-<header>Fertilizer</header>
+<header>{% trans "Fertilizer" %}</header>
 
     <div class="container">
             <div id="message_alert" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h4 class="modal-title">Error Message</h4>
+                      <h4 class="modal-title">{% trans "Error Message" %}</h4>
                     </div>
                     <div class="modal-body">
-                      <h6>Please fill in all fields. If there are no harvested trees in a particular yield, please fill in zero.</h6>
+                      <h6>{% trans "Please fill in all fields. If there are no harvested trees in a particular yield, please fill in zero." %}</h6>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">{% trans "Close" %}</button>
                     </div>
                   </div>
                 </div>
             </div>
         </div>
 
-    <form action="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/fertilizerform/" method="POST">
+    <form action="/farmer/{{language}}/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/fertilizerform/" method="POST">
     {% csrf_token %}
     <div class="p-form-fertilizer">
         <div class="fertilizer-box">
-            <div class="label"><h5>Did you use a fertilizer this month?</h5></div>
+            <div class="label"><h5>{% trans "Did you use a fertilizer this month?" %}</h5></div>
             <input type="hidden" name="fertilizer_used" value="{{report.fertilizer_used|title}}" >
 
             <div class="buttons">
-                <div class="yes button {% if report.fertilizer_used == 'Yes' %}selected{% endif %}">Yes</div>
-                <div class="no button {% if report.fertilizer_used == 'No' %}selected{% endif %}">No</div>
+                <div class="yes button {% if report.fertilizer_used == 'Yes' %}selected{% endif %}">{% trans "Yes" %}</div>
+                <div class="no button {% if report.fertilizer_used == 'No' %}selected{% endif %}">{% trans "No" %}</div>
             </div>
 
             <div class="clear"></div>
-            <div class="label"><h6>How much fertilizer did you use? (optional)</h6></div>
+            <div class="label"><h6>{% trans "How much fertilizer did you use? (optional)" %}</h6></div>
 
             <div class="fertilizer-input">
                 <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
@@ -69,11 +70,11 @@ $(document).ready(function() {
         </div>
 
         <div class="bottom-menu">
-            <a href="/farmer/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/harvestedbananasform/">
-                <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block twobuttons">Go back</button>
+            <a href="/farmer/{{language}}/{{farm_id}}/{{year}}/{{month}}/{{report_id}}/harvestedbananasform/">
+                <button type="button" class="back button btn btn-success custom-btn btn-lg btn-block twobuttons">{% trans "Go back" %}</button>
             </a>
             <a>
-                <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block twobuttons" id="submitForm">Submit</button>
+                <button href="#" type="button" class="edit button btn btn-success custom-btn btn-lg btn-block twobuttons" id="submitForm">{% trans "Submit" %}</button>
             </a>
         </div>
     </div>

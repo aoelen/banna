@@ -13,6 +13,7 @@ def success(request, farm_id, year, month, report_id, language_code):
     Report.objects.filter(id=report_id).update(report_date=datetime.now().date())
 
     context = {
+        'language':language_code,
         'report_id': report_id,
         'farm_id': farm_id,
         'year': year,

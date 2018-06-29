@@ -20,10 +20,8 @@ def overview_months(request, farm_id, language_code):
     formated_month = datetime(int(currentdate.year), int(currentdate.month), int(currentdate.day))
     selected_month = formated_month.strftime("%B")
 
-    print(selected_month)
     farms = Farm.objects.filter(id=farm_id)
     for farm in farms:
-        print(farm.id)
         #Create of get new month report
         person, created = Report.objects.get_or_create(
             month = selected_month,
@@ -82,7 +80,6 @@ def overview_months(request, farm_id, language_code):
                     'value': 'icons/check.png'
                 }
             })
-    print(data)
 
     context = {
         'data': data,

@@ -23,13 +23,14 @@ def form_fertilizer(request, farm_id, year, month, report_id, language_code):
             Report.objects.filter(id=report_id).update(fertilizer_amount=fertilizer_amount,
                                                         fertilizer_used=request.POST.get('fertilizer_used', ''),
                                                         )
-            return redirect('/farmer/'+ str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/succes/")
+            return redirect('/farmer/' + str(language_code) + '/' + str(farm_id) + '/' + str(year) + '/' + str(month) + '/' + str(report_id) + "/succes/")
         else:
             message_alert = "#message_alert"
 
     report = Report.objects.get(id=report_id)
 
     context = {
+        'language': language_code,
         'message_alert': message_alert,
         'report': report,
         'report_id': report_id,

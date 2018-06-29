@@ -46,7 +46,7 @@
             </div>
 
             <div class="bottom-menu">
-               <a href="/farmer/{{farm_id}}" class="back button btn-block">
+               <a href="/farmer/{{language}}/{{farm_id}}" class="back button btn-block">
                 <button type="button" class="btn btn-success custom-btn btn-lg btn-block">{% trans "Go back" %}</button>
                </a>
             </div>
@@ -57,7 +57,7 @@
 
                      function drawChart() {
                        var data = google.visualization.arrayToDataTable([
-                         ['Month', 'Predicted Harvest (KGs)', 'Actual Harvest (KGs)'],
+                         ['Month', 'Predicted', 'Actual'],
                          {% for month, row in actual_vs_predicted.items %}
                           ['{{month}}', {{row.0}}, {{row.1}}],
                          {% endfor %}
