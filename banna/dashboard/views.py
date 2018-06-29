@@ -48,7 +48,6 @@ def dashboard(request):
     for single_yield in yields:
         if not month_numbers_convert[single_yield.report_id.month_numeric] in harvest_per_month:
             harvest_per_month[month_numbers_convert[single_yield.report_id.month_numeric]] = 0
-            print('NOT')
 
         if not month_numbers_convert[single_yield.report_id.month_numeric] in planted_per_month:
             planted_per_month[month_numbers_convert[single_yield.report_id.month_numeric]] = 0
@@ -244,6 +243,15 @@ def factory_overview(request):
     now = datetime.datetime.now()
 
     factory_datas = Factory_Data.objects.filter(year=now.year).order_by('id')
+    yields = Reports_Yield.objects.filter(report_id__year="2018")
+
+    harvest_per_month = {}
+
+    for single_yield in yields:
+        if not single_yield.report_id.month_numeric in harvest_per_month:
+            harvest_per_month[single_yield.report_id.month_numeric] = 0
+
+        harvest_per_month[single_yield.report_id.month_numeric] += single_yield.harvested_amount_kg_banana
 
     graph_datas = {}
 
@@ -253,9 +261,19 @@ def factory_overview(request):
     graph_datas_converted = {}
     for i in range(1,13):
         if i in graph_datas:
-            graph_datas_converted[month_numbers_convert[i]] = graph_datas[i]
+            received = graph_datas[i]
         else:
-            graph_datas_converted[month_numbers_convert[i]] = 0
+            received = 0
+
+        if i in harvest_per_month:
+            kgs = harvest_per_month[i]
+        else:
+            kgs = 0
+
+        graph_datas_converted[month_numbers_convert[i]] = {
+            'received': received,
+            'kgs': kgs
+        }
 
     context = {
         'factory_datas': factory_datas,
@@ -269,6 +287,15 @@ def factory(request):
     now = datetime.datetime.now()
 
     factory_datas = Factory_Data.objects.filter(year=now.year).order_by('id')
+    yields = Reports_Yield.objects.filter(report_id__year="2018")
+
+    harvest_per_month = {}
+
+    for single_yield in yields:
+        if not single_yield.report_id.month_numeric in harvest_per_month:
+            harvest_per_month[single_yield.report_id.month_numeric] = 0
+
+        harvest_per_month[single_yield.report_id.month_numeric] += single_yield.harvested_amount_kg_banana
 
     graph_datas = {}
 
@@ -277,10 +304,21 @@ def factory(request):
 
     graph_datas_converted = {}
     for i in range(1,13):
+        
         if i in graph_datas:
-            graph_datas_converted[month_numbers_convert[i]] = graph_datas[i]
+            received = graph_datas[i]
         else:
-            graph_datas_converted[month_numbers_convert[i]] = 0
+            received = 0
+
+        if i in harvest_per_month:
+            kgs = harvest_per_month[i]
+        else:
+            kgs = 0
+
+        graph_datas_converted[month_numbers_convert[i]] = {
+            'received': received,
+            'kgs': kgs
+        }
 
     context = {
         'factory_datas': factory_datas,

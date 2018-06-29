@@ -13,7 +13,7 @@ $(document).ready(function() {
 });
 </script>
 
-<h1>Factory Overview</h1>
+<h1>Factory Data</h1>
  <hr>
  <div class="container-fluid">
    <div class="page-content page-content-popup">
@@ -36,7 +36,8 @@ $(document).ready(function() {
                </div>
            </div>
             <div class="clearfix"></div>
-            <h2>Factory Data</h2>
+            <hr>
+            <h3>Bananas Received Monthly</h3>
 
             <a class="btn bg-success" style = "color: white;" href="/dashboard/factory_data">Add New Data </a>
             <hr>
@@ -78,9 +79,9 @@ $(document).ready(function() {
 
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  ['Month', 'Factory Received', 'Harvests'],
+                  ['Month', 'Factory Received', 'Harvest  (KGs)'],
                   {% for month, graph_data in graph_datas.items %}
-                  ['{{ month }}', {{graph_data}}, 0],
+                  ['{{ month }}', {{graph_data.received}}, {{graph_data.kgs}}],
                   {% endfor %}
                 ]);
 
