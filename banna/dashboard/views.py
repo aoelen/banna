@@ -144,7 +144,7 @@ def dashboard(request):
             farmers_update = farmers_update + 1
 
         i = i+1
-    print(farmer_updates_list)
+
 
     farms = Farm.objects.all()
 
@@ -304,7 +304,7 @@ def factory(request):
 
     graph_datas_converted = {}
     for i in range(1,13):
-        
+
         if i in graph_datas:
             received = graph_datas[i]
         else:
@@ -334,7 +334,6 @@ def farmers(request):
     context = {
         'farmers': farmers
     }
-    print(context)
     # Render the .html file
     return render(request, 'dashboard/farmers.html', context)
 

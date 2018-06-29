@@ -177,7 +177,7 @@
                <tr>
                    <td> {{item.name}} </td>
                    <td> {% if item.completed == True %} Completed {% else %} Not completed{% endif %}</td>
-                   <td> <i class=" {% if item.completed == True %}icon-check font-green{% else %}icon-hourglass font-red{% endif %}" style= "font-size: 20px;"></i> </td>
+                   <td> <i class=" {% if item.completed == True %}icon-check font-blue{% else %}icon-close font-red{% endif %}" style= "font-size: 24px;"></i> </td>
                </tr>
             {% endfor %}
            </tbody>
