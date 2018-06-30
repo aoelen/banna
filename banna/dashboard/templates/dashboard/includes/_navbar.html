@@ -1,6 +1,14 @@
 {% load static %}
+
+<script>
+    $(document).ready(function() {
+  $('li.active').removeClass('active');
+  $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+});
+</script>
+
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-success">
-      <a class="navbar-brand" href="/dashboard">
+      <a class="navbar-brand" href="/dashboard/overview">
          <img src="{% static 'dashboard/img/Banna.png' %}" class="img-fluid" alt="Responsive image" width="50" height="35">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,30 +18,27 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
+            <a class="nav-link font-weight-bold" href="/dashboard/overview">Dashboard <span class="sr-only">(current)</span></a>
         </li>
-
-        {% for user_group in request.user.groups.all %}
+      {% for user_group in request.user.groups.all %}
 
         {% ifequal user_group|stringformat:"s" 'factory' %}
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard/factory">Factory Data</a>
+          <a class="nav-link font-weight-bold" href="/dashboard/factory">Factory Data</a>
         </li>
         {% endifequal %}
 
         {% ifequal user_group|stringformat:"s" 'government' %}
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard/factory_overview">Factory Overview</a>
+          <a class="nav-link font-weight-bold" href="/dashboard/factory_overview">Factory Overview</a>
         </li>
-
-
 
         {% endifequal %}
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard/farmers">Farmers</a>
+          <a class="nav-link font-weight-bold" href="/dashboard/farmers">Farmers</a>
         </li>
+       {% endfor %}
 
-        {% endfor %}
 
 
 
@@ -41,7 +46,9 @@
         </ul>
 
         <ul class="navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            <li class="nav-item"><a class="nav-link font-weight-bold" href="#">Welcome, {{request.user.get_full_name}}</a></li>
+
+            <li class="nav-item"><a class="nav-link font-weight-bold" href="/logout">Logout</a></li>
         </ul>
 
       </div>

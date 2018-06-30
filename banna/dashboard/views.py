@@ -26,7 +26,6 @@ month_numbers_convert = {
 
 @login_required
 def index(request):
-
     # Render the .html file
     return render(request, 'dashboard/dashboard.html')
 
