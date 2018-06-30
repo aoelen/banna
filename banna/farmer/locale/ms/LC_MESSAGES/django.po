@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-29 23:57+0800\n"
+"POT-Creation-Date: 2018-06-30 08:37+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,11 +58,17 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nee"
 
-#: farmer/templates/farmer/form/fertilizer.html:65
-msgid "How much fertilizer did you use? (optional)"
+#: farmer/templates/farmer/form/fertilizer.html:66
+#, fuzzy
+#| msgid "How much fertilizer did you use? (optional)"
+msgid "How much fertilizer did you use?"
 msgstr "Hoeveel kunstmest heb je gebruikt? (optioneel"
 
-#: farmer/templates/farmer/form/fertilizer.html:74
+#: farmer/templates/farmer/form/fertilizer.html:67
+msgid "(optional)"
+msgstr "(optioneel)"
+
+#: farmer/templates/farmer/form/fertilizer.html:77
 #: farmer/templates/farmer/form/harvest/bananas.html:80
 #: farmer/templates/farmer/form/harvest/trees.html:80
 #: farmer/templates/farmer/form/planted.html:81
@@ -73,7 +79,7 @@ msgstr "Hoeveel kunstmest heb je gebruikt? (optioneel"
 msgid "Go back"
 msgstr "Terug"
 
-#: farmer/templates/farmer/form/fertilizer.html:77
+#: farmer/templates/farmer/form/fertilizer.html:80
 msgid "Submit"
 msgstr "Verstuur"
 

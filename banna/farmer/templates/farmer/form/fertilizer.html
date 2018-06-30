@@ -53,7 +53,7 @@ $(document).ready(function() {
     {% csrf_token %}
     <div class="p-form-fertilizer">
         <div class="fertilizer-box">
-            <div class="label"><h5>{% trans "Did you use a fertilizer this month?" %}</h5></div>
+            <div class="label"><h6>{% trans "Did you use a fertilizer this month?" %}</h6></div>
             <input type="hidden" name="fertilizer_used" value="{{report.fertilizer_used|title}}" >
 
             <div class="buttons">
@@ -62,7 +62,10 @@ $(document).ready(function() {
             </div>
 
             <div class="clear"></div>
-            <div class="label"><h6>{% trans "How much fertilizer did you use? (optional)" %}</h6></div>
+            <div class="label">
+                <h6>{% trans "How much fertilizer did you use?" %}</h6>
+                <h6>{% trans "(optional)" %}</h6>
+            </div>
 
             <div class="fertilizer-input">
                 <input type="number" value="{{ report.fertilizer_amount }}" name="fertilizer_kgs" />
