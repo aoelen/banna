@@ -201,7 +201,7 @@
 
              function drawChart() {
                var data = google.visualization.arrayToDataTable([
-                 [{% trans 'Month' %}, {% trans 'Factory Received' %}, {% trans 'Harvests (number of trees)' %}],
+                 ['{% trans 'Month' %}', '{% trans 'Factory Received' %}', '{% trans 'Harvests (number of trees)' %}'],
                  {% for month, row in harvest_vs_received.items %}
                 ['{{month}}', {{row.1}}, {{row.0}}],
                  {% endfor %}
@@ -228,7 +228,7 @@
 
            function drawChart() {
              var data = google.visualization.arrayToDataTable([
-               [{% trans 'Month' %}, {% trans 'KG' %}],
+               ['{% trans 'Month' %}', '{% trans 'KG' %}'],
                {% for month, harvest in harvest_per_month.items %}
                ['{{month}}', {{harvest}}],
                {% endfor %}
@@ -255,7 +255,7 @@
 
                  function drawChart() {
                    var data = google.visualization.arrayToDataTable([
-                     [{% trans 'Month' %}, {% trans 'Trees' %} ],
+                     ['{% trans 'Month' %}', '{% trans 'Trees' %}' ],
                      {% for month, planted in planted_per_month.items %}
                      ['{{month}}', {{planted}}],
                      {% endfor %}
@@ -284,7 +284,7 @@
 
                          function drawChart() {
                            var data = google.visualization.arrayToDataTable([
-                             [{% trans 'Month' %}, 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
+                             ['{% trans 'Month' %}', 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
                              {% for month, row in trees_yield_month.items %}
                              ['{{month}}',
                              {% for index,yield_n in row.items %}
@@ -314,9 +314,9 @@
                google.charts.setOnLoadCallback(drawChart);
                function drawChart() {
                  var data = google.visualization.arrayToDataTable([
-                   [{% trans 'Farmers' %}, {% trans 'Updates for Month' %}],
-                   [{% trans 'Update' %}, {{farmers_update}}],
-                   [{% trans 'No-Update' %}, {{farmers_no_update}}]
+                   ['{% trans 'Farmers' %}', '{% trans 'Updates for Month' %}'],
+                   ['{% trans 'Update' %}', {{farmers_update}}],
+                   ['{% trans 'No-Update' %}', {{farmers_no_update}}]
                  ]);
 
                  var options = {

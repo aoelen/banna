@@ -8,6 +8,43 @@
 });
 </script>
 
+
+<script>
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#submitFormEn').on('click', function() {
+        $(this).parents('form').submit();
+
+        return false;
+    });
+
+     $('#submitFormMs').on('click', function() {
+        $(this).parents('form').submit();
+
+        return false;
+    });
+
+});
+</script>
+
+<script>
+function myFunction() {
+    var x = document.URL;
+    document.getElementById("demo").innerHTML = x;
+}
+</script>
+
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-success">
       <a class="navbar-brand" href="/dashboard/overview">
          <img src="{% static 'dashboard/img/Banna.png' %}" class="img-fluid" alt="Responsive image" width="50" height="35">
@@ -39,20 +76,50 @@
           <a class="nav-link font-weight-bold" href="/dashboard/farmers">{% trans 'Farmers' %}</a>
         </li>
        {% endfor %}
-
-
-
-
-
-        </ul>
-
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link font-weight-bold" href="#">{% trans 'Welcome' %}, {{request.user.get_full_name}}</a></li>
-
-            <li class="nav-item"><a class="nav-link font-weight-bold" href="/logout">{% trans 'Logout' %}</a></li>
         </ul>
 
       </div>
 
+
+        <ul class="navbar-nav navbar-right">
+            <div class="dropdown">
+                <a class="nav-link font-weight-bold" href="/dashboard/overview">{% trans 'Language' %} <span class="sr-only">(current)</span></a>
+              <div class="dropdown-content">
+                  <form id="language_en" action="" method="post">
+                      {% csrf_token %}
+                      <input type="hidden" type="text" name="english" value="en" />
+
+                    <a>
+                        <button href="#"
+                                type="button"
+                                class="btn btn-light"
+                                id="submitFormEn">
+                            {% trans "English" %}
+                        </button>
+                    </a>
+                  </form>
+                  <form id="language_ms" action="" method="post">
+                      {% csrf_token %}
+
+                      <input type="hidden" type="text" name="malay" value="ms" />
+                    <a>
+                        <button href="#"
+                                type="button"
+                                class="btn btn-light"
+                                id="submitFormMs">
+                            {% trans "Malay" %}
+                        </button>
+                    </a>
+                  </form>
+
+
+
+              </div>
+            </div>
+
+
+            <li class="nav-item"><a class="nav-link font-weight-bold" href="#">{% trans 'Welcome' %}, {{request.user.get_full_name}}</a></li>
+            <li class="nav-item"><a class="nav-link font-weight-bold" href="/logout">{% trans 'Logout' %}</a></li>
+        </ul>
 
     </nav>
