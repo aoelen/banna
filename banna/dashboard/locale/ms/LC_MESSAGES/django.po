@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-01 23:20+0800\n"
+"POT-Creation-Date: 2018-07-02 01:28+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,7 @@ msgstr "Pokok"
 
 #: dashboard/templates/dashboard/dashboard.html:317
 #: dashboard/templates/dashboard/farmers.html:5
-#: dashboard/templates/dashboard/includes/_navbar.html:87
+#: dashboard/templates/dashboard/includes/_navbar.html:76
 msgid "Farmers"
 msgstr "Petani"
 
@@ -242,35 +242,35 @@ msgstr "Pisang yang sudah dituai(kg)"
 msgid "Number of harvested trees"
 msgstr "Jumlah pokok yang dituai"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:70
+#: dashboard/templates/dashboard/includes/_navbar.html:59
 msgid "Dashboard"
 msgstr "Papan Statistik"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:76
+#: dashboard/templates/dashboard/includes/_navbar.html:65
 msgid "Factory Data"
 msgstr "Data Kilang"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:82
+#: dashboard/templates/dashboard/includes/_navbar.html:71
 msgid "Factory Overview"
 msgstr "Gambaran Keseluruhan Kilang"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:97
+#: dashboard/templates/dashboard/includes/_navbar.html:86
 msgid "Language"
 msgstr "Bahasa"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:108
+#: dashboard/templates/dashboard/includes/_navbar.html:97
 msgid "English"
 msgstr "Bahasa Inggeris"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:122
+#: dashboard/templates/dashboard/includes/_navbar.html:110
 msgid "Malay"
 msgstr "Malay"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:133
+#: dashboard/templates/dashboard/includes/_navbar.html:121
 msgid "Welcome"
 msgstr "Selamat datang"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:134
+#: dashboard/templates/dashboard/includes/_navbar.html:122
 msgid "Logout"
 msgstr "Log Keluar"
 

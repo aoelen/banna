@@ -57,7 +57,7 @@
 
             function drawChart() {
               var data = google.visualization.arrayToDataTable([
-                [{% trans 'Month' %}, {% trans 'Harvested bananas (KG)' %}, {% trans 'Number of harvested trees' %} ],
+                ['{% trans 'Month' %}', '{% trans 'Harvested bananas (KG)' %}', '{% trans 'Number of harvested trees' %}' ],
                 {% for month,amount in harvest_per_month.items %}
                 ['{{ month }}', {{amount.kgs}}, {{amount.number}}],
                 {% endfor %}
