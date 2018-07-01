@@ -1,6 +1,6 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block body %}
         <div class="logo shadow">
             <img src="{% static 'farmer/img/BannaTree.png' %}" class="rounded mx-auto d-block" alt="Responsive image" height="300">
@@ -15,7 +15,7 @@
                               <div class="number">
                                   <span id = "total_harvested">{{total_bananas_harvested}}</span>
                               </div>
-                              <div> Bananas Harvested (KG) </div>
+                              <div>{% trans 'Bananas Harvested' %}</div>
                           </div>
                       </a>
                   </div>
@@ -28,7 +28,7 @@
                               <div class="number">
                                   <span id = "total_trees" >{{total_factory_kgs}}</span>
                               </div>
-                              <div> Bananas Received (KG) </div>
+                              <div> {% trans 'Bananas Received' %} </div>
                           </div>
                       </a>
                   </div>
@@ -41,7 +41,7 @@
                               <div class="number">
                                   <span id = "total_trees" >{{total_trees_planted}}</span>
                               </div>
-                              <div>Trees planted</div>
+                              <div>{% trans 'Trees planted'%}</div>
                           </div>
                       </a>
                   </div>
@@ -53,7 +53,7 @@
                               <div class="number">
                                   <span id = "total_farmers">{{farms_amount}}</span>
                               </div>
-                              <div> Total farms </div>
+                              <div> {% trans 'Total farms' %} </div>
                           </div>
                       </a>
                   </div>
@@ -67,7 +67,7 @@
                           <div class="portlet-title">
                               <div class="caption">
                                   <i class="icon-bar-chart font-red"></i>
-                                  <span>Monthly Statistics</span>
+                                  <span>{% trans 'Monthly Statistics'%}</span>
                               </div>
                           </div>
                           <div class="portlet-body">
@@ -83,7 +83,7 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="icon-bar-chart font-yellow"></i>
-                                <span>Bananas Harvested</span>
+                                <span>{% trans 'Bananas Harvested' %}</span>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -96,7 +96,7 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="icon-bar-chart font-yellow "></i>
-                                <span>Trees Planted</span>
+                                <span>{% trans 'Trees Planted' %}</span>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -111,7 +111,7 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="icon-bar-chart font-yellow"></i>
-                                <span>Trees Planted <small>per yield</small></span>
+                                <span>{% trans 'Trees Planted' %} <small>{% trans 'per yield' %}</small></span>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -126,12 +126,12 @@
                           <div class="portlet-title">
                               <div class="caption">
                                   <i class="icon-cursor font-red"></i>
-                                  <span>Farm Updates Submitted by Farmers <small> for {{last_month}} </small></span>
+                                  <span>{% trans 'Farm Updates Submitted by Farmers'%} <small> {% trans 'for'%} {{last_month}} </small></span>
                               </div>
                           </div>
                           <div class="portlet-body text-center" data-toggle="modal" data-target="#farmer_update_page">
                                 <div id="farm_updates" class="chart"> </div>
-                                <button type="button" class="btn btn-primary shadow block" data-toggle="modal" data-target="#farmer_update_page">Read More..</button>
+                                <button type="button" class="btn btn-primary shadow block" data-toggle="modal" data-target="#farmer_update_page">{% trans 'Read More..' %}</button>
                           </div>
                       </div>
                   </div>
@@ -139,7 +139,7 @@
                       <div class="portlet light">
                           <div class="portlet-title">
                               <div class="caption">
-                                  <span>Zones</span>
+                                  <span>{% trans 'Zones' %}</span>
                               </div>
                           </div>
                           <div class="portlet-body">
@@ -157,7 +157,7 @@
     <div class="modal-content">
       <div class="modal-header bg-success" style= "color:white;">
           <i class="icon-bar-chart font-red"></i>
-        <h3 class="modal-title">Farmer Updates for {{last_month}}</h3>
+        <h3 class="modal-title">{% trans 'Farmer Updates for' %} {{last_month}}</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -166,9 +166,9 @@
           <table class="table table-striped" id = "farmer_update_table">
            <thead>
              <tr>
-               <th>Farm Name</th>
-               <th>Month</th>
-               <th>Status</th>
+               <th>{% trans 'Farm Name' %}</th>
+               <th>{% trans 'Month' %}</th>
+               <th>{% trans 'Status' %}</th>
                <th></th>
 
              </tr>
@@ -178,7 +178,7 @@
                <tr>
                    <td> {{item.name}} </td>
                    <td> {{last_month}}</td>
-                   <td> {% if item.completed == True %} Completed {% else %} Not completed{% endif %}</td>               
+                   <td> {% if item.completed == True %} Completed {% else %} {% trans 'Not completed' %}{% endif %}</td>
                    <td> <i class=" {% if item.completed == True %}icon-check font-blue{% else %}icon-close font-red{% endif %}" style= "font-size: 24px;"></i> </td>
                </tr>
             {% endfor %}
@@ -201,7 +201,7 @@
 
              function drawChart() {
                var data = google.visualization.arrayToDataTable([
-                 ['Month', 'Factory Received (KGs)', 'Harvests (number of trees)'],
+                 [{% trans 'Month' %}, {% trans 'Factory Received' %}, {% trans 'Harvests (number of trees)' %}],
                  {% for month, row in harvest_vs_received.items %}
                 ['{{month}}', {{row.1}}, {{row.0}}],
                  {% endfor %}
@@ -228,7 +228,7 @@
 
            function drawChart() {
              var data = google.visualization.arrayToDataTable([
-               ['Month', 'KG'],
+               [{% trans 'Month' %}, {% trans 'KG' %}],
                {% for month, harvest in harvest_per_month.items %}
                ['{{month}}', {{harvest}}],
                {% endfor %}
@@ -255,7 +255,7 @@
 
                  function drawChart() {
                    var data = google.visualization.arrayToDataTable([
-                     ['Month', 'Trees' ],
+                     [{% trans 'Month' %}, {% trans 'Trees' %} ],
                      {% for month, planted in planted_per_month.items %}
                      ['{{month}}', {{planted}}],
                      {% endfor %}
@@ -284,7 +284,7 @@
 
                          function drawChart() {
                            var data = google.visualization.arrayToDataTable([
-                             ['Month', 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
+                             [{% trans 'Month' %}, 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
                              {% for month, row in trees_yield_month.items %}
                              ['{{month}}',
                              {% for index,yield_n in row.items %}
@@ -314,9 +314,9 @@
                google.charts.setOnLoadCallback(drawChart);
                function drawChart() {
                  var data = google.visualization.arrayToDataTable([
-                   ['Farmers', 'Updates for Month'],
-                   ['Update', {{farmers_update}}],
-                   ['No-Update', {{farmers_no_update}}]
+                   [{% trans 'Farmers' %}, {% trans 'Updates for Month' %}],
+                   [{% trans 'Update' %}, {{farmers_update}}],
+                   [{% trans 'No-Update' %}, {{farmers_no_update}}]
                  ]);
 
                  var options = {

@@ -1,8 +1,8 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block body %}
-<header class="header">Planted Trees</header>
+<header class="header">{% trans 'Planted Trees' %}</header>
  <hr>
 
  <div class="container-fluid">
@@ -24,11 +24,11 @@
                       <thead>
                       <tr>
 
-                        <th>Farmer Name</th>
+                        <th>{% trans 'Farmer Name' %}</th>
                         <th>Yield</th>
-                        <th>Fertilizer Used</th>
-                        <th>Number of Trees</th>
-                        <th>Date</th>
+                        <th>{% trans 'Fertilizer Used' %}</th>
+                        <th>{% trans 'Number of Trees' %}</th>
+                        <th>{% trans 'Date' %}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -55,7 +55,7 @@
 
            function drawChart() {
              var data = google.visualization.arrayToDataTable([
-               ['Month', 'KG' ],
+               [{% trans 'Month' %}, {% trans 'KG' %} ],
                {% for month,amount in planted_per_month.items %}
                ['{{ month }}', {{amount}}],
                {% endfor %}

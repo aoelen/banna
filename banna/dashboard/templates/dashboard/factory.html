@@ -1,5 +1,6 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block body %}
 <script type="text/javascript">
@@ -13,7 +14,7 @@ $(document).ready(function() {
 });
 </script>
 
-<header class="header">Bananas Overview</header>
+<header class="header">{% trans 'Bananas Overview' %}</header>
  <hr>
  <div class="container-fluid">
    <div class="page-content page-content-popup">
@@ -23,7 +24,7 @@ $(document).ready(function() {
                        <div class="portlet-title">
                            <div class="caption">
                                <i class="icon-share font-red"></i>
-                               <span>Bananas Harvested vs Bananas Received</span>
+                               <span>{% trans 'Bananas Harvested vs Bananas Received' %}</span>
                            </div>
                        </div>
 
@@ -37,17 +38,17 @@ $(document).ready(function() {
            </div>
             <div class="clearfix"></div>
         <div class="container">
-            <a class="btn bg-success" style = "color: white;" href="/dashboard/factory_data">Add New Data </a>
+            <a class="btn bg-success" style = "color: white;" href="/dashboard/factory_data">{% trans 'Add New Data' %}</a>
             <hr>
             <div class="row">
               <div class="col-lg-12 col-xs-12 col-sm-12">
                 <table class="table table-striped" id ="factory_table">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>Quantity Received (KG)</th>
-                      <th>Date</th>
-                      <th>Actions</th>
+                      <th>{% trans 'ID' %}</th>
+                      <th>{% trans 'Quantity Received (KG)' %}</th>
+                      <th>{% trans 'Date' %}</th>
+                      <th>{% trans 'Actions' %}</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -77,7 +78,7 @@ $(document).ready(function() {
 
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  ['Month', 'Factory Received', 'Harvest  (KGs)'],
+                  [{% trans 'Month' %}, {% trans 'Factory Received' %}, {% trans 'Harvest  (KGs)' %}],
                   {% for month, graph_data in graph_datas.items %}
                   ['{{ month }}', {{graph_data.received}}, {{graph_data.kgs}}],
                   {% endfor %}

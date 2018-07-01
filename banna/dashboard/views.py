@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from farmer.models import Farm, Report, UserForm, Reports_Yield, Factory_Data
 import pprint
 import datetime
+from django.utils import translation
 
 month_numbers_convert = {
     1: 'Jan',
@@ -35,6 +36,12 @@ def login(request):
     return render(request, 'dashboard/login.html')
 
 def dashboard(request):
+    user_language = 'en'
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     now = datetime.datetime.now()
     report_yields = Reports_Yield.objects.all()
     farms_amount = Farm.objects.count()
@@ -183,6 +190,12 @@ def edit_farmer(request):
     return render(request, 'dashboard/edit_farmer.html')
 
 def factory_data(request):
+    user_language = 'en'
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     now = datetime.datetime.now()
 
     if request.method == "POST":
@@ -217,6 +230,12 @@ def factory_data_delete(request, data_id):
 
 
 def factory_data_edit(request, data_id):
+    user_language = 'en'
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     if request.method == "POST":
         kgs_received = request.POST.get('kgs_received', '')
 
@@ -240,6 +259,12 @@ def factory_data_edit(request, data_id):
 
 
 def factory_overview(request):
+    user_language = 'en'
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     now = datetime.datetime.now()
 
     factory_datas = Factory_Data.objects.filter(year=now.year).order_by('id')
@@ -284,6 +309,12 @@ def factory_overview(request):
     return render(request, 'dashboard/factory_overview.html', context)
 
 def factory(request):
+    user_language = 'en'
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     now = datetime.datetime.now()
 
     factory_datas = Factory_Data.objects.filter(year=now.year).order_by('id')
@@ -329,6 +360,12 @@ def factory(request):
     return render(request, 'dashboard/factory.html', context)
 
 def farmers(request):
+    user_language = 'en'
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     farmers = Farm.objects.all()
 
     context = {
@@ -338,6 +375,11 @@ def farmers(request):
     return render(request, 'dashboard/farmers.html', context)
 
 def harvests(request):
+    user_language = 'en'
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
 
     harvests = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id');
 
@@ -361,6 +403,12 @@ def harvests(request):
     return render(request, 'dashboard/harvests.html', context)
 
 def trees(request):
+    user_language = 'en'
+    translation.activate(user_language)
+    request.session[translation.LANGUAGE_SESSION_KEY] = user_language
+    if translation.LANGUAGE_SESSION_KEY in request.session:
+        del request.session[translation.LANGUAGE_SESSION_KEY]
+
     yields = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id'); #.filter(report_id__year="2018").
 
     planted_per_month = {}

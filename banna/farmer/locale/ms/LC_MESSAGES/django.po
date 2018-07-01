@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 08:37+0800\n"
+"POT-Creation-Date: 2018-06-30 15:41+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,52 +21,51 @@ msgstr ""
 #, fuzzy
 #| msgid "Fertilizer used"
 msgid "Fertilizer"
-msgstr "Kunstmest gebruikt"
+msgstr "Baja diguna"
 
 #: farmer/templates/farmer/form/fertilizer.html:39
 #: farmer/templates/farmer/form/harvest/bananas.html:27
 #: farmer/templates/farmer/form/harvest/trees.html:29
 #: farmer/templates/farmer/form/planted.html:29
 msgid "Error Message"
-msgstr "Waarschuwing"
+msgstr "kesalahan mesej"
 
 #: farmer/templates/farmer/form/fertilizer.html:42
 #: farmer/templates/farmer/form/harvest/trees.html:32
 msgid ""
 "Please fill in all fields. If there are no harvested trees in a particular "
 "yield, please fill in zero."
-msgstr ""
-"Vul graag alle velden in. Als er geen oorgst is in een bepaalde cyclusvul "
-"dan null in."
+msgstr "Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan kosong ‘0’"
+
 
 #: farmer/templates/farmer/form/fertilizer.html:45
 #: farmer/templates/farmer/form/harvest/bananas.html:33
 #: farmer/templates/farmer/form/harvest/trees.html:35
 #: farmer/templates/farmer/form/planted.html:35
 msgid "Close"
-msgstr "Sluit"
+msgstr "Tutup"
 
 #: farmer/templates/farmer/form/fertilizer.html:56
 msgid "Did you use a fertilizer this month?"
-msgstr "Heb jij deze maand fertilizer gebruikt?"
+msgstr "Adakah kamu menggunakan baja untuk bulan ini?"
 
 #: farmer/templates/farmer/form/fertilizer.html:60
 msgid "Yes"
-msgstr "Ja"
+msgstr "Ya"
 
 #: farmer/templates/farmer/form/fertilizer.html:61
 msgid "No"
-msgstr "Nee"
+msgstr "Tidak"
 
 #: farmer/templates/farmer/form/fertilizer.html:66
 #, fuzzy
 #| msgid "How much fertilizer did you use? (optional)"
 msgid "How much fertilizer did you use?"
-msgstr "Hoeveel kunstmest heb je gebruikt? (optioneel"
+msgstr "Berapa jumlah baja yang digunakan"
 
 #: farmer/templates/farmer/form/fertilizer.html:67
 msgid "(optional)"
-msgstr "(optioneel)"
+msgstr "(tidak wajib)"
 
 #: farmer/templates/farmer/form/fertilizer.html:77
 #: farmer/templates/farmer/form/harvest/bananas.html:80
@@ -77,25 +76,23 @@ msgstr "(optioneel)"
 #: farmer/templates/farmer/overview/reports.html:93
 #: farmer/templates/farmer/overview/statistics.html:50
 msgid "Go back"
-msgstr "Terug"
+msgstr "Pergi balik"
 
 #: farmer/templates/farmer/form/fertilizer.html:80
 msgid "Submit"
-msgstr "Verstuur"
+msgstr "Hantar"
 
 #: farmer/templates/farmer/form/harvest/bananas.html:20
 #, fuzzy
 #| msgid "Monthly Harvested Bananas (KG)"
 msgid "Harvested Bananas"
-msgstr "Maandelijks Geoogst Bananas"
+msgstr "Pisang yang dituai"
 
 #: farmer/templates/farmer/form/harvest/bananas.html:30
 msgid ""
 "Please fill in all fields. If there are no harvested bananas in a particular "
 "yield, please fill in zero."
-msgstr ""
-"Vul graag alle velden in. Als er geen oogst in een bepaald cyclus is gedaan, "
-"vul dan null in"
+msgstr "Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan kosong ‘0’"
 
 #: farmer/templates/farmer/form/harvest/bananas.html:49
 #: farmer/templates/farmer/form/harvest/trees.html:49
@@ -104,11 +101,11 @@ msgstr ""
 #: farmer/templates/farmer/overview/reports.html:48
 #: farmer/templates/farmer/overview/reports.html:64
 msgid "Yield"
-msgstr "Cyclus"
+msgstr "Yield"
 
 #: farmer/templates/farmer/form/harvest/bananas.html:50
 msgid "Amount of Bananas"
-msgstr "Hoeveelheid Bananen"
+msgstr "Jumlah Pisang"
 
 #: farmer/templates/farmer/form/harvest/bananas.html:56
 #: farmer/templates/farmer/form/harvest/bananas.html:60
@@ -116,90 +113,88 @@ msgstr "Hoeveelheid Bananen"
 #: farmer/templates/farmer/form/harvest/bananas.html:68
 #: farmer/templates/farmer/form/harvest/bananas.html:72
 msgid "KG"
-msgstr "KM"
+msgstr "kg"
 
 #: farmer/templates/farmer/form/harvest/bananas.html:83
 #: farmer/templates/farmer/form/harvest/trees.html:83
 #: farmer/templates/farmer/form/planted.html:84
 msgid "Next"
-msgstr "Volgende"
+msgstr "Seterusnya"
 
 #: farmer/templates/farmer/form/harvest/trees.html:22
 #: farmer/templates/farmer/overview/reports.html:41
 msgid "Harvested Trees"
-msgstr "Oogst bomen"
+msgstr "Pokok yang dituai"
 
 #: farmer/templates/farmer/form/harvest/trees.html:50
 #: farmer/templates/farmer/form/planted.html:51
 msgid "Amount of Trees"
-msgstr "Hoeveelheid bomen"
+msgstr "Jumlah pokok"
 
 #: farmer/templates/farmer/form/planted.html:22
 msgid "New planted trees"
-msgstr "Nieuwe geplante bomen"
+msgstr "Pokok baru ditanam"
 
 #: farmer/templates/farmer/form/planted.html:32
 msgid ""
 "Please fill in all fields. If there are no new planted trees in a particular "
 "yield, please fill in zero."
-msgstr ""
-"Vul graag alle velden in. Als er geen niew geplante bomen is in een bepaald "
-"cyclus is gedaan, vul dan null in"
+msgstr "Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan kosong ‘0’"
 
 #: farmer/templates/farmer/form/success.html:8
 msgid "Success"
-msgstr "Geslaagd"
+msgstr "Berjaya"
 
 #: farmer/templates/farmer/form/success.html:17
 #: farmer/templates/farmer/overview/months.html:6
 msgid "Month Overview"
-msgstr "Maandelijks Overzicht"
+msgstr "Gambaran Keseluruhan dalam sebulan"
 
 #: farmer/templates/farmer/overview/farms.html:7
 msgid "Overview Farms"
-msgstr "Boederijen Overzicht"
+msgstr "Gambaran Keseluruhan Tanaman"
 
 #: farmer/templates/farmer/overview/farms.html:23
 #: farmer/templates/farmer/overview/months.html:29
 msgid "No data available."
-msgstr "Geen data beschikbaar"
+msgstr "Tiada data yang tersedia"
 
 #: farmer/templates/farmer/overview/months.html:41
 #: farmer/templates/farmer/overview/statistics.html:9
 msgid "Statistics"
-msgstr "Statistieken"
+msgstr "statistik"
 
 #: farmer/templates/farmer/overview/reports.html:57
 msgid "Harvest KGs"
-msgstr "Oogst Bananen"
+msgstr "Tuaian(kg)"
 
 #: farmer/templates/farmer/overview/reports.html:73
 msgid "Fertilizer used"
-msgstr "Kunstmest gebruikt"
+msgstr "Baja yang digunakan"
 
 #: farmer/templates/farmer/overview/reports.html:78
 msgid "Fertilizer amount"
-msgstr "Kunstmest hoeveelheid"
+msgstr "Jumlah baja"
 
 #: farmer/templates/farmer/overview/reports.html:96
 msgid "Edit"
-msgstr "Aanpassen"
+msgstr "Edit"
 
 #: farmer/templates/farmer/overview/statistics.html:14
 msgid "Monthly Harvested Bananas (KG)"
-msgstr "Maandelijks Geoogst Bananas"
+msgstr "Jumlah Pisang dituai dalam sebulan(kg)"
 
 #: farmer/templates/farmer/overview/statistics.html:26
 msgid "Total Bananas Harvested (KG)"
-msgstr "Totaal Bananen geoogst"
+msgstr "Jumlah pisang dituai(kg)"
 
 #: farmer/templates/farmer/overview/statistics.html:34
 msgid "Total Trees Planted"
-msgstr "Totaal bomen geplant"
+msgstr "Jumlah pokok  ditanam"
 
 #: farmer/templates/farmer/overview/statistics.html:42
 msgid "Total Trees Harvested"
-msgstr "Totaal bomen geoogst"
+msgstr "Jumlah pokok dituai"
 
 #: farmer/views/overview/statistics.py:19
 msgid "Jan"
@@ -216,7 +211,7 @@ msgstr "Apr"
 
 #: farmer/views/overview/statistics.py:23
 msgid "May"
-msgstr "Mrt"
+msgstr "Mei"
 
 #: farmer/views/overview/statistics.py:24
 msgid "Jun"
@@ -228,7 +223,7 @@ msgstr "Jul"
 
 #: farmer/views/overview/statistics.py:26
 msgid "Aug"
-msgstr "Aug"
+msgstr "Ogos"
 
 #: farmer/views/overview/statistics.py:27
 msgid "Sep"
@@ -236,25 +231,15 @@ msgstr "Sep"
 
 #: farmer/views/overview/statistics.py:28
 msgid "Oct"
-msgstr "Okt"
+msgstr "Oct"
 
 #: farmer/views/overview/statistics.py:29
 #, fuzzy
 #| msgid "No"
 msgid "Nov"
-msgstr "Nee"
+msgstr "Nov"
 
 #: farmer/views/overview/statistics.py:30
 msgid "Dec"
-msgstr "Dec"
+msgstr "Des"
 
-#~ msgid "%(month.month)s "
-#~ msgstr "%(June.Juni)s"
-
-#, fuzzy
-#~| msgid "Statistics"
-#~ msgid "Statistics Overview"
-#~ msgstr "Statistieken"
-
-#~ msgid "Go Back"
-#~ msgstr "Terug"

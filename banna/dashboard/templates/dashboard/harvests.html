@@ -1,8 +1,8 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block body %}
-    <header class="header">Harvested</header>
+    <header class="header">{% trans 'Harvested' %}</header>
  <hr>
 
  <div class="container-fluid">
@@ -26,11 +26,11 @@
                     <table class="table table-striped" id = "harvest_table">
                      <thead>
                       <tr>
-                        <th>Farmer Name</th>
+                        <th>{% trans 'Farmer Name' %}</th>
                         <th>Yield</th>
-                        <th>Bananas Harvested (KG)</th>
-                        <th>Trees Harvested</th>
-                        <th>Date</th>
+                        <th>{% trans 'Bananas Harvested (KG)' %}</th>
+                        <th>{% trans 'Trees Harvested'%}</th>
+                        <th>{% trans 'Date' %}</th>
                       </tr>
                      </thead>
                      <tbody>
@@ -57,7 +57,7 @@
 
             function drawChart() {
               var data = google.visualization.arrayToDataTable([
-                ['Month', 'Harvested bananas (KG)', 'Number of harvested trees' ],
+                [{% trans 'Month' %}, {% trans 'Harvested bananas (KG)' %}, {% trans 'Number of harvested trees' %} ],
                 {% for month,amount in harvest_per_month.items %}
                 ['{{ month }}', {{amount.kgs}}, {{amount.number}}],
                 {% endfor %}

@@ -1,9 +1,9 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block body %}
 
-<header class="header shadow">Factory</header>
+<header class="header shadow">{% trans 'Bananas Overview' %}</header>
  <hr>
  <div class="container-fluid">
      <div class="page-content page-content-popup">
@@ -13,7 +13,7 @@
                        <div class="portlet-title">
                            <div class="caption">
                                <i class="icon-share font-yellow"></i>
-                               <span>Bananas Harvested vs Bananas Received</span>
+                               <span>{% trans 'Bananas Harvested vs Bananas Received' %}</span>
                            </div>
                        </div>
 
@@ -32,9 +32,9 @@
               <table class="table table-striped" id ="factory_overview_table">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>Quantity Received (KG)</th>
-                      <th>Date</th>
+                      <th>{% trans 'ID' %}</th>
+                      <th>{% trans 'Quantity Received (KG)' %}</th>
+                      <th>{% trans 'Date' %}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -58,7 +58,7 @@
 
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  ['Month', 'Factory Received', 'Harvest (KGs)'],
+                  [{% trans 'Month' %}, {% trans 'Factory Received' %}, {% trans 'Harvest (KGs)' %}],
                   {% for month, graph_data in graph_datas.items %}
                   ['{{ month }}', {{graph_data.received}}, {{graph_data.kgs}}],
                   {% endfor %}

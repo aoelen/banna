@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <script>
     $(document).ready(function() {
@@ -18,24 +19,24 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="/dashboard/overview">Dashboard <span class="sr-only">(current)</span></a>
+            <a class="nav-link font-weight-bold" href="/dashboard/overview">{% trans 'Dashboard' %} <span class="sr-only">(current)</span></a>
         </li>
       {% for user_group in request.user.groups.all %}
 
         {% ifequal user_group|stringformat:"s" 'factory' %}
         <li class="nav-item">
-          <a class="nav-link font-weight-bold" href="/dashboard/factory">Factory Data</a>
+          <a class="nav-link font-weight-bold" href="/dashboard/factory">{% trans 'Factory Data' %}</a>
         </li>
         {% endifequal %}
 
         {% ifequal user_group|stringformat:"s" 'government' %}
         <li class="nav-item">
-          <a class="nav-link font-weight-bold" href="/dashboard/factory_overview">Factory Overview</a>
+          <a class="nav-link font-weight-bold" href="/dashboard/factory_overview">{% trans 'Factory Overview' %}</a>
         </li>
 
         {% endifequal %}
         <li class="nav-item">
-          <a class="nav-link font-weight-bold" href="/dashboard/farmers">Farmers</a>
+          <a class="nav-link font-weight-bold" href="/dashboard/farmers">{% trans 'Farmers' %}</a>
         </li>
        {% endfor %}
 
@@ -46,9 +47,9 @@
         </ul>
 
         <ul class="navbar-nav navbar-right">
-            <li class="nav-item"><a class="nav-link font-weight-bold" href="#">Welcome, {{request.user.get_full_name}}</a></li>
+            <li class="nav-item"><a class="nav-link font-weight-bold" href="#">{% trans 'Welcome' %}, {{request.user.get_full_name}}</a></li>
 
-            <li class="nav-item"><a class="nav-link font-weight-bold" href="/logout">Logout</a></li>
+            <li class="nav-item"><a class="nav-link font-weight-bold" href="/logout">{% trans 'Logout' %}</a></li>
         </ul>
 
       </div>

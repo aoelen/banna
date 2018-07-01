@@ -1,9 +1,9 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block body %}
 
-  <header class="header">Add New Data</header>
+  <header class="header">{% trans 'Add New Data' %}</header>
 
 <div class="container-fivid" style="margin-right: 200;	margin-left: 200px;">
  <div class="row">
@@ -11,12 +11,12 @@
     <form method= "POST" action="">
         {% csrf_token %}
       <div class="form-group">
-       <h3 class="factory-label">How much bananas received? (KG)</h3>
+       <h3 class="factory-label">{% trans 'How much bananas received? (KG)' %}</h3>
        <input type="number" name="kgs_received" class="form-control"
        value="">
       </div>
       <div class="form-group">
-       <h3>Select the month</h3>
+       <h3>{% trans 'Select the month' %}</h3>
        <select name="month" class="form-control">
            {% for index, month in months.items %}
            <option value="{{index}}" {% if index in months_filledin %}disabled="disabled"{% endif %}>{{month}} {% if index in months_filledin %}(Already filled in){% endif %}</option>

@@ -1,9 +1,9 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block body %}
 
-  <header class="header">Edit Factory Data</header>
+  <header class="header">{% trans 'Edit Factory Data' %}</header>
 <div class="container-fluid" style="margin-right: 200;	margin-left: 200px;">
 
  <div class="row">
@@ -11,12 +11,12 @@
     <form method= "POST" action="">
         {% csrf_token %}
       <div class="form-group factory-box">
-       <h2 class="factory-label">How much bananas received? (KG)</h2>
+       <h2 class="factory-label">{% trans 'How much bananas received' %}? (KG)</h2>
        <input type="number" name="kgs_received" class="form-control"
        value="{{data.kgs_received}}">
       </div>
 
-   <p><input type="submit" class="btn bg-success" style= "color: white;" value="Submit"> <a class="btn bg-danger" style = "color: white;" href="/dashboard/factory">Cancel</a></p>
+   <p><input type="submit" class="btn bg-success" style= "color: white;" value="{% trans 'Submit' %}"> <a class="btn bg-danger" style = "color: white;" href="/dashboard/factory">{% trans 'Cancel' %}</a></p>
 
   </form>
  </div>

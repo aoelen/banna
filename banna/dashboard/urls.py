@@ -3,6 +3,8 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import user_passes_test
+from django.conf import settings
+from django.conf.urls.static import static
 
 def has_dashboard_permission(user):
     return user.groups.filter(name='factory').exists() or user.groups.filter(name='government').exists()
@@ -22,4 +24,4 @@ urlpatterns = [
     path('farmers', user_passes_test(has_dashboard_permission)(views.farmers), name='farmers'),
     path('harvests', user_passes_test(has_dashboard_permission)(views.harvests), name='harvests'),
     path('trees', user_passes_test(has_dashboard_permission)(views.trees), name='trees'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

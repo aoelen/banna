@@ -1,18 +1,18 @@
 {% extends 'dashboard/layout.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block body %}
-  <header class="header shadow">Farmers</header>
+  <header class="header shadow">{% trans 'Farmers' %}</header>
  <hr>
 
 <div class="container">
     <table class="table table-striped" id = "farmers_table">
      <thead>
        <tr>
-         <th>Farm ID</th>
-         <th>Farmer Name</th>
-         <th>Zone</th>
-         <th>Date Registered</th>
+         <th>{% trans 'Farm ID' %}</th>
+         <th>{% trans 'Farmer Name' %}</th>
+         <th>{% trans 'Zone' %}</th>
+         <th>{% trans 'Date Registered' %}</th>
 
        </tr>
       </thead>
