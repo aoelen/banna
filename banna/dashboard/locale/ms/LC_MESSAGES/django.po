@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 16:14+0800\n"
+"POT-Creation-Date: 2018-07-01 13:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,7 @@ msgstr "Pokok"
 
 #: dashboard/templates/dashboard/dashboard.html:317
 #: dashboard/templates/dashboard/farmers.html:5
-#: dashboard/templates/dashboard/includes/_navbar.html:38
+#: dashboard/templates/dashboard/includes/_navbar.html:39
 msgid "Farmers"
 msgstr "Petani"
 
@@ -129,6 +129,7 @@ msgid "No-Update"
 msgstr "tiada kemas kini"
 
 #: dashboard/templates/dashboard/factory.html:17
+#: dashboard/templates/dashboard/factory_overview.html:6
 msgid "Bananas Overview"
 msgstr "Gambaran Keseluruhan Pisang"
 
@@ -164,8 +165,16 @@ msgid "Actions"
 msgstr "Tindakan"
 
 #: dashboard/templates/dashboard/factory.html:81
-msgid "Harvest"
-msgstr "Tuaian"
+#, fuzzy
+#| msgid "Bananas Harvested (KG)"
+msgid "Harvest  (KGs)"
+msgstr "Pisang dituai(kg)"
+
+#: dashboard/templates/dashboard/factory_data.html:14
+#, fuzzy
+#| msgid "How much bananas received"
+msgid "How much bananas received? (KG)"
+msgstr "Berapa jumlah pisang diterima"
 
 #: dashboard/templates/dashboard/factory_data.html:19
 msgid "Select the month"
@@ -187,9 +196,11 @@ msgstr "Hantar"
 msgid "Cancel"
 msgstr "Batal"
 
-#: dashboard/templates/dashboard/factory_overview.html:6
-msgid "Factory"
-msgstr "Kilang"
+#: dashboard/templates/dashboard/factory_overview.html:61
+#, fuzzy
+#| msgid "Harvest"
+msgid "Harvest (KGs)"
+msgstr "Tuaian"
 
 #: dashboard/templates/dashboard/farmers.html:12
 msgid "Farm ID"
@@ -222,30 +233,32 @@ msgid "Trees Harvested"
 msgstr "Pokok dituai"
 
 #: dashboard/templates/dashboard/harvests.html:60
-msgid "Harvested bananas"
+#, fuzzy
+#| msgid "Harvested bananas"
+msgid "Harvested bananas (KG)"
 msgstr "Pisang yang sudah dituai(kg)"
 
 #: dashboard/templates/dashboard/harvests.html:60
 msgid "Number of harvested trees"
 msgstr "Jumlah pokok yang dituai"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:21
+#: dashboard/templates/dashboard/includes/_navbar.html:22
 msgid "Dashboard"
 msgstr "Papan Statistik"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:27
+#: dashboard/templates/dashboard/includes/_navbar.html:28
 msgid "Factory Data"
 msgstr "Data Kilang"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:33
+#: dashboard/templates/dashboard/includes/_navbar.html:34
 msgid "Factory Overview"
 msgstr "Gambaran Keseluruhan Kilang"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:49
+#: dashboard/templates/dashboard/includes/_navbar.html:50
 msgid "Welcome"
 msgstr "Selamat datang"
 
-#: dashboard/templates/dashboard/includes/_navbar.html:51
+#: dashboard/templates/dashboard/includes/_navbar.html:52
 msgid "Logout"
 msgstr "Log Keluar"
 
@@ -260,6 +273,9 @@ msgstr "Baja yang digunakan"
 #: dashboard/templates/dashboard/trees.html:30
 msgid "Number of Trees"
 msgstr "Jumlah pokok"
+
+#~ msgid "Factory"
+#~ msgstr "Kilang"
 
 #~ msgid "Factory Received (KGs)"
 #~ msgstr "Jumlah pisang kilang menerima(kg)"

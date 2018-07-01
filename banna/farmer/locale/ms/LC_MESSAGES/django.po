@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-30 15:41+0800\n"
+"POT-Creation-Date: 2018-07-01 13:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,8 +35,9 @@ msgstr "kesalahan mesej"
 msgid ""
 "Please fill in all fields. If there are no harvested trees in a particular "
 "yield, please fill in zero."
-msgstr "Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan kosong ‘0’"
-
+msgstr ""
+"Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan "
+"kosong ‘0’"
 
 #: farmer/templates/farmer/form/fertilizer.html:45
 #: farmer/templates/farmer/form/harvest/bananas.html:33
@@ -92,7 +93,9 @@ msgstr "Pisang yang dituai"
 msgid ""
 "Please fill in all fields. If there are no harvested bananas in a particular "
 "yield, please fill in zero."
-msgstr "Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan kosong ‘0’"
+msgstr ""
+"Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan "
+"kosong ‘0’"
 
 #: farmer/templates/farmer/form/harvest/bananas.html:49
 #: farmer/templates/farmer/form/harvest/trees.html:49
@@ -139,7 +142,9 @@ msgstr "Pokok baru ditanam"
 msgid ""
 "Please fill in all fields. If there are no new planted trees in a particular "
 "yield, please fill in zero."
-msgstr "Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan kosong ‘0’"
+msgstr ""
+"Sila isikan semua tempat kosong. Jika tiada pisang yang dituai, isikan "
+"kosong ‘0’"
 
 #: farmer/templates/farmer/form/success.html:8
 msgid "Success"
@@ -242,4 +247,3 @@ msgstr "Nov"
 #: farmer/views/overview/statistics.py:30
 msgid "Dec"
 msgstr "Des"
-
