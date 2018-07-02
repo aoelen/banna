@@ -55,7 +55,7 @@
 
            function drawChart() {
              var data = google.visualization.arrayToDataTable([
-               [{% trans 'Month' %}, {% trans 'KG' %} ],
+               ['{% trans 'Month' %}', '{% trans 'KG' %}' ],
                {% for month,amount in planted_per_month.items %}
                ['{{ month }}', {{amount}}],
                {% endfor %}

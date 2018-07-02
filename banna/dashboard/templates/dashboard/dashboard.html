@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% block body %}
+
         <div class="logo shadow">
             <img src="{% static 'farmer/img/BannaTree.png' %}" class="rounded mx-auto d-block" alt="Responsive image" height="300">
         </div>
@@ -255,7 +256,7 @@
 
                  function drawChart() {
                    var data = google.visualization.arrayToDataTable([
-                     ['{% trans 'Month' %}', '{% trans 'Trees' %}'],
+                     ['{% trans 'Month' %}', '{% trans 'Trees' %}' ],
                      {% for month, planted in planted_per_month.items %}
                      ['{{month}}', {{planted}}],
                      {% endfor %}
@@ -376,12 +377,21 @@
     // Array of markers
     var markers = [
       // Asajaya zone
-      {% for farm in farms %}
+      <!--{% for farm in farms %}-->
        {
-        coordinates:{lat:{{farm.lat}},lng:{{farm.lng}}},
-        content:'<h4>{{farm.name}}</h4>'
+        coordinates:{lat:1.412989,lng:110.505580},
+        content:'<h4>Banna Planet</h4>'
     },
-      {% endfor %}
+           {
+        coordinates:{lat:1.280503,lng:110.633983},
+        content:'<h4>Banna World</h4>'
+    },
+
+           {
+        coordinates:{lat:1.560010,lng:110.505580},
+        content:'<h4>Farm Amir</h4>'
+    },
+      <!--{% endfor %}-->
     ];
 
     // Loop through markers

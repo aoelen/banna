@@ -36,11 +36,29 @@ def login(request):
     return render(request, 'dashboard/login.html')
 
 def dashboard(request):
-    user_language = 'en'
+    if not request.session['language_code']:
+        language_code = request.session['language_code']
+    if request.session['language_code'] == 'en':
+        language_code = 'en'
+    if request.session['language_code'] == 'ms':
+        language_code = 'ms'
+
+    if request.method == "POST":
+        language_en = request.POST.get('english', '')
+        language_ms = request.POST.get('malay', '')
+        if not language_en:
+            language_code = language_ms
+        else:
+            language_code = language_en
+
+    user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
     if translation.LANGUAGE_SESSION_KEY in request.session:
         del request.session[translation.LANGUAGE_SESSION_KEY]
+
+
+    request.session['language_code'] = language_code
 
     now = datetime.datetime.now()
     report_yields = Reports_Yield.objects.all()
@@ -190,12 +208,22 @@ def edit_farmer(request):
     return render(request, 'dashboard/edit_farmer.html')
 
 def factory_data(request):
-    user_language = 'en'
+    language_code = request.session['language_code']
+
+    if request.method == "POST":
+        language_en = request.POST.get('english', '')
+        language_ms = request.POST.get('malay', '')
+        if not language_en:
+            language_code = language_ms
+        else:
+            language_code = language_en
+    user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
     if translation.LANGUAGE_SESSION_KEY in request.session:
         del request.session[translation.LANGUAGE_SESSION_KEY]
 
+    request.session['language_code'] = language_code
     now = datetime.datetime.now()
 
     if request.method == "POST":
@@ -230,11 +258,23 @@ def factory_data_delete(request, data_id):
 
 
 def factory_data_edit(request, data_id):
-    user_language = 'en'
+    language_code = request.session['language_code']
+
+    if request.method == "POST":
+        language_en = request.POST.get('english', '')
+        language_ms = request.POST.get('malay', '')
+        if not language_en:
+            language_code = language_ms
+        else:
+            language_code = language_en
+    user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
     if translation.LANGUAGE_SESSION_KEY in request.session:
         del request.session[translation.LANGUAGE_SESSION_KEY]
+
+    request.session['language_code'] = language_code
+
 
     if request.method == "POST":
         kgs_received = request.POST.get('kgs_received', '')
@@ -259,11 +299,22 @@ def factory_data_edit(request, data_id):
 
 
 def factory_overview(request):
-    user_language = 'en'
+    language_code = request.session['language_code']
+
+    if request.method == "POST":
+        language_en = request.POST.get('english', '')
+        language_ms = request.POST.get('malay', '')
+        if not language_en:
+            language_code = language_ms
+        else:
+            language_code = language_en
+    user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
     if translation.LANGUAGE_SESSION_KEY in request.session:
         del request.session[translation.LANGUAGE_SESSION_KEY]
+
+    request.session['language_code'] = language_code
 
     now = datetime.datetime.now()
 
@@ -309,11 +360,22 @@ def factory_overview(request):
     return render(request, 'dashboard/factory_overview.html', context)
 
 def factory(request):
-    user_language = 'en'
+    language_code = request.session['language_code']
+
+    if request.method == "POST":
+        language_en = request.POST.get('english', '')
+        language_ms = request.POST.get('malay', '')
+        if not language_en:
+            language_code = language_ms
+        else:
+            language_code = language_en
+    user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
     if translation.LANGUAGE_SESSION_KEY in request.session:
         del request.session[translation.LANGUAGE_SESSION_KEY]
+
+    request.session['language_code'] = language_code
 
     now = datetime.datetime.now()
 
@@ -360,11 +422,22 @@ def factory(request):
     return render(request, 'dashboard/factory.html', context)
 
 def farmers(request):
-    user_language = 'en'
+    language_code = request.session['language_code']
+
+    if request.method == "POST":
+        language_en = request.POST.get('english', '')
+        language_ms = request.POST.get('malay', '')
+        if not language_en:
+            language_code = language_ms
+        else:
+            language_code = language_en
+    user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
     if translation.LANGUAGE_SESSION_KEY in request.session:
         del request.session[translation.LANGUAGE_SESSION_KEY]
+
+    request.session['language_code'] = language_code
 
     farmers = Farm.objects.all()
 
@@ -375,11 +448,22 @@ def farmers(request):
     return render(request, 'dashboard/farmers.html', context)
 
 def harvests(request):
-    user_language = 'en'
+    language_code = request.session['language_code']
+
+    if request.method == "POST":
+        language_en = request.POST.get('english', '')
+        language_ms = request.POST.get('malay', '')
+        if not language_en:
+            language_code = language_ms
+        else:
+            language_code = language_en
+    user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
     if translation.LANGUAGE_SESSION_KEY in request.session:
         del request.session[translation.LANGUAGE_SESSION_KEY]
+
+    request.session['language_code'] = language_code
 
     harvests = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id');
 
@@ -403,12 +487,22 @@ def harvests(request):
     return render(request, 'dashboard/harvests.html', context)
 
 def trees(request):
-    user_language = 'en'
+    language_code = request.session['language_code']
+
+    if request.method == "POST":
+        language_en = request.POST.get('english', '')
+        language_ms = request.POST.get('malay', '')
+        if not language_en:
+            language_code = language_ms
+        else:
+            language_code = language_en
+    user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
     if translation.LANGUAGE_SESSION_KEY in request.session:
         del request.session[translation.LANGUAGE_SESSION_KEY]
 
+    request.session['language_code'] = language_code
     yields = Reports_Yield.objects.select_related('report_id__farm__farmer').order_by('-report_id__year', '-report_id__month', '-id'); #.filter(report_id__year="2018").
 
     planted_per_month = {}
