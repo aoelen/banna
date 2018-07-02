@@ -78,7 +78,7 @@ $(document).ready(function() {
 
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  [{% trans 'Month' %}, {% trans 'Factory Received' %}, {% trans 'Harvest  (KGs)' %}],
+                  ['{% trans 'Month' %}', '{% trans 'Factory Received' %}', '{% trans 'Harvest  (KGs)' %}'],
                   {% for month, graph_data in graph_datas.items %}
                   ['{{ month }}', {{graph_data.received}}, {{graph_data.kgs}}],
                   {% endfor %}
