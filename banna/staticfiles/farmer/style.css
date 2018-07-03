@@ -239,7 +239,7 @@ header {
     text-align: center
 }
 .p-form-fertilizer .fertilizer-box {
-    margin-top: 30%;
+    margin: auto;
     color: #ffffff;
     background-color: rgba(107, 151, 70, 0.7);
 }
@@ -339,3 +339,21 @@ header {
     left: 0;
 }
 
+.flag-box{
+    text-align: center;
+    margin-top: 15%;
+}
+
+.flag-box .label{
+    text-align: center;
+}
+
+.flag-box .flag{
+    with: 125px;
+    height: 125px;
+    display: block;
+    margin-top: 30%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
