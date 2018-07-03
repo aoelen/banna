@@ -377,21 +377,12 @@
     // Array of markers
     var markers = [
       // Asajaya zone
-      <!--{% for farm in farms %}-->
+     {% for farm in farms %}
        {
-        coordinates:{lat:1.412989,lng:110.505580},
-        content:'<h4>Banna Planet</h4>'
+        coordinates:{lat:{{farm.lat}},lng:{{farm.lng}}},
+        content:'<h4>{{farm.name}}</h4>'
     },
-           {
-        coordinates:{lat:1.280503,lng:110.633983},
-        content:'<h4>Banna World</h4>'
-    },
-
-           {
-        coordinates:{lat:1.560010,lng:110.505580},
-        content:'<h4>Farm Amir</h4>'
-    },
-      <!--{% endfor %}-->
+      {% endfor %}
     ];
 
     // Loop through markers
