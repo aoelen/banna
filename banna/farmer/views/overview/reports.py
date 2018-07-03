@@ -10,6 +10,7 @@ from django.utils import translation
 
 #SHOW OVERVIEW REPORT
 def overview_report(request, farm_id, year , month, language_code):
+    # If form is correct,post into database and return next page
     user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
@@ -21,6 +22,7 @@ def overview_report(request, farm_id, year , month, language_code):
     total_amount_harvested_trees = 0
     total_amount_harvested_kg = 0
 
+    #get data of the month report
     farm_object = Farm.objects.filter(id=farm_id)
     for farm in farm_object:
         reports = Report.objects.filter(farm_id=farm, month= month)
@@ -54,11 +56,13 @@ def overview_report(request, farm_id, year , month, language_code):
         data['total_harvested'] = total_amount_harvested_trees
         data['total_bananas_kg'] = total_amount_harvested_kg
 
+    #get the month and year of the report
     data['date'] = {
         'month': month,
         'year': year
     }
 
+    #dict for the template
     context = {
         'data': data,
         'report' : report,

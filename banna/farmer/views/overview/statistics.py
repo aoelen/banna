@@ -10,6 +10,7 @@ from django.utils.translation import gettext as _
 
 
 def statistics(request, farm_id, language_code):
+    # If form is correct,post into database and return next page
     user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
@@ -81,7 +82,7 @@ def statistics(request, farm_id, language_code):
         trees_planted = trees_planted + report_yield.planted_amount_trees
         trees_harvested = trees_harvested + report_yield.harvested_amount_trees
 
-
+    #dict for the template
     context = {
         'language': language_code,
         'farm_id' : farm_id,

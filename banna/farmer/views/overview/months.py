@@ -8,6 +8,7 @@ from django.utils import translation
 
 #SHOW OVERVIEW MONTH REPORTS
 def overview_months(request, farm_id, language_code):
+    # If form is correct,post into database and return next page
     user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
@@ -37,7 +38,9 @@ def overview_months(request, farm_id, language_code):
         month_name = report.month
         month_number = strptime(month_name, '%B').tm_mon
 
+        #check if report is filled in
         if report.report_date is None:
+            # user have enough time
             if currentdate <= datetime(report.year, month_number, 7).date():
                 data.append({
                     'farm_id': farm_id,
@@ -49,6 +52,7 @@ def overview_months(request, farm_id, language_code):
                     }
                 })
 
+            #warning for the user to fill in the form
             if currentdate > datetime(report.year, month_number, 7).date() and currentdate < datetime(report.year, month_number, 20).date():
                 data.append({
                     'farm_id': farm_id,
@@ -60,6 +64,7 @@ def overview_months(request, farm_id, language_code):
                     }
                 })
 
+            #alert user is to late
             if currentdate > datetime(report.year, month_number, 21).date():
                 data.append({
                     'farm_id': farm_id,
@@ -70,6 +75,8 @@ def overview_months(request, farm_id, language_code):
                         'value': 'icons/cancel.png'
                     }
                 })
+
+        #user has filled the form correctly
         else:
             data.append({
                 'farm_id': farm_id,
@@ -81,6 +88,7 @@ def overview_months(request, farm_id, language_code):
                 }
             })
 
+    #dict for the template
     context = {
         'data': data,
         'farm_id': farm_id,

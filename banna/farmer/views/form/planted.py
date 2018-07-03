@@ -8,6 +8,7 @@ from django.utils import translation
 
 
 def form_planted(request, farm_id, year, month, report_id, language_code):
+    # If form is correct,post into database and return next page
     user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
@@ -22,11 +23,13 @@ def form_planted(request, farm_id, year, month, report_id, language_code):
         yields = request.POST.getlist('yield[]')
 
         for index, single_yield in enumerate(yields):
+            # If form is correct,post into database and return next page
             if single_yield == "":
                 message_alert = "#message_alert"
                 redirect_page = False
                 break
 
+        #If form is correct,post into database and return next page
         if redirect_page == True:
             for index, single_yield in enumerate(yields):
                 report = Report.objects.get(id=report_id)
@@ -43,6 +46,7 @@ def form_planted(request, farm_id, year, month, report_id, language_code):
     for report in reports_yield:
         yields[report.yield_number] = report.planted_amount_trees
 
+    #dict for the template
     context = {
         'language': language_code,
         'message_alert': message_alert,
