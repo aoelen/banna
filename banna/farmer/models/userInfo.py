@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Zone(models.Model):
+    zone = models.CharField(max_length=8)
+
+    def __str__(self):
+        zone_name = "Zone " + str(self.zone)
+        return zone_name
+
+
+
 #information about a specific farm
 class Farm(models.Model):
     name = models.CharField(max_length=30)
