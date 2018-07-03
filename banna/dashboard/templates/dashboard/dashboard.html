@@ -280,69 +280,69 @@
 
 <!-- Trees per Yield -->
 <script type="text/javascript">
-                   google.charts.load('current', {'packages':['corechart']});
-                         google.charts.setOnLoadCallback(drawChart);
+       google.charts.load('current', {'packages':['corechart']});
+             google.charts.setOnLoadCallback(drawChart);
 
-                         function drawChart() {
-                           var data = google.visualization.arrayToDataTable([
-                             ['{% trans 'Month' %}', 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
-                             {% for month, row in trees_yield_month.items %}
-                             ['{{month}}',
-                             {% for index,yield_n in row.items %}
-                             {{yield_n}},
-                             {% endfor %}
-                            ],
-                             {% endfor %}
-                           ]);
+             function drawChart() {
+               var data = google.visualization.arrayToDataTable([
+                 ['{% trans 'Month' %}', 'Yield 1', 'Yield 2', 'Yield 3', 'Yield 4', 'Yield 5'],
+                 {% for month, row in trees_yield_month.items %}
+                 ['{{month}}',
+                 {% for index,yield_n in row.items %}
+                 {{yield_n}},
+                 {% endfor %}
+                ],
+                 {% endfor %}
+               ]);
 
-                           var options = {
-                             curveType: 'function',
-                             legend: { position: 'right' },
-                             vAxis: { gridlines: { count: 6, color: 'white' }, minValue:0, viewWindow: {
-                               min: 0
-                           }  },
-                             colors: ['red','green', 'yellow', 'blue', 'purple']
-                           };
+               var options = {
+                 curveType: 'function',
+                 legend: { position: 'right' },
+                 vAxis: { gridlines: { count: 6, color: 'white' }, minValue:0, viewWindow: {
+                   min: 0
+               }  },
+                 colors: ['red','green', 'yellow', 'blue', 'purple']
+               };
 
-                           var chart = new google.visualization.LineChart(document.getElementById('trees_per_yield'));
-                           chart.draw(data, options);
-                         }
-                    </script>
+               var chart = new google.visualization.LineChart(document.getElementById('trees_per_yield'));
+               chart.draw(data, options);
+             }
+        </script>
 
-                <!-- Farm Updates Pie -->
-                <script type="text/javascript">
-               google.charts.load("current", {packages:["corechart"]});
-               google.charts.setOnLoadCallback(drawChart);
-               function drawChart() {
-                 var data = google.visualization.arrayToDataTable([
-                   ['{% trans 'Farmers' %}', '{% trans 'Updates for Month' %}'],
-                   ['{% trans 'Update' %}', {{farmers_update}}],
-                   ['{% trans 'No-Update' %}', {{farmers_no_update}}]
-                 ]);
+    <!-- Farm Updates Pie -->
+    <script type="text/javascript">
+   google.charts.load("current", {packages:["corechart"]});
+   google.charts.setOnLoadCallback(drawChart);
+   function drawChart() {
+     var data = google.visualization.arrayToDataTable([
+       ['{% trans 'Farmers' %}', '{% trans 'Updates for Month' %}'],
+       ['{% trans 'Update' %}', {{farmers_update}}],
+       ['{% trans 'No-Update' %}', {{farmers_no_update}}]
+     ]);
 
-                 var options = {
-                   pieHole: 0.4,
-                 };
+     var options = {
+       pieHole: 0.4,
+     };
 
-                 var chart = new google.visualization.PieChart(document.getElementById('farm_updates'));
-                 chart.draw(data, options);
-               }
-             </script>
+     var chart = new google.visualization.PieChart(document.getElementById('farm_updates'));
+     chart.draw(data, options);
+   }
+ </script>
 
-<script type="text/javascript">
-             $(document).ready(function() {
-                 $('#farmer_update_table').DataTable( {
-                   dom: 'Bfrtip',
-                   "lengthMenu": [ 10, 25, 50, 75, 100 ],
-                   buttons: [
+ <script type="text/javascript">
+ $(document).ready(function() {
+     $('#farmer_update_table').DataTable( {
+       dom: 'Bfrtip',
+       "lengthMenu": [ 10, 25, 50, 75, 100 ],
+       buttons: [
 
-                         { extend: 'copyHtml5', className: 'copyButton' },
-                         { extend: 'excelHtml5', className: 'excelButton' },
-                         { extend: 'csvHtml5', className: 'csvButton' }
+             { extend: 'copyHtml5', className: 'copyButton' },
+             { extend: 'excelHtml5', className: 'excelButton' },
+             { extend: 'csvHtml5', className: 'csvButton' }
 
-                   ]
-                 } );
-             } );
+       ]
+     } );
+ } );
 </script>
 
 <!-- Map for Zone -->
