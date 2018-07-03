@@ -4,6 +4,7 @@ from datetime import datetime, date
 from django.utils import translation
 
 def success(request, farm_id, year, month, report_id, language_code):
+    # If form is correct,post into database and return next page
     user_language = language_code
     translation.activate(user_language)
     request.session[translation.LANGUAGE_SESSION_KEY] = user_language
@@ -12,6 +13,7 @@ def success(request, farm_id, year, month, report_id, language_code):
 
     Report.objects.filter(id=report_id).update(report_date=datetime.now().date())
 
+    #dict for the template
     context = {
         'language':language_code,
         'report_id': report_id,

@@ -8,6 +8,7 @@ from django.utils import translation
 
 #SHOW OVERVIEW FARMS
 def choose_language(request):
+    #post the languague which user will use in the application
     if request.method == "POST":
         chosen_language = request.POST.get('language')
         return redirect('/farmer/'+ str(chosen_language) +'/farms/')

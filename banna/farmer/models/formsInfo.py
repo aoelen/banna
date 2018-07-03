@@ -3,7 +3,7 @@ from .userInfo import Farm
 from .datesInfo import Date
 import datetime
 
-
+#Attributes of the Monthly report of the farmer
 class Report(models.Model):
     fertilizer_used = models.CharField(max_length=30, null=True, blank = 'True')
     fertilizer_amount = models.IntegerField(null=True, blank = 'True')
@@ -19,6 +19,7 @@ class Report(models.Model):
     def __str__(self):
         return str(self.farm.name) + " " + str(self.month) + " " + str(self.year)
 
+#Yields are part of the monthreport
 class Reports_Yield(models.Model):
     YIELDS = (
         ('Yield 1', 'Yield 1'),
@@ -40,6 +41,7 @@ class Reports_Yield(models.Model):
     def __str__(self):
         return str(self.report_id) + ": " + str(self.yield_number)
 
+#Data about the factory
 class Factory_Data(models.Model):
     kgs_received = models.IntegerField(null = 'True')
     month = models.IntegerField(null = 'True')

@@ -14,10 +14,8 @@ def is_farmer(user):
 
 
 urlpatterns = [
-    #url(r'^$', views.index, name='index'),
     #redirect
     path('login_redirect', views.login_redirect, name='login_redirect'),
-
     url(r'^language/$', login_required(views.choose_language), name='choose_language'),
 
     #overview sections
@@ -45,10 +43,12 @@ urlpatterns = [
         login_required(views.form_fertilizer),
         name='form_fertilizer'),
 
+    #form succeed
     url(r'^(?P<language_code>[\w\-]+)/(?P<farm_id>[\w\-]+)/(?P<year>[\w\-]+)/(?P<month>[\w\-]+)/(?P<report_id>[\w\-]+)/succes/$',
         login_required(views.success),
         name='success'),
 
+    #statistics page
     url(r'^(?P<language_code>[\w\-]+)/(?P<farm_id>[\w\-]+)/statistics/$',
         login_required(views.statistics),
         name='statistics'),
