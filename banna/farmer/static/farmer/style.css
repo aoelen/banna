@@ -346,14 +346,23 @@ header {
 
 .flag-box .label{
     text-align: center;
+    font-size: 20px
 }
 
 .flag-box .flag{
-    with: 125px;
-    height: 125px;
+    with: 70px;
+    height: 70px;
     display: block;
     margin-top: 30%;
     margin-left: auto;
     margin-right: auto;
 
+}
+.language_button {
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+    background: transparent;
+    border:none;
+    width:150px
 }

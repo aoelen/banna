@@ -357,3 +357,9 @@ header {
     margin-right: auto;
 
 }
+.language_button {
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+    background: transparent;
+}
