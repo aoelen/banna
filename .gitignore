@@ -71,10 +71,6 @@ coverage.xml
 *,cover
 .hypothesis/
 
-# Translations
-*.mo
-*.pot
-
 # Django stuff:
 *.log
 local_settings.py
@@ -192,10 +188,6 @@ htmlcov/
 .cache
 nosetests.xml
 coverage.xml
-
-# Translations
-*.mo
-*.pot
 
 # Sphinx documentation
 docs/_build/
